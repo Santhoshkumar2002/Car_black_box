@@ -45,8 +45,10 @@
 [v _display_time display_time `(v  1 e 1 0 ]
 "27
 [v _gear_monitor gear_monitor `(v  1 e 1 0 ]
-"46
+"45
 [v _display_speed display_speed `(v  1 e 1 0 ]
+"50
+[v _enter_password enter_password `(v  1 e 1 0 ]
 "11 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_write clcd_write `(v  1 e 1 0 ]
 "34
@@ -55,7 +57,7 @@
 [v _clcd_print clcd_print `(v  1 e 1 0 ]
 "74
 [v _clcd_putch clcd_putch `(v  1 e 1 0 ]
-"12 C:\Users\santh\MPLABXProjects\car_back_box.X\main.c
+"13 C:\Users\santh\MPLABXProjects\car_back_box.X\main.c
 [v _init_config init_config `(v  1 e 1 0 ]
 "19
 [v _main main `(v  1 e 1 0 ]
@@ -145,7 +147,47 @@
 {
 "21
 [v main@key key `uc  1 a 1 58 ]
-"28
+"31
+} 0
+"13
+[v _init_config init_config `(v  1 e 1 0 ]
+{
+"17
+} 0
+"12 C:\Users\santh\MPLABXProjects\car_back_box.X\mkp.c
+[v _init_matrix_keypad init_matrix_keypad `(v  1 e 1 0 ]
+{
+"16
+} 0
+"34 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
+[v _init_clcd init_clcd `(v  1 e 1 0 ]
+{
+"63
+} 0
+"12 C:\Users\santh\MPLABXProjects\car_back_box.X\adc.c
+[v _init_adc init_adc `(v  1 e 1 0 ]
+{
+"27
+} 0
+"50 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+[v _enter_password enter_password `(v  1 e 1 0 ]
+{
+"82
+[v enter_password@ind_compare ind_compare `us  1 a 2 27 ]
+[v enter_password@count count `us  1 a 2 17 ]
+"53
+[v enter_password@enter_password enter_password `[5]uc  1 a 5 12 ]
+"52
+[v enter_password@index index `us  1 a 2 31 ]
+[v enter_password@ind ind `us  1 a 2 29 ]
+[v enter_password@wait wait `us  1 a 2 25 ]
+[v enter_password@flag flag `us  1 a 2 21 ]
+"53
+[v enter_password@original_password original_password `*.32uc  1 a 2 19 ]
+"51
+[v enter_password@attempt attempt `uc  1 a 1 24 ]
+[v enter_password@pass_key pass_key `uc  1 a 1 23 ]
+"121
 } 0
 "18 C:\Users\santh\MPLABXProjects\car_back_box.X\mkp.c
 [v _read_switches read_switches `(uc  1 e 1 0 ]
@@ -165,26 +207,6 @@
 [v _scan_key scan_key `(uc  1 e 1 0 ]
 {
 "76
-} 0
-"12 C:\Users\santh\MPLABXProjects\car_back_box.X\main.c
-[v _init_config init_config `(v  1 e 1 0 ]
-{
-"17
-} 0
-"12 C:\Users\santh\MPLABXProjects\car_back_box.X\mkp.c
-[v _init_matrix_keypad init_matrix_keypad `(v  1 e 1 0 ]
-{
-"16
-} 0
-"34 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
-[v _init_clcd init_clcd `(v  1 e 1 0 ]
-{
-"63
-} 0
-"12 C:\Users\santh\MPLABXProjects\car_back_box.X\adc.c
-[v _init_adc init_adc `(v  1 e 1 0 ]
-{
-"27
 } 0
 "15 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _display_dashboard display_dashboard `(v  1 e 1 0 ]
@@ -210,7 +232,7 @@
 [v gear_monitor@key key `uc  1 a 1 wreg ]
 "29
 [v gear_monitor@key key `uc  1 a 1 5 ]
-"44
+"43
 } 0
 "23
 [v _display_time display_time `(v  1 e 1 0 ]
@@ -224,11 +246,11 @@
 [v clcd_print@addr addr `uc  1 p 1 4 ]
 "72
 } 0
-"46 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+"45 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _display_speed display_speed `(v  1 e 1 0 ]
 {
 [v display_speed@speed speed `us  1 p 2 9 ]
-"49
+"48
 } 0
 "74 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_putch clcd_putch `(v  1 e 1 0 ]

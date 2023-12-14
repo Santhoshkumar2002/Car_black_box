@@ -1,19 +1,22 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"23 ./car_black_box.h
-[; ;./car_black_box.h: 23: void init_matrix_keypad();
+"25 ./car_black_box.h
+[; ;./car_black_box.h: 25: void init_matrix_keypad();
 [v _init_matrix_keypad `(v ~T0 @X0 0 e? ]
-"59
-[; ;./car_black_box.h: 59: void init_clcd(void);
+"61
+[; ;./car_black_box.h: 61: void init_clcd(void);
 [v _init_clcd `(v ~T0 @X0 0 ef ]
-"17
-[; ;./car_black_box.h: 17: void init_adc();
+"19
+[; ;./car_black_box.h: 19: void init_adc();
 [v _init_adc `(v ~T0 @X0 0 e? ]
 [p mainexit ]
-"21
-[; ;./car_black_box.h: 21: unsigned char read_switches(unsigned char);
+"23
+[; ;./car_black_box.h: 23: unsigned char read_switches(unsigned char);
 [v _read_switches `(uc ~T0 @X0 0 ef1`uc ]
 "11
-[; ;./car_black_box.h: 11: void display_dashboard(unsigned char key);
+[; ;./car_black_box.h: 11: void enter_password();
+[v _enter_password `(v ~T0 @X0 0 e? ]
+"13
+[; ;./car_black_box.h: 13: void display_dashboard(unsigned char key);
 [v _display_dashboard `(v ~T0 @X0 0 ef1`uc ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 54: __asm("RXF6SIDH equ 0D60h");
@@ -1254,11 +1257,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32464
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 32464: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"12 main.c
-[; ;main.c: 12: void init_config()
+"13 main.c
+[; ;main.c: 13: void init_config() {
 [v _init_config `(v ~T0 @X0 1 ef ]
-"13
-[; ;main.c: 13: {
 {
 [e :U _init_config ]
 [f ]
@@ -1289,27 +1290,38 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 21:     unsigned char key;
 [v _key `uc ~T0 @X0 1 a ]
 "22
-[; ;main.c: 22:     while(1)
+[; ;main.c: 22:     while (1) {
 [e :U 1091 ]
-"23
-[; ;main.c: 23:     {
 {
-"24
-[; ;main.c: 24:         key = read_switches(1);
+"23
+[; ;main.c: 23:         key = read_switches(1);
 [e = _key ( _read_switches (1 -> -> 1 `i `uc ]
+"24
+[; ;main.c: 24:         if(key == 10)
+[e $ ! == -> _key `i -> 10 `i 1093  ]
 "25
-[; ;main.c: 25:         display_dashboard(key);
-[e ( _display_dashboard (1 _key ]
+[; ;main.c: 25:         {
+{
 "26
-[; ;main.c: 26:     }
+[; ;main.c: 26:             enter_password();
+[e ( _enter_password ..  ]
+"27
+[; ;main.c: 27:         }
+}
+[e :U 1093 ]
+"28
+[; ;main.c: 28:         display_dashboard(key);
+[e ( _display_dashboard (1 _key ]
+"29
+[; ;main.c: 29:     }
 }
 [e :U 1090 ]
 [e $U 1091  ]
 [e :U 1092 ]
-"27
-[; ;main.c: 27:     return;
+"30
+[; ;main.c: 30:     return;
 [e $UE 1089  ]
-"28
-[; ;main.c: 28: }
+"31
+[; ;main.c: 31: }
 [e :UE 1089 ]
 }

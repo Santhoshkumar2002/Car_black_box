@@ -17910,6 +17910,8 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
+void enter_password();
+
 void display_dashboard(unsigned char key);
 void display_time();
 void gear_monitor(unsigned char key);
@@ -17923,7 +17925,7 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 59 "./car_black_box.h"
+# 61 "./car_black_box.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);
@@ -17935,7 +17937,7 @@ unsigned char *gear_data[8] = {"ON", "GN", "G1", "G2", "G3", "G4", "GR", "C "};
 unsigned short gear_index = 0, speed;
 
 void display_dashboard(unsigned char key) {
-    clcd_print("  TIME     E  SP", (0x80 + (0)));
+    clcd_print("  TIME    E  SP ", (0x80 + (0)));
     display_time();
     gear_monitor(key);
     speed = (read_adc(4) / 10.23);
@@ -17943,15 +17945,14 @@ void display_dashboard(unsigned char key) {
 }
 
 void display_time() {
-    clcd_print("  10:00:00 ", (0xC0 + (0)));
+    clcd_print("10:00:00 ", (0xC0 + (0)));
 }
 
 void gear_monitor(unsigned char key) {
 
     if (key == 1) {
         gear_index = 7;
-    }
-    else if (key == 2 || key == 3) {
+    } else if (key == 2 || key == 3) {
         if (gear_index == 7 && key == 2) {
             gear_index = 0;
         }
@@ -17961,11 +17962,84 @@ void gear_monitor(unsigned char key) {
             gear_index--;
         }
     }
-    clcd_print(gear_data[gear_index], (0xC0 + (11)));
+    clcd_print(gear_data[gear_index], (0xC0 + (10)));
 
 }
 
 void display_speed(unsigned short speed) {
-    clcd_putch((speed / 10) + 48, (0xC0 + (14)));
-    clcd_putch((speed % 10) + 48, (0xC0 + (15)));
+    clcd_putch((speed / 10) + 48, (0xC0 + (13)));
+    clcd_putch((speed % 10) + 48, (0xC0 + (14)));
+}
+
+void enter_password() {
+    unsigned char pass_key, attempt = '3';
+    unsigned short index = 0, wait = 0, ind, flag = 0;
+    unsigned char *original_password = "0011", enter_password[5];
+    enter_password[4] = '\0';
+
+    clcd_print("                ", (0xC0 + (0)));
+    while (1) {
+        if (flag == 0) {
+            pass_key = read_switches(1);
+            if (pass_key == 11) {
+                enter_password[index++] = '1';
+            } else if (pass_key == 12) {
+                enter_password[index++] = '0';
+            }
+
+            for (ind = 0; ind < index; ind++) {
+                clcd_putch('*', (0xC0 + (ind + 3)));
+            }
+
+            if (wait++ < 800) {
+                clcd_putch('_', (0xC0 + (ind + 3)));
+            } else if (wait > 800) {
+                clcd_putch(' ', (0xC0 + (ind + 3)));
+                if (wait == 1600)
+                    wait = 0;
+            }
+
+            clcd_print(" Enter password", (0x80 + (0)));
+            if (index == 4) {
+                _delay((unsigned long)((600)*(20000000/4000.0)));
+                attempt--;
+                unsigned short ind_compare = 0, count = 0;
+                while (original_password[ind_compare]) {
+                    if (original_password[ind_compare] != enter_password[ind_compare]) {
+                        index = 0;
+                        count = 1;
+                        _delay((unsigned long)((500)*(20000000/4000.0)));
+                        clcd_print(" Wrong Password", (0x80 + (0)));
+                        clcd_print("                ", (0xC0 + (0)));
+                        clcd_putch(attempt, (0xC0 + (0)));
+                        clcd_print("-Attempt Remain", (0xC0 + (1)));
+                        _delay((unsigned long)((500)*(20000000/4000.0)));
+                        clcd_print("                ", (0xC0 + (0)));
+                        break;
+                    }
+                    ind_compare++;
+                }
+                if (attempt == '0') {
+                    clcd_print("  Attempt Over  ", (0x80 + (0)));
+                    clcd_print("                ", (0xC0 + (0)));
+                    _delay((unsigned long)((2000)*(20000000/4000.0)));
+                    return;
+                }
+                if (count == 0)
+                {
+                    flag = 1;
+                    _delay((unsigned long)((500)*(20000000/4000.0)));
+                    clcd_print("Correct Password", (0x80 + (0)));
+                    clcd_print("   Menu Page    ", (0xC0 + (0)));
+                }
+            }
+        } else if (flag == 1) {
+            _delay((unsigned long)((1000)*(20000000/4000.0)));
+            clcd_print("    View Log    ", (0x80 + (0)));
+            clcd_print("    Clear Log   ", (0xC0 + (0)));
+
+        }
+
+    }
+
 }

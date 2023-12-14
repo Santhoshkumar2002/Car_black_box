@@ -7,14 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-
-
-
-
-
-
-
-
+# 10 "main.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -17906,10 +17899,12 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\\pic\\include\\xc.h" 2 3
-# 9 "main.c" 2
+# 10 "main.c" 2
 
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
+void enter_password();
+
 void display_dashboard(unsigned char key);
 void display_time();
 void gear_monitor(unsigned char key);
@@ -17923,16 +17918,15 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 59 "./car_black_box.h"
+# 61 "./car_black_box.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);
 void clcd_write(unsigned char bit_values, unsigned char control_bit);
-# 10 "main.c" 2
+# 11 "main.c" 2
 
 
-void init_config()
-{
+void init_config() {
     init_matrix_keypad();
     init_clcd();
     init_adc();
@@ -17941,9 +17935,12 @@ void init_config()
 void main(void) {
     init_config();
     unsigned char key;
-    while(1)
-    {
+    while (1) {
         key = read_switches(1);
+        if(key == 10)
+        {
+            enter_password();
+        }
         display_dashboard(key);
     }
     return;
