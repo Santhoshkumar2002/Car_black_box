@@ -11,7 +11,6 @@
 
 unsigned char *gear_data[8] = {"ON", "GN", "G1", "G2", "G3", "G4", "GR", "C "};
 unsigned short gear_index = 0, speed;
-unsigned int wait = 0;
 
 void display_dashboard(unsigned char key) {
     clcd_print("  TIME     E  SP", LINE1(0));
