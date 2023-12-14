@@ -17951,14 +17951,18 @@ void gear_monitor(unsigned char key) {
 
     if (key == 1) {
         gear_index = 7;
-    } else if (key == 2 && gear_index < 6) {
-
-            gear_index++;
-
-    } else if (key == 3 && gear_index > 1) {
-        gear_index--;
     }
-    clcd_print(gear_data[gear_index],(0xC0 + (11)));
+    else if (key == 2 || key == 3) {
+        if (gear_index == 7 && key == 2) {
+            gear_index = 0;
+        }
+        if (key == 2 && gear_index < 6) {
+            gear_index++;
+        } else if (key == 3 && gear_index > 1 && gear_index < 7) {
+            gear_index--;
+        }
+    }
+    clcd_print(gear_data[gear_index], (0xC0 + (11)));
 
 }
 

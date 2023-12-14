@@ -45,7 +45,7 @@
 [v _display_time display_time `(v  1 e 1 0 ]
 "28
 [v _gear_monitor gear_monitor `(v  1 e 1 0 ]
-"43
+"47
 [v _display_speed display_speed `(v  1 e 1 0 ]
 "11 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_write clcd_write `(v  1 e 1 0 ]
@@ -166,7 +166,7 @@
 "34
 [v _scan_key scan_key `(uc  1 e 1 0 ]
 {
-"77
+"76
 } 0
 "13 C:\Users\santh\MPLABXProjects\car_back_box.X\main.c
 [v _init_config init_config `(v  1 e 1 0 ]
@@ -212,7 +212,7 @@
 [v gear_monitor@key key `uc  1 a 1 wreg ]
 "30
 [v gear_monitor@key key `uc  1 a 1 5 ]
-"41
+"45
 } 0
 "24
 [v _display_time display_time `(v  1 e 1 0 ]
@@ -226,11 +226,11 @@
 [v clcd_print@addr addr `uc  1 p 1 4 ]
 "72
 } 0
-"43 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+"47 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _display_speed display_speed `(v  1 e 1 0 ]
 {
 [v display_speed@speed speed `us  1 p 2 9 ]
-"46
+"50
 } 0
 "74 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_putch clcd_putch `(v  1 e 1 0 ]
