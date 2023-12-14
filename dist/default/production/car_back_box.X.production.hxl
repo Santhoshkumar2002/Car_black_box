@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o
+ C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o
  -Odist/default/production\car_back_box.X.production.hex
  -logfile=dist/default/production\car_back_box.X.production.hxl
  -format=INHX032
@@ -10,23 +10,23 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o)
-  600h - 636h		(C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o)
-  638h - 12D8h		(C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o)
-  12DAh - 12EFh		(C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o)
-  200000h - 200007h		(C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o)
-  300000h - 30000Dh		(C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o)
+  0h - 3h		(C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o)
+  600h - 636h		(C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o)
+  638h - 12CCh		(C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o)
+  12CEh - 12E3h		(C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o)
+  200000h - 200007h		(C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o)
+  300000h - 30000Dh		(C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o)
  Unused ranges:
   4h - 5FFh
   637h - 637h
-  12D9h - 12D9h
-  12F0h - 1FFFFFh
+  12CDh - 12CDh
+  12E4h - 1FFFFFh
   200008h - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\santh\AppData\Local\Temp\xcAs6t4.\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\santh\AppData\Local\Temp\xcAs2tc.\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -236,9 +236,9 @@
 00001290 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000012A0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000012B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000012C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000012D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 -- H1 H1 H1 H1 H1 H1
-000012E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000012C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- H1 H1
+000012D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000012E0 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------

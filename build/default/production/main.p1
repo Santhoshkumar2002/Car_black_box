@@ -12,10 +12,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "21
 [; ;./car_black_box.h: 21: unsigned char read_switches(unsigned char);
 [v _read_switches `(uc ~T0 @X0 0 ef1`uc ]
-"12 main.c
-[; ;main.c: 12: extern unsigned int wait;
-[v _wait `ui ~T0 @X0 0 e ]
-"11 ./car_black_box.h
+"11
 [; ;./car_black_box.h: 11: void display_dashboard(unsigned char key);
 [v _display_dashboard `(v ~T0 @X0 0 ef1`uc ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
@@ -1257,71 +1254,62 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32464
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 32464: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"13 main.c
-[; ;main.c: 13: void init_config()
+"12 main.c
+[; ;main.c: 12: void init_config()
 [v _init_config `(v ~T0 @X0 1 ef ]
-"14
-[; ;main.c: 14: {
+"13
+[; ;main.c: 13: {
 {
 [e :U _init_config ]
 [f ]
-"15
-[; ;main.c: 15:     init_matrix_keypad();
+"14
+[; ;main.c: 14:     init_matrix_keypad();
 [e ( _init_matrix_keypad ..  ]
-"16
-[; ;main.c: 16:     init_clcd();
+"15
+[; ;main.c: 15:     init_clcd();
 [e ( _init_clcd ..  ]
-"17
-[; ;main.c: 17:     init_adc();
+"16
+[; ;main.c: 16:     init_adc();
 [e ( _init_adc ..  ]
-"18
-[; ;main.c: 18: }
+"17
+[; ;main.c: 17: }
 [e :UE 1088 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"20
-[; ;main.c: 20: void main(void) {
+"19
+[; ;main.c: 19: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"21
-[; ;main.c: 21:     init_config();
+"20
+[; ;main.c: 20:     init_config();
 [e ( _init_config ..  ]
-"22
-[; ;main.c: 22:     unsigned char key;
+"21
+[; ;main.c: 21:     unsigned char key;
 [v _key `uc ~T0 @X0 1 a ]
-"23
-[; ;main.c: 23:     while(1)
+"22
+[; ;main.c: 22:     while(1)
 [e :U 1091 ]
+"23
+[; ;main.c: 23:     {
+{
 "24
-[; ;main.c: 24:     {
-{
-"26
-[; ;main.c: 26:         {
-{
-"27
-[; ;main.c: 27:         key = read_switches(1);
+[; ;main.c: 24:         key = read_switches(1);
 [e = _key ( _read_switches (1 -> -> 1 `i `uc ]
-"28
-[; ;main.c: 28:         wait = 0;
-[e = _wait -> -> 0 `i `ui ]
-"29
-[; ;main.c: 29:         }
-}
-"30
-[; ;main.c: 30:         display_dashboard(key);
+"25
+[; ;main.c: 25:         display_dashboard(key);
 [e ( _display_dashboard (1 _key ]
-"32
-[; ;main.c: 32:     }
+"26
+[; ;main.c: 26:     }
 }
 [e :U 1090 ]
 [e $U 1091  ]
 [e :U 1092 ]
-"33
-[; ;main.c: 33:     return;
+"27
+[; ;main.c: 27:     return;
 [e $UE 1089  ]
-"34
-[; ;main.c: 34: }
+"28
+[; ;main.c: 28: }
 [e :UE 1089 ]
 }

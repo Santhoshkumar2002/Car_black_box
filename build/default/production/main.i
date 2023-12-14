@@ -17931,7 +17931,6 @@ void clcd_write(unsigned char bit_values, unsigned char control_bit);
 # 10 "main.c" 2
 
 
-extern unsigned int wait;
 void init_config()
 {
     init_matrix_keypad();
@@ -17944,13 +17943,8 @@ void main(void) {
     unsigned char key;
     while(1)
     {
-
-        {
         key = read_switches(1);
-        wait = 0;
-        }
         display_dashboard(key);
-
     }
     return;
 }

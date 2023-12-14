@@ -10,8 +10,7 @@
 #include <xc.h>
 #include "car_black_box.h"
 
-void init_config()
-{
+void init_config() {
     init_matrix_keypad();
     init_clcd();
     init_adc();
@@ -20,10 +19,9 @@ void init_config()
 void main(void) {
     init_config();
     unsigned char key;
-    while(1)
-    {
+    while (1) {
         key = read_switches(EDGE);
-        display_dashboard(key);    
+        display_dashboard(key);
     }
     return;
 }
