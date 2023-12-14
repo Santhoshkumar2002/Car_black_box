@@ -73,6 +73,5 @@ unsigned char scan_key() {
         return 12;
     
     return 0xFF;
-
 }
 
