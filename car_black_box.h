@@ -8,6 +8,8 @@
 #ifndef CAR_BLACK_BOX_H
 #define	CAR_BLACK_BOX_H
 
+void display_password();
+
 void display_dashboard(unsigned char key);
 void display_time();
 void gear_monitor(unsigned char key);
