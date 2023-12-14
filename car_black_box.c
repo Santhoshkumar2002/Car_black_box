@@ -30,13 +30,11 @@ void gear_monitor(unsigned char key) {
     if (key == 1) {
         gear_index = 7;
     } else if (key == 2 && gear_index < 6) {
-        
-            gear_index++;
-       
+        gear_index++;
     } else if (key == 3 && gear_index > 1) {
         gear_index--;
     }
-    clcd_print(gear_data[gear_index],LINE2(11));
+    clcd_print(gear_data[gear_index], LINE2(11));
 
 }
 
