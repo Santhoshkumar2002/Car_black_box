@@ -1,6 +1,7 @@
 /*
  * File:   main.c
  * Author: santhoshkumar R
+ * Title: Car Black Box Project
  *
  * Created on December 13, 2023, 10:53 PM
  */
