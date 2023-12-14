@@ -21,6 +21,10 @@ void main(void) {
     unsigned char key;
     while (1) {
         key = read_switches(EDGE);
+        if(key == 10)
+        {
+            display_password();
+        }
         display_dashboard(key);
     }
     return;
