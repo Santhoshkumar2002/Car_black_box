@@ -9,7 +9,6 @@
 #include <xc.h>
 #include "car_black_box.h"
 
-extern unsigned int wait;
 void init_config()
 {
     init_matrix_keypad();
@@ -22,13 +21,8 @@ void main(void) {
     unsigned char key;
     while(1)
     {
-        //if(wait++ == 1000)
-        {
         key = read_switches(EDGE);
-        wait = 0;
-        }
-        display_dashboard(key);
-        
+        display_dashboard(key);    
     }
     return;
 }
