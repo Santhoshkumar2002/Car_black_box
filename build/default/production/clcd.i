@@ -17909,7 +17909,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
-void enter_password();
+void display_password();
+
+void init_timer0();
 
 void display_dashboard(unsigned char key);
 void display_time();
@@ -17924,7 +17926,7 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 61 "./car_black_box.h"
+# 63 "./car_black_box.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);

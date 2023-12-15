@@ -1,42 +1,12 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"27059 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 27059: extern volatile unsigned char TRISB __attribute__((address(0xF93)));
-[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
-"36225
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36225: extern volatile __bit RBPU __attribute__((address(0x7F8F)));
-[v _RBPU `Vb ~T0 @X0 0 e@32655 ]
-"26 ./car_black_box.h
-[; ;./car_black_box.h: 26: unsigned char scan_key();
-[v _scan_key `(uc ~T0 @X0 0 e? ]
-[t ~ __deprecated__ ]
-[t T1 __deprecated__ ]
-"36207 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36207: extern volatile __bit __attribute__((__deprecated__)) RB5 __attribute__((address(0x7C0D)));
-[v _RB5 `Vb ~T1 @X0 0 e@31757 ]
-[t T1 __deprecated__ ]
-"36210
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36210: extern volatile __bit __attribute__((__deprecated__)) RB6 __attribute__((address(0x7C0E)));
-[v _RB6 `Vb ~T1 @X0 0 e@31758 ]
-[t T1 __deprecated__ ]
-"36213
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36213: extern volatile __bit __attribute__((__deprecated__)) RB7 __attribute__((address(0x7C0F)));
-[v _RB7 `Vb ~T1 @X0 0 e@31759 ]
-[t T1 __deprecated__ ]
-"36195
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36195: extern volatile __bit __attribute__((__deprecated__)) RB1 __attribute__((address(0x7C09)));
-[v _RB1 `Vb ~T1 @X0 0 e@31753 ]
-[t T1 __deprecated__ ]
-"36198
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36198: extern volatile __bit __attribute__((__deprecated__)) RB2 __attribute__((address(0x7C0A)));
-[v _RB2 `Vb ~T1 @X0 0 e@31754 ]
-[t T1 __deprecated__ ]
-"36201
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36201: extern volatile __bit __attribute__((__deprecated__)) RB3 __attribute__((address(0x7C0B)));
-[v _RB3 `Vb ~T1 @X0 0 e@31755 ]
-[t T1 __deprecated__ ]
-"36204
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36204: extern volatile __bit __attribute__((__deprecated__)) RB4 __attribute__((address(0x7C0C)));
-[v _RB4 `Vb ~T1 @X0 0 e@31756 ]
+[t ~ __interrupt . k ]
+[t T46 __interrupt ]
+"31712 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 31712: extern volatile unsigned short TMR0 __attribute__((address(0xFD6)));
+[v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
+"39096
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 39096: extern volatile __bit TMR0IF __attribute__((address(0x7F92)));
+[v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 54: __asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
@@ -1276,248 +1246,58 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32464
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 32464: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"12 mkp.c
-[; ;mkp.c: 12: void init_matrix_keypad()
-[v _init_matrix_keypad `(v ~T0 @X0 1 ef ]
+"11 isr.c
+[; ;isr.c: 11: unsigned int count = 0, sec = 0;
+[v _count `ui ~T0 @X0 1 e ]
+[i _count
+-> -> 0 `i `ui
+]
+[v _sec `ui ~T0 @X0 1 e ]
+[i _sec
+-> -> 0 `i `ui
+]
+[v $root$_isr `(v ~T0 @X0 0 e ]
 "13
-[; ;mkp.c: 13: {
-{
-[e :U _init_matrix_keypad ]
-[f ]
+[; ;isr.c: 13: void __attribute__((picinterrupt(("")))) isr()
+[v _isr `(v ~T46 @X0 1 ef ]
 "14
-[; ;mkp.c: 14:     TRISB = 0x1E;
-[e = _TRISB -> -> 30 `i `uc ]
-"15
-[; ;mkp.c: 15:     RBPU = 0;
-[e = _RBPU -> -> 0 `i `b ]
-"16
-[; ;mkp.c: 16: }
-[e :UE 1088 ]
-}
-"18
-[; ;mkp.c: 18: unsigned char read_switches(unsigned char detection) {
-[v _read_switches `(uc ~T0 @X0 1 ef1`uc ]
+[; ;isr.c: 14: {
 {
-[e :U _read_switches ]
-[v _detection `uc ~T0 @X0 1 r1 ]
+[e :U _isr ]
 [f ]
 "19
-[; ;mkp.c: 19:     static unsigned char once = 1;
-[v F10467 `uc ~T0 @X0 1 s once ]
-[i F10467
--> -> 1 `i `uc
-]
+[; ;isr.c: 19:     TMR0 = TMR0 + 3038;
+[e = _TMR0 -> + -> _TMR0 `ui -> -> 3038 `i `ui `us ]
 "20
-[; ;mkp.c: 20:     unsigned char key;
-[v _key `uc ~T0 @X0 1 a ]
+[; ;isr.c: 20:     if(TMR0IF)
+[e $ ! _TMR0IF 1089  ]
 "21
-[; ;mkp.c: 21:     if (detection == 0) {
-[e $ ! == -> _detection `i -> 0 `i 1090  ]
+[; ;isr.c: 21:     {
 {
 "22
-[; ;mkp.c: 22:         return scan_key();
-[e ) ( _scan_key ..  ]
-[e $UE 1089  ]
+[; ;isr.c: 22:         if(count++ == 80)
+[e $ ! == ++ _count -> -> 1 `i `ui -> -> 80 `i `ui 1090  ]
 "23
-[; ;mkp.c: 23:     } else if (detection == 1) {
-}
-[e $U 1091  ]
-[e :U 1090 ]
-[e $ ! == -> _detection `i -> 1 `i 1092  ]
+[; ;isr.c: 23:         {
 {
 "24
-[; ;mkp.c: 24:         key = scan_key();
-[e = _key ( _scan_key ..  ]
+[; ;isr.c: 24:             count = 0;
+[e = _count -> -> 0 `i `ui ]
 "25
-[; ;mkp.c: 25:         if ((key != 0xFF) && once) {
-[e $ ! && != -> _key `i -> 255 `i != -> F10467 `i -> 0 `i 1093  ]
-{
+[; ;isr.c: 25:             sec++;
+[e ++ _sec -> -> 1 `i `ui ]
 "26
-[; ;mkp.c: 26:             once = 0;
-[e = F10467 -> -> 0 `i `uc ]
+[; ;isr.c: 26:         }
+}
+[e :U 1090 ]
 "27
-[; ;mkp.c: 27:             return key;
-[e ) _key ]
-[e $UE 1089  ]
+[; ;isr.c: 27:         TMR0IF = 0;
+[e = _TMR0IF -> -> 0 `i `b ]
 "28
-[; ;mkp.c: 28:         } else if (key == 0xFF)
+[; ;isr.c: 28:     }
 }
-[e $U 1094  ]
-[e :U 1093 ]
-[e $ ! == -> _key `i -> 255 `i 1095  ]
+[e :U 1089 ]
 "29
-[; ;mkp.c: 29:             once = 1;
-[e = F10467 -> -> 1 `i `uc ]
-[e :U 1095 ]
-[e :U 1094 ]
-"30
-[; ;mkp.c: 30:         return 0xFF;
-[e ) -> -> 255 `i `uc ]
-[e $UE 1089  ]
-"31
-[; ;mkp.c: 31:     }
-}
-[e :U 1092 ]
-[e :U 1091 ]
-"32
-[; ;mkp.c: 32: }
-[e :UE 1089 ]
-}
-"34
-[; ;mkp.c: 34: unsigned char scan_key() {
-[v _scan_key `(uc ~T0 @X0 1 ef ]
-{
-[e :U _scan_key ]
-[f ]
-"35
-[; ;mkp.c: 35:     RB5 = 0;
-[e = _RB5 -> -> 0 `i `b ]
-"36
-[; ;mkp.c: 36:     RB6 = 1;
-[e = _RB6 -> -> 1 `i `b ]
-"37
-[; ;mkp.c: 37:     RB7 = 1;
-[e = _RB7 -> -> 1 `i `b ]
-"39
-[; ;mkp.c: 39:     if (RB1 == 0)
-[e $ ! == -> _RB1 `i -> 0 `i 1097  ]
-"40
-[; ;mkp.c: 40:         return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 1096  ]
-[e $U 1098  ]
-"41
-[; ;mkp.c: 41:     else if (RB2 == 0)
-[e :U 1097 ]
-[e $ ! == -> _RB2 `i -> 0 `i 1099  ]
-"42
-[; ;mkp.c: 42:         return 4;
-[e ) -> -> 4 `i `uc ]
-[e $UE 1096  ]
-[e $U 1100  ]
-"43
-[; ;mkp.c: 43:     else if (RB3 == 0)
-[e :U 1099 ]
-[e $ ! == -> _RB3 `i -> 0 `i 1101  ]
-"44
-[; ;mkp.c: 44:         return 7;
-[e ) -> -> 7 `i `uc ]
-[e $UE 1096  ]
-[e $U 1102  ]
-"45
-[; ;mkp.c: 45:     else if (RB4 == 0)
-[e :U 1101 ]
-[e $ ! == -> _RB4 `i -> 0 `i 1103  ]
-"46
-[; ;mkp.c: 46:         return 10;
-[e ) -> -> 10 `i `uc ]
-[e $UE 1096  ]
-[e :U 1103 ]
-[e :U 1102 ]
-[e :U 1100 ]
-[e :U 1098 ]
-"48
-[; ;mkp.c: 48:     RB5 = 1;
-[e = _RB5 -> -> 1 `i `b ]
-"49
-[; ;mkp.c: 49:     RB6 = 0;
-[e = _RB6 -> -> 0 `i `b ]
-"50
-[; ;mkp.c: 50:     RB7 = 1;
-[e = _RB7 -> -> 1 `i `b ]
-"52
-[; ;mkp.c: 52:     if (RB1 == 0)
-[e $ ! == -> _RB1 `i -> 0 `i 1104  ]
-"53
-[; ;mkp.c: 53:         return 2;
-[e ) -> -> 2 `i `uc ]
-[e $UE 1096  ]
-[e $U 1105  ]
-"54
-[; ;mkp.c: 54:     else if (RB2 == 0)
-[e :U 1104 ]
-[e $ ! == -> _RB2 `i -> 0 `i 1106  ]
-"55
-[; ;mkp.c: 55:         return 5;
-[e ) -> -> 5 `i `uc ]
-[e $UE 1096  ]
-[e $U 1107  ]
-"56
-[; ;mkp.c: 56:     else if (RB3 == 0)
-[e :U 1106 ]
-[e $ ! == -> _RB3 `i -> 0 `i 1108  ]
-"57
-[; ;mkp.c: 57:         return 8;
-[e ) -> -> 8 `i `uc ]
-[e $UE 1096  ]
-[e $U 1109  ]
-"58
-[; ;mkp.c: 58:     else if (RB4 == 0)
-[e :U 1108 ]
-[e $ ! == -> _RB4 `i -> 0 `i 1110  ]
-"59
-[; ;mkp.c: 59:         return 11;
-[e ) -> -> 11 `i `uc ]
-[e $UE 1096  ]
-[e :U 1110 ]
-[e :U 1109 ]
-[e :U 1107 ]
-[e :U 1105 ]
-"61
-[; ;mkp.c: 61:     RB5 = 1;
-[e = _RB5 -> -> 1 `i `b ]
-"62
-[; ;mkp.c: 62:     RB6 = 1;
-[e = _RB6 -> -> 1 `i `b ]
-"63
-[; ;mkp.c: 63:     RB7 = 0;
-[e = _RB7 -> -> 0 `i `b ]
-"64
-[; ;mkp.c: 64:     RB7 = 0;
-[e = _RB7 -> -> 0 `i `b ]
-"66
-[; ;mkp.c: 66:     if (RB1 == 0)
-[e $ ! == -> _RB1 `i -> 0 `i 1111  ]
-"67
-[; ;mkp.c: 67:         return 3;
-[e ) -> -> 3 `i `uc ]
-[e $UE 1096  ]
-[e $U 1112  ]
-"68
-[; ;mkp.c: 68:     else if (RB2 == 0)
-[e :U 1111 ]
-[e $ ! == -> _RB2 `i -> 0 `i 1113  ]
-"69
-[; ;mkp.c: 69:         return 6;
-[e ) -> -> 6 `i `uc ]
-[e $UE 1096  ]
-[e $U 1114  ]
-"70
-[; ;mkp.c: 70:     else if (RB3 == 0)
-[e :U 1113 ]
-[e $ ! == -> _RB3 `i -> 0 `i 1115  ]
-"71
-[; ;mkp.c: 71:         return 9;
-[e ) -> -> 9 `i `uc ]
-[e $UE 1096  ]
-[e $U 1116  ]
-"72
-[; ;mkp.c: 72:     else if (RB4 == 0)
-[e :U 1115 ]
-[e $ ! == -> _RB4 `i -> 0 `i 1117  ]
-"73
-[; ;mkp.c: 73:         return 12;
-[e ) -> -> 12 `i `uc ]
-[e $UE 1096  ]
-[e :U 1117 ]
-[e :U 1116 ]
-[e :U 1114 ]
-[e :U 1112 ]
-"75
-[; ;mkp.c: 75:     return 0xFF;
-[e ) -> -> 255 `i `uc ]
-[e $UE 1096  ]
-"76
-[; ;mkp.c: 76: }
-[e :UE 1096 ]
+[; ;isr.c: 29: }
+[e :UE 1088 ]
 }
