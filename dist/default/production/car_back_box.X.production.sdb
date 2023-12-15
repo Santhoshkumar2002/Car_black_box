@@ -41,14 +41,14 @@
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
 "16 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _display_dashboard display_dashboard `(v  1 e 1 0 ]
-"24
+"25
 [v _display_time display_time `(v  1 e 1 0 ]
-"28
+"29
 [v _gear_monitor gear_monitor `(v  1 e 1 0 ]
-"46
+"47
 [v _display_speed display_speed `(v  1 e 1 0 ]
-"51
-[v _display_password display_password `(v  1 e 1 0 ]
+"52
+[v _read_password read_password `(v  1 e 1 0 ]
 "11 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_write clcd_write `(v  1 e 1 0 ]
 "34
@@ -174,7 +174,46 @@
 [v main@key key `uc  1 a 1 58 ]
 "32
 } 0
-"13
+"52 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+[v _read_password read_password `(v  1 e 1 0 ]
+{
+"93
+[v read_password@ind_compare ind_compare `us  1 a 2 27 ]
+[v read_password@count count `us  1 a 2 17 ]
+"56
+[v read_password@enter_password enter_password `[5]uc  1 a 5 12 ]
+"55
+[v read_password@index index `us  1 a 2 31 ]
+[v read_password@ind ind `us  1 a 2 29 ]
+[v read_password@wait wait `us  1 a 2 25 ]
+[v read_password@flag flag `us  1 a 2 21 ]
+"56
+[v read_password@original_password original_password `*.32uc  1 a 2 19 ]
+"54
+[v read_password@attempt attempt `uc  1 a 1 24 ]
+[v read_password@pass_key pass_key `uc  1 a 1 23 ]
+"132
+} 0
+"18 C:\Users\santh\MPLABXProjects\car_back_box.X\mkp.c
+[v _read_switches read_switches `(uc  1 e 1 0 ]
+{
+[v read_switches@detection detection `uc  1 a 1 wreg ]
+"20
+[v read_switches@key key `uc  1 a 1 1 ]
+"18
+[v read_switches@detection detection `uc  1 a 1 wreg ]
+"19
+[v read_switches@once once `uc  1 s 1 once ]
+"21
+[v read_switches@detection detection `uc  1 a 1 0 ]
+"32
+} 0
+"34
+[v _scan_key scan_key `(uc  1 e 1 0 ]
+{
+"76
+} 0
+"13 C:\Users\santh\MPLABXProjects\car_back_box.X\main.c
 [v _init_config init_config `(v  1 e 1 0 ]
 {
 "18
@@ -199,52 +238,13 @@
 {
 "27
 } 0
-"51 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
-[v _display_password display_password `(v  1 e 1 0 ]
-{
-"93
-[v display_password@ind_compare ind_compare `us  1 a 2 27 ]
-[v display_password@count count `us  1 a 2 17 ]
-"55
-[v display_password@enter_password enter_password `[5]uc  1 a 5 12 ]
-"54
-[v display_password@index index `us  1 a 2 31 ]
-[v display_password@ind ind `us  1 a 2 29 ]
-[v display_password@wait wait `us  1 a 2 25 ]
-[v display_password@flag flag `us  1 a 2 21 ]
-"55
-[v display_password@original_password original_password `*.32uc  1 a 2 19 ]
-"53
-[v display_password@attempt attempt `uc  1 a 1 24 ]
-[v display_password@pass_key pass_key `uc  1 a 1 23 ]
-"139
-} 0
-"18 C:\Users\santh\MPLABXProjects\car_back_box.X\mkp.c
-[v _read_switches read_switches `(uc  1 e 1 0 ]
-{
-[v read_switches@detection detection `uc  1 a 1 wreg ]
-"20
-[v read_switches@key key `uc  1 a 1 1 ]
-"18
-[v read_switches@detection detection `uc  1 a 1 wreg ]
-"19
-[v read_switches@once once `uc  1 s 1 once ]
-"21
-[v read_switches@detection detection `uc  1 a 1 0 ]
-"32
-} 0
-"34
-[v _scan_key scan_key `(uc  1 e 1 0 ]
-{
-"76
-} 0
 "16 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _display_dashboard display_dashboard `(v  1 e 1 0 ]
 {
 [v display_dashboard@key key `uc  1 a 1 wreg ]
 [v display_dashboard@key key `uc  1 a 1 wreg ]
 [v display_dashboard@key key `uc  1 a 1 57 ]
-"22
+"23
 } 0
 "30 C:\Users\santh\MPLABXProjects\car_back_box.X\adc.c
 [v _read_adc read_adc `(us  1 e 2 0 ]
@@ -255,19 +255,19 @@
 [v read_adc@channel channel `uc  1 a 1 7 ]
 "36
 } 0
-"28 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+"29 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _gear_monitor gear_monitor `(v  1 e 1 0 ]
 {
 [v gear_monitor@key key `uc  1 a 1 wreg ]
 [v gear_monitor@key key `uc  1 a 1 wreg ]
-"30
+"31
 [v gear_monitor@key key `uc  1 a 1 5 ]
-"44
+"45
 } 0
-"24
+"25
 [v _display_time display_time `(v  1 e 1 0 ]
 {
-"26
+"27
 } 0
 "65 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_print clcd_print `(v  1 e 1 0 ]
@@ -276,11 +276,11 @@
 [v clcd_print@addr addr `uc  1 p 1 4 ]
 "72
 } 0
-"46 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+"47 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _display_speed display_speed `(v  1 e 1 0 ]
 {
 [v display_speed@speed speed `us  1 p 2 9 ]
-"49
+"50
 } 0
 "74 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_putch clcd_putch `(v  1 e 1 0 ]
@@ -372,5 +372,5 @@
 "13 C:\Users\santh\MPLABXProjects\car_back_box.X\isr.c
 [v _isr isr `IIH(v  1 e 1 0 ]
 {
-"29
+"26
 } 0

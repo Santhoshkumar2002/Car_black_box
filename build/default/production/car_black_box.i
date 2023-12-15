@@ -17910,7 +17910,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
-void display_password();
+void read_password();
 
 void init_timer0();
 
@@ -17940,7 +17940,8 @@ unsigned char *gear_data[8] = {"ON", "GN", "G1", "G2", "G3", "G4", "GR", "C "};
 unsigned short gear_index = 0, speed;
 
 void display_dashboard(unsigned char key) {
-    clcd_print("  TIME    E  SP ", (0x80 + (0)));
+    clcd_print("  TIME    EV SP ", (0x80 + (0)));
+    clcd_print("                ", (0xC0 + (0)));
     display_time();
     gear_monitor(key);
     speed = (read_adc(4) / 10.23);
@@ -17974,7 +17975,7 @@ void display_speed(unsigned short speed) {
     clcd_putch((speed % 10) + 48, (0xC0 + (14)));
 }
 
-void display_password() {
+void read_password() {
     sec = 0;
     unsigned char pass_key, attempt = '3';
     unsigned short index = 0, wait = 0, ind, flag = 0;
@@ -17995,8 +17996,7 @@ void display_password() {
                 index++;
             }
 
-            if(sec == 5)
-            {
+            if (sec == 5) {
                 return;
             }
 
@@ -18023,7 +18023,6 @@ void display_password() {
                         count = 1;
                         _delay((unsigned long)((500)*(20000000/4000.0)));
                         clcd_print(" Wrong Password", (0x80 + (0)));
-                        clcd_print("                ", (0xC0 + (0)));
                         clcd_putch(attempt, (0xC0 + (0)));
                         clcd_print("-Attempt Remain", (0xC0 + (1)));
                         _delay((unsigned long)((500)*(20000000/4000.0)));
@@ -18032,27 +18031,21 @@ void display_password() {
                     }
                     ind_compare++;
                 }
-                if (count == 0)
-                {
+                if (count == 0) {
                     flag = 1;
                     _delay((unsigned long)((500)*(20000000/4000.0)));
                     clcd_print("Correct Password", (0x80 + (0)));
                     clcd_print("   Menu Page    ", (0xC0 + (0)));
-                }
-                else if(attempt == '0') {
+                } else if (attempt == '0') {
                     clcd_print("  Attempt Over  ", (0x80 + (0)));
-                    clcd_print("                ", (0xC0 + (0)));
+                    clcd_print(" Wait For    Sec", (0xC0 + (0)));
                     sec = 0;
-                    while(sec != 60)
-                    {
-                    clcd_print("   Wait For     ", (0x80 + (0)));
-                    clcd_putch((59-sec)/10+48, (0xC0 + (0)));
-                    clcd_putch(((59-sec)%10)+48, (0xC0 + (1)));
-                    clcd_print("Seconds remain",(0xC0 + (2)));
+                    while (sec != 60) {
+                        clcd_putch((59 - sec) / 10 + 48, (0xC0 + (10)));
+                        clcd_putch(((59 - sec) % 10) + 48, (0xC0 + (11)));
                     }
                     return;
                 }
-
             }
         } else if (flag == 1) {
             _delay((unsigned long)((1000)*(20000000/4000.0)));

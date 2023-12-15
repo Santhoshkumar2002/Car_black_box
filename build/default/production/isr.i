@@ -17914,9 +17914,6 @@ unsigned int count = 0, sec = 0;
 void __attribute__((picinterrupt(("")))) isr()
 {
 
-
-
-
     TMR0 = TMR0 + 3038;
     if(TMR0IF)
     {

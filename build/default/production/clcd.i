@@ -17909,7 +17909,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
-void display_password();
+void read_password();
 
 void init_timer0();
 

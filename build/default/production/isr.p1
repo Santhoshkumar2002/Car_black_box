@@ -1265,39 +1265,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _isr ]
 [f ]
-"19
-[; ;isr.c: 19:     TMR0 = TMR0 + 3038;
+"16
+[; ;isr.c: 16:     TMR0 = TMR0 + 3038;
 [e = _TMR0 -> + -> _TMR0 `ui -> -> 3038 `i `ui `us ]
-"20
-[; ;isr.c: 20:     if(TMR0IF)
+"17
+[; ;isr.c: 17:     if(TMR0IF)
 [e $ ! _TMR0IF 1089  ]
-"21
-[; ;isr.c: 21:     {
+"18
+[; ;isr.c: 18:     {
 {
-"22
-[; ;isr.c: 22:         if(count++ == 80)
+"19
+[; ;isr.c: 19:         if(count++ == 80)
 [e $ ! == ++ _count -> -> 1 `i `ui -> -> 80 `i `ui 1090  ]
-"23
-[; ;isr.c: 23:         {
+"20
+[; ;isr.c: 20:         {
 {
-"24
-[; ;isr.c: 24:             count = 0;
+"21
+[; ;isr.c: 21:             count = 0;
 [e = _count -> -> 0 `i `ui ]
-"25
-[; ;isr.c: 25:             sec++;
+"22
+[; ;isr.c: 22:             sec++;
 [e ++ _sec -> -> 1 `i `ui ]
-"26
-[; ;isr.c: 26:         }
+"23
+[; ;isr.c: 23:         }
 }
 [e :U 1090 ]
-"27
-[; ;isr.c: 27:         TMR0IF = 0;
+"24
+[; ;isr.c: 24:         TMR0IF = 0;
 [e = _TMR0IF -> -> 0 `i `b ]
-"28
-[; ;isr.c: 28:     }
+"25
+[; ;isr.c: 25:     }
 }
 [e :U 1089 ]
-"29
-[; ;isr.c: 29: }
+"26
+[; ;isr.c: 26: }
 [e :UE 1088 ]
 }
