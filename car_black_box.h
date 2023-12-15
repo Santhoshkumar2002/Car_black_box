@@ -8,7 +8,9 @@
 #ifndef CAR_BLACK_BOX_H
 #define	CAR_BLACK_BOX_H
 
-void display_password();
+void read_password();
+
+void init_timer0();
 
 void display_dashboard(unsigned char key);
 void display_time();
