@@ -14,6 +14,7 @@ void init_config() {
     init_matrix_keypad();
     init_clcd();
     init_adc();
+    init_timer0();
 }
 
 void main(void) {
@@ -23,7 +24,7 @@ void main(void) {
         key = read_switches(EDGE);
         if(key == 10)
         {
-            display_password();
+            read_password();
         }
         display_dashboard(key);
     }
