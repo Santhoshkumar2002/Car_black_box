@@ -14,7 +14,7 @@ unsigned char *gear_data[8] = {"ON", "GN", "G1", "G2", "G3", "G4", "GR", "C "};
 unsigned short gear_index = 0, speed;
 
 void display_dashboard(unsigned char key) {
-    clcd_print("  TIME    E  SP ", LINE1(0));
+    clcd_print("  TIME    EV SP ", LINE1(0));
     clcd_print("                ", LINE2(0));
     display_time();
     gear_monitor(key);
@@ -70,11 +70,10 @@ void read_password() {
                 index++;
             }
 
-            if(sec == 5)
-            {
+            if (sec == 5) {
                 return;
             }
-            
+
             for (ind = 0; ind < index; ind++) {
                 clcd_putch('*', LINE2(ind + 3));
             }
@@ -98,7 +97,6 @@ void read_password() {
                         count = 1;
                         __delay_ms(500);
                         clcd_print(" Wrong Password", LINE1(0));
-                        clcd_print("                ", LINE2(0));
                         clcd_putch(attempt, LINE2(0));
                         clcd_print("-Attempt Remain", LINE2(1));
                         __delay_ms(500);
@@ -107,27 +105,21 @@ void read_password() {
                     }
                     ind_compare++;
                 }
-                if (count == 0)
-                {
+                if (count == 0) {
                     flag = 1;
                     __delay_ms(500);
                     clcd_print("Correct Password", LINE1(0));
                     clcd_print("   Menu Page    ", LINE2(0));
-                }
-                else if(attempt == '0') {
+                } else if (attempt == '0') {
                     clcd_print("  Attempt Over  ", LINE1(0));
-                    clcd_print("                ", LINE2(0));
+                    clcd_print(" Wait For    Sec", LINE2(0));
                     sec = 0;
-                    while(sec != 60)
-                    {
-                    clcd_print("   Wait For     ", LINE1(0));
-                    clcd_putch((59-sec)/10+48, LINE2(0));
-                    clcd_putch(((59-sec)%10)+48, LINE2(1));
-                    clcd_print("Seconds remain",LINE2(2));
+                    while (sec != 60) {
+                        clcd_putch((59 - sec) / 10 + 48, LINE2(10));
+                        clcd_putch(((59 - sec) % 10) + 48, LINE2(11));
                     }
                     return;
                 }
-                
             }
         } else if (flag == 1) {
             __delay_ms(1000);
