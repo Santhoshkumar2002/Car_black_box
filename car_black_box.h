@@ -9,6 +9,7 @@
 #define	CAR_BLACK_BOX_H
 
 void read_password();
+void car_menu();
 
 void init_timer0();
 
