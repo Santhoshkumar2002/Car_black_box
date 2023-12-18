@@ -17911,6 +17911,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
 void read_password();
+void car_menu();
 
 void init_timer0();
 
@@ -17927,7 +17928,7 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 63 "./car_black_box.h"
+# 64 "./car_black_box.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);
@@ -17941,7 +17942,6 @@ unsigned short gear_index = 0, speed;
 
 void display_dashboard(unsigned char key) {
     clcd_print("  TIME    EV SP ", (0x80 + (0)));
-    clcd_print("                ", (0xC0 + (0)));
     display_time();
     gear_monitor(key);
     speed = (read_adc(4) / 10.23);
@@ -18014,7 +18014,7 @@ void read_password() {
 
             clcd_print(" Enter password", (0x80 + (0)));
             if (index == 4) {
-                _delay((unsigned long)((600)*(20000000/4000.0)));
+                _delay((unsigned long)((300)*(20000000/4000.0)));
                 attempt--;
                 unsigned short ind_compare = 0, count = 0;
                 while (original_password[ind_compare]) {
@@ -18048,11 +18048,58 @@ void read_password() {
                 }
             }
         } else if (flag == 1) {
-            _delay((unsigned long)((1000)*(20000000/4000.0)));
-            clcd_print("    View Log    ", (0x80 + (0)));
-            clcd_print("    Clear Log   ", (0xC0 + (0)));
+            clcd_print("                ", (0x80 + (0)));
+            clcd_print("                ", (0xC0 + (0)));
+            car_menu();
+            return;
         }
-
     }
+}
 
+void car_menu()
+{
+    unsigned char *menu[5] = {"View Log      ", "Download log", "Clear log     ", "Set Time      ", "Reset Password"};
+    unsigned short key, index_1 = 0, index_2 = 1, star_flag = 1;
+    clcd_print(menu[index_1], (0x80 + (1)));
+    clcd_print(menu[index_2], (0xC0 + (1)));
+    while(1)
+    {
+        key = read_switches(1);
+        if(key == 12 && index_1 < 4)
+        {
+            if(star_flag == 1)
+            {
+                star_flag = 0;
+            }
+            else if(index_1 < 3)
+            {
+            index_1++;
+            index_2++;
+            }
+        }
+        else if(key == 11 && index_2 > 0)
+        {
+            if(star_flag == 0)
+            {
+                star_flag = 1;
+            }
+            else if(index_2 > 1)
+            {
+            index_1--;
+            index_2--;
+            }
+        }
+        if(star_flag == 1)
+        {
+            clcd_putch('*', (0x80 + (0)));
+            clcd_putch(' ', (0xC0 + (0)));
+        }
+        else
+        {
+            clcd_putch(' ', (0x80 + (0)));
+            clcd_putch('*', (0xC0 + (0)));
+        }
+        clcd_print(menu[index_1], (0x80 + (1)));
+        clcd_print(menu[index_2], (0xC0 + (1)));
+    }
 }
