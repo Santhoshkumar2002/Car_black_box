@@ -15,7 +15,6 @@ unsigned short gear_index = 0, speed;
 
 void display_dashboard(unsigned char key) {
     clcd_print("  TIME    EV SP ", LINE1(0));
-    clcd_print("                ", LINE2(0));
     display_time();
     gear_monitor(key);
     speed = (read_adc(4) / 10.23);
@@ -88,7 +87,7 @@ void read_password() {
 
             clcd_print(" Enter password", LINE1(0));
             if (index == 4) {
-                __delay_ms(600);
+                __delay_ms(300);
                 attempt--;
                 unsigned short ind_compare = 0, count = 0;
                 while (original_password[ind_compare]) {
@@ -122,11 +121,58 @@ void read_password() {
                 }
             }
         } else if (flag == 1) {
-            __delay_ms(1000);
-            clcd_print("    View Log    ", LINE1(0));
-            clcd_print("    Clear Log   ", LINE2(0));
+            clcd_print("                ", LINE1(0));
+            clcd_print("                ", LINE2(0));
+            car_menu();
+            return;
         }
-
     }
+}
 
+void car_menu()
+{
+    unsigned char *menu[5] = {"View Log      ", "Download log", "Clear log     ", "Set Time      ", "Reset Password"};
+    unsigned short key, index_1 = 0, index_2 = 1, star_flag = 1;
+    clcd_print(menu[index_1], LINE1(1));
+    clcd_print(menu[index_2], LINE2(1));
+    while(1)
+    {
+        key = read_switches(EDGE);
+        if(key == 12 && index_1 < 4)
+        {
+            if(star_flag == 1)
+            {
+                star_flag = 0;
+            }
+            else if(index_1 < 3)
+            {
+            index_1++;
+            index_2++;
+            }
+        }
+        else if(key == 11 && index_2 > 0)
+        {
+            if(star_flag == 0)
+            {
+                star_flag = 1;
+            }
+            else if(index_2 > 1)
+            {
+            index_1--;
+            index_2--;
+            }
+        }
+        if(star_flag == 1)
+        {
+            clcd_putch('*', LINE1(0));
+            clcd_putch(' ', LINE2(0));
+        }
+        else
+        {
+            clcd_putch(' ', LINE1(0));
+            clcd_putch('*', LINE2(0));
+        }
+        clcd_print(menu[index_1], LINE1(1));
+        clcd_print(menu[index_2], LINE2(1));
+    }
 }
