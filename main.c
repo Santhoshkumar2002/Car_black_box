@@ -10,6 +10,9 @@
 #include <xc.h>
 #include "car_black_box.h"
 
+extern unsigned sec;
+unsigned char enter_flag = 0;
+
 void init_config() {
     init_matrix_keypad();
     init_clcd();
@@ -21,12 +24,35 @@ void main(void) {
     init_config();
     unsigned char key;
     while (1) {
-        key = read_switches(EDGE);
+        if(enter_flag == 2)
+        {
+            key = read_switches(LEVEL);
+        }
+        else
+        {
+            key = read_switches(EDGE);
+        }
+        
         if(key == 10)
         {
-            read_password();
+            clcd_print("               ", LINE2(0));
+            enter_flag = 1;
+            sec = 0;
         }
-        display_dashboard(key);
+        if(enter_flag == 1)
+        {
+            read_password(key);
+            if(enter_flag == 2)
+                sec = 0;
+        }
+        else if(enter_flag == 2)
+        {
+            car_menu(key);
+        }
+        else
+        {
+            display_dashboard(key);
+        }
     }
     return;
 }
