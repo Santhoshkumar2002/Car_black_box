@@ -17909,8 +17909,8 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
-void read_password();
-void car_menu();
+void read_password(unsigned char key);
+void car_menu(unsigned char key);
 
 void init_timer0();
 

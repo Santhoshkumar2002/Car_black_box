@@ -17903,8 +17903,8 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./car_black_box.h" 1
 # 11 "./car_black_box.h"
-void read_password();
-void car_menu();
+void read_password(unsigned char key);
+void car_menu(unsigned char key);
 
 void init_timer0();
 
@@ -17929,6 +17929,9 @@ void clcd_write(unsigned char bit_values, unsigned char control_bit);
 # 11 "main.c" 2
 
 
+extern unsigned sec;
+unsigned char enter_flag = 0;
+
 void init_config() {
     init_matrix_keypad();
     init_clcd();
@@ -17940,12 +17943,35 @@ void main(void) {
     init_config();
     unsigned char key;
     while (1) {
-        key = read_switches(1);
+        if(enter_flag == 2)
+        {
+            key = read_switches(0);
+        }
+        else
+        {
+            key = read_switches(1);
+        }
+
         if(key == 10)
         {
-            read_password();
+            clcd_print("               ", (0xC0 + (0)));
+            enter_flag = 1;
+            sec = 0;
         }
-        display_dashboard(key);
+        if(enter_flag == 1)
+        {
+            read_password(key);
+            if(enter_flag == 2)
+                sec = 0;
+        }
+        else if(enter_flag == 2)
+        {
+            car_menu(key);
+        }
+        else
+        {
+            display_dashboard(key);
+        }
     }
     return;
 }
