@@ -17909,15 +17909,19 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 9 "adc.c" 2
 
 # 1 "./car_black_box.h" 1
-# 11 "./car_black_box.h"
+# 15 "./car_black_box.h"
+void write_external_eeprom(unsigned char address1, unsigned char data);
+unsigned char read_external_eeprom(unsigned char address1);
+
 void read_password(unsigned char key);
 void car_menu(unsigned char key);
 
 void init_timer0();
 
 void display_dashboard(unsigned char key);
-void display_time();
+
 void gear_monitor(unsigned char key);
+static void get_time(void);
 void display_speed(unsigned short speed);
 
 unsigned short read_adc(unsigned char channel);
@@ -17928,7 +17932,7 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 64 "./car_black_box.h"
+# 72 "./car_black_box.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);

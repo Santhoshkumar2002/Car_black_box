@@ -9,7 +9,10 @@
 
 #include <xc.h>
 #include "car_black_box.h"
+#include "i2c.h"
+#include "ds1307.h"
 
+extern unsigned char event[17];
 extern unsigned sec;
 unsigned char enter_flag = 0;
 
@@ -18,6 +21,8 @@ void init_config() {
     init_clcd();
     init_adc();
     init_timer0();
+    init_i2c();
+    init_ds1307();
 }
 
 void main(void) {

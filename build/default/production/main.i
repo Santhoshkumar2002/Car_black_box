@@ -17902,15 +17902,19 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 10 "main.c" 2
 
 # 1 "./car_black_box.h" 1
-# 11 "./car_black_box.h"
+# 15 "./car_black_box.h"
+void write_external_eeprom(unsigned char address1, unsigned char data);
+unsigned char read_external_eeprom(unsigned char address1);
+
 void read_password(unsigned char key);
 void car_menu(unsigned char key);
 
 void init_timer0();
 
 void display_dashboard(unsigned char key);
-void display_time();
+
 void gear_monitor(unsigned char key);
+static void get_time(void);
 void display_speed(unsigned short speed);
 
 unsigned short read_adc(unsigned char channel);
@@ -17921,14 +17925,32 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 64 "./car_black_box.h"
+# 72 "./car_black_box.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);
 void clcd_write(unsigned char bit_values, unsigned char control_bit);
 # 11 "main.c" 2
 
+# 1 "./i2c.h" 1
+# 11 "./i2c.h"
+void init_i2c(void);
+void i2c_start(void);
+void i2c_rep_start(void);
+void i2c_stop(void);
+void i2c_write(unsigned char data);
+unsigned char i2c_read(void);
+# 12 "main.c" 2
 
+# 1 "./ds1307.h" 1
+# 25 "./ds1307.h"
+void write_ds1307(unsigned char address1, unsigned char data);
+unsigned char read_ds1307(unsigned char address1);
+void init_ds1307(void);
+# 13 "main.c" 2
+
+
+extern unsigned char event[17];
 extern unsigned sec;
 unsigned char enter_flag = 0;
 
@@ -17937,6 +17959,8 @@ void init_config() {
     init_clcd();
     init_adc();
     init_timer0();
+    init_i2c();
+    init_ds1307();
 }
 
 void main(void) {

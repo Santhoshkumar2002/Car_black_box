@@ -8,14 +8,22 @@
 #ifndef CAR_BLACK_BOX_H
 #define	CAR_BLACK_BOX_H
 
+#define ADR_EEPROM 0x00
+
+#define SLAVE_READ_eeprom	0xA1
+#define SLAVE_WRITE_eeprom	0xA0
+void write_external_eeprom(unsigned char address1,  unsigned char data);
+unsigned char read_external_eeprom(unsigned char address1);
+
 void read_password(unsigned char key);
 void car_menu(unsigned char key);
 
 void init_timer0();
 
 void display_dashboard(unsigned char key);
-void display_time();
+//void display_time();
 void gear_monitor(unsigned char key);
+static void get_time(void);
 void display_speed(unsigned short speed);
 
 unsigned short read_adc(unsigned char channel);
