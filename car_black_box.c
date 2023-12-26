@@ -279,6 +279,7 @@ void view_log(unsigned char key) {
 }
 
 unsigned char pass_flag = 0, confirm_password[5];
+
 void change_password(unsigned char key) {
     if (pass_flag == 0) {
         clcd_print(" Enter Password ", LINE1(0));
@@ -293,14 +294,15 @@ void change_password(unsigned char key) {
             sec = 0;
             index++;
         }
-
         if (index == 4) {
+            enter_password[4]  = '\0';
             if (validate_password(original_password, enter_password) == 0) {
                 pass_flag = 1;
                 index = 0;
                 return;
             } else {
                 enter_flag = 2;
+                index = 0;
                 return;
             }
         }
@@ -337,16 +339,19 @@ void change_password(unsigned char key) {
             index++;
         }
         if (index == 4) {
+            confirm_password[4] = '\0';
             if (validate_password(enter_password, confirm_password) == 0) {
-                pass_flag = 1;
                 index = 0;
-                return;
-            } else {
-                enter_flag = 2;
-                return;
+                while(confirm_password[index])
+                {
+                    original_password[index] = confirm_password[index];
+                    index++;
+                }
             }
+            enter_flag = 2;
+            index = 0;
+            return;
         }
-
     }
     if (sec == 5) {
         enter_flag = 2;
