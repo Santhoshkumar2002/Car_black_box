@@ -17,6 +17,10 @@ unsigned char read_external_eeprom(unsigned char address1);
 
 void read_password(unsigned char key);
 void car_menu(unsigned char key);
+void view_log(unsigned char key);
+void change_password(unsigned char key);
+
+void store_event(char *event);
 
 void init_timer0();
 

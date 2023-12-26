@@ -1,15 +1,15 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"36 ./car_black_box.h
-[; ;./car_black_box.h: 36: void init_matrix_keypad();
+"40 ./car_black_box.h
+[; ;./car_black_box.h: 40: void init_matrix_keypad();
 [v _init_matrix_keypad `(v ~T0 @X0 0 e? ]
-"72
-[; ;./car_black_box.h: 72: void init_clcd(void);
+"76
+[; ;./car_black_box.h: 76: void init_clcd(void);
 [v _init_clcd `(v ~T0 @X0 0 ef ]
-"30
-[; ;./car_black_box.h: 30: void init_adc();
+"34
+[; ;./car_black_box.h: 34: void init_adc();
 [v _init_adc `(v ~T0 @X0 0 e? ]
-"21
-[; ;./car_black_box.h: 21: void init_timer0();
+"25
+[; ;./car_black_box.h: 25: void init_timer0();
 [v _init_timer0 `(v ~T0 @X0 0 e? ]
 "11 ./i2c.h
 [; ;./i2c.h: 11: void init_i2c(void);
@@ -18,11 +18,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./ds1307.h: 27: void init_ds1307(void);
 [v _init_ds1307 `(v ~T0 @X0 0 ef ]
 [p mainexit ]
-"34 ./car_black_box.h
-[; ;./car_black_box.h: 34: unsigned char read_switches(unsigned char);
+"38 ./car_black_box.h
+[; ;./car_black_box.h: 38: unsigned char read_switches(unsigned char);
 [v _read_switches `(uc ~T0 @X0 0 ef1`uc ]
-"73
-[; ;./car_black_box.h: 73: void clcd_print(const unsigned char *data, unsigned char addr);
+"77
+[; ;./car_black_box.h: 77: void clcd_print(const unsigned char *data, unsigned char addr);
 [v _clcd_print `(v ~T0 @X0 0 ef2`*Cuc`uc ]
 "16 main.c
 [; ;main.c: 16: extern unsigned sec;
@@ -33,8 +33,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19
 [; ;./car_black_box.h: 19: void car_menu(unsigned char key);
 [v _car_menu `(v ~T0 @X0 0 ef1`uc ]
-"23
-[; ;./car_black_box.h: 23: void display_dashboard(unsigned char key);
+"20
+[; ;./car_black_box.h: 20: void view_log(unsigned char key);
+[v _view_log `(v ~T0 @X0 0 ef1`uc ]
+"21
+[; ;./car_black_box.h: 21: void change_password(unsigned char key);
+[v _change_password `(v ~T0 @X0 0 ef1`uc ]
+"27
+[; ;./car_black_box.h: 27: void display_dashboard(unsigned char key);
 [v _display_dashboard `(v ~T0 @X0 0 ef1`uc ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 54: __asm("RXF6SIDH equ 0D60h");
@@ -1327,8 +1333,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1091 ]
 {
 "32
-[; ;main.c: 32:         if(enter_flag == 2)
-[e $ ! == -> _enter_flag `i -> 2 `i 1093  ]
+[; ;main.c: 32:         if(enter_flag == 2 || enter_flag == 3)
+[e $ ! || == -> _enter_flag `i -> 2 `i == -> _enter_flag `i -> 3 `i 1093  ]
 "33
 [; ;main.c: 33:         {
 {
@@ -1353,8 +1359,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 1094 ]
 "41
-[; ;main.c: 41:         if(key == 10)
-[e $ ! == -> _key `i -> 10 `i 1095  ]
+[; ;main.c: 41:         if(key == 10 && enter_flag != 2)
+[e $ ! && == -> _key `i -> 10 `i != -> _enter_flag `i -> 2 `i 1095  ]
 "42
 [; ;main.c: 42:         {
 {
@@ -1402,34 +1408,78 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 55:             car_menu(key);
 [e ( _car_menu (1 _key ]
 "56
-[; ;main.c: 56:         }
-}
-[e $U 1100  ]
+[; ;main.c: 56:             if(enter_flag == 7)
+[e $ ! == -> _enter_flag `i -> 7 `i 1100  ]
 "57
-[; ;main.c: 57:         else
-[e :U 1099 ]
-"58
-[; ;main.c: 58:         {
-{
-"59
-[; ;main.c: 59:             display_dashboard(key);
-[e ( _display_dashboard (1 _key ]
-"60
-[; ;main.c: 60:         }
-}
+[; ;main.c: 57:                 sec = 0;
+[e = _sec -> -> 0 `i `ui ]
 [e :U 1100 ]
-[e :U 1098 ]
+"58
+[; ;main.c: 58:         }
+}
+[e $U 1101  ]
+"59
+[; ;main.c: 59:         else if(enter_flag == 3)
+[e :U 1099 ]
+[e $ ! == -> _enter_flag `i -> 3 `i 1102  ]
+"60
+[; ;main.c: 60:         {
+{
 "61
-[; ;main.c: 61:     }
+[; ;main.c: 61:             view_log(key);
+[e ( _view_log (1 _key ]
+"62
+[; ;main.c: 62:             if(enter_flag == 2)
+[e $ ! == -> _enter_flag `i -> 2 `i 1103  ]
+"63
+[; ;main.c: 63:                 sec = 0;
+[e = _sec -> -> 0 `i `ui ]
+[e :U 1103 ]
+"64
+[; ;main.c: 64:         }
+}
+[e $U 1104  ]
+"65
+[; ;main.c: 65:         else if(enter_flag == 7)
+[e :U 1102 ]
+[e $ ! == -> _enter_flag `i -> 7 `i 1105  ]
+"66
+[; ;main.c: 66:         {
+{
+"67
+[; ;main.c: 67:             change_password(key);
+[e ( _change_password (1 _key ]
+"68
+[; ;main.c: 68:         }
+}
+[e $U 1106  ]
+"69
+[; ;main.c: 69:         else
+[e :U 1105 ]
+"70
+[; ;main.c: 70:         {
+{
+"71
+[; ;main.c: 71:             display_dashboard(key);
+[e ( _display_dashboard (1 _key ]
+"72
+[; ;main.c: 72:         }
+}
+[e :U 1106 ]
+[e :U 1104 ]
+[e :U 1101 ]
+[e :U 1098 ]
+"73
+[; ;main.c: 73:     }
 }
 [e :U 1090 ]
 [e $U 1091  ]
 [e :U 1092 ]
-"62
-[; ;main.c: 62:     return;
+"74
+[; ;main.c: 74:     return;
 [e $UE 1089  ]
-"63
-[; ;main.c: 63: }
+"75
+[; ;main.c: 75: }
 [e :UE 1089 ]
 }
 [a 1C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

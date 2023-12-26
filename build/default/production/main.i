@@ -17908,6 +17908,10 @@ unsigned char read_external_eeprom(unsigned char address1);
 
 void read_password(unsigned char key);
 void car_menu(unsigned char key);
+void view_log(unsigned char key);
+void change_password(unsigned char key);
+
+void store_event(char *event);
 
 void init_timer0();
 
@@ -17925,7 +17929,7 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 72 "./car_black_box.h"
+# 76 "./car_black_box.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);
@@ -17967,7 +17971,7 @@ void main(void) {
     init_config();
     unsigned char key;
     while (1) {
-        if(enter_flag == 2)
+        if(enter_flag == 2 || enter_flag == 3)
         {
             key = read_switches(0);
         }
@@ -17976,7 +17980,7 @@ void main(void) {
             key = read_switches(1);
         }
 
-        if(key == 10)
+        if(key == 10 && enter_flag != 2)
         {
             clcd_print("               ", (0xC0 + (0)));
             enter_flag = 1;
@@ -17991,6 +17995,18 @@ void main(void) {
         else if(enter_flag == 2)
         {
             car_menu(key);
+            if(enter_flag == 7)
+                sec = 0;
+        }
+        else if(enter_flag == 3)
+        {
+            view_log(key);
+            if(enter_flag == 2)
+                sec = 0;
+        }
+        else if(enter_flag == 7)
+        {
+            change_password(key);
         }
         else
         {
