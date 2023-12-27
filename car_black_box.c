@@ -21,13 +21,13 @@ unsigned char *gear_data[8] = {" ON ", " GN ", " G1 ", " G2 ", " G3 ", " G4 ", "
 unsigned short gear_index = 0, speed;
 
 unsigned char pass_key, attempt = '3';
-unsigned short index = 0, wait = 0, menu_flag = 0;
-unsigned char *original_password = "0011", enter_password[5];
+unsigned short index = 0, wait = 0;
+unsigned char original_password[5] = "0011", enter_password[5];
 extern unsigned char enter_flag;
 
 unsigned char *menu[5] = {"View Log        ", "Set Time        ", "Download Log    ", "Clear log       ", "Reset Password "};
 unsigned short previous_key, key, index_1 = 0, index_2 = 1, star_flag = 1, menu_index = 0;
-unsigned short wait1 = 0;
+unsigned int wait1 = 0;
 
 void display_dashboard(unsigned char key) {
     clcd_print("  TIME    EV  SP", LINE1(0));
@@ -90,11 +90,10 @@ void display_speed(unsigned short speed) {
 }
 
 void store_event(char *event) {
-    int ind = 0, address;
+    int address;
     address = ADR_EEPROM + (16 * (index_eeprom % 10));
-    while (event[ind]) {
+    for(int ind = 0; ind < 16; ind++){
         write_external_eeprom((address + ind), event[ind]);
-        ind++;
     }
     index_eeprom++;
     if (index_eeprom == 10)
@@ -102,7 +101,7 @@ void store_event(char *event) {
 }
 
 void read_password(unsigned char key) {
-    clcd_print(" Enter password", LINE1(0));
+    clcd_print(" Enter password ", LINE1(0));
     if (key == 11) {
         enter_password[index] = '1';
         clcd_putch('*', LINE2(index + 3));
@@ -173,13 +172,16 @@ int validate_password(char *original_password, char *enter_password) {
     return original_password[ind_compare] - enter_password[ind_compare];
 }
 
+unsigned char *menu_event[5] = {"VL", "ST", "DL", "CL", "CP"};
 void car_menu(unsigned char key) {
     if (key == 11) {
         sec = 0;
         previous_key = key;
         if (wait1++ > 400) {
             enter_flag = menu_index + 3;
-            wait1 = 0;
+            event[10] = menu_event[menu_index][0];
+            event[11] = menu_event[menu_index][1];
+            store_event(event);
             return;
         }
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF && index_2 > 0) {
@@ -238,23 +240,24 @@ void car_menu(unsigned char key) {
     clcd_print(menu[index_2], LINE2(1));
 }
 
-unsigned char count_event = 0, view_event[17], address;
+unsigned int count_event = 0, address;
+unsigned char view_event[17];
 
 void view_log(unsigned char key) {
     clcd_print("Logs:-          ", LINE1(0));
     if (key == 11) {
         previous_key = key;
+        wait1++;
+        /*
         if (wait1++ > 400) {
-            wait1 = 0;
-            return;
-        }
+        }*/
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF) {
         count_event--;
         if (count_event == -1)
             count_event = 9;
         wait1 = 0;
     }
-    if (key == 12) {
+    else if (key == 12) {
         previous_key = key;
         if (wait1++ > 400) {
             enter_flag = 2;
@@ -268,8 +271,10 @@ void view_log(unsigned char key) {
             count_event = 0;
         wait1 = 0;
     }
-
-    address = ADR_EEPROM + (16 * count_event % 10);
+    else
+        wait1 = 0;
+    
+    address = ADR_EEPROM + (16 * (count_event % 10));
     clcd_putch(count_event + 48, LINE1(6));
     for (int i = 0; i < 16; i++) {
         view_event[i] = read_external_eeprom(address + i);

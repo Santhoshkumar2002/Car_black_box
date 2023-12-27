@@ -17971,17 +17971,16 @@ unsigned char *gear_data[8] = {" ON ", " GN ", " G1 ", " G2 ", " G3 ", " G4 ", "
 unsigned short gear_index = 0, speed;
 
 unsigned char pass_key, attempt = '3';
-unsigned short index = 0, wait = 0, menu_flag = 0;
-unsigned char *original_password = "0011", enter_password[5];
+unsigned short index = 0, wait = 0;
+unsigned char original_password[5] = "0011", enter_password[5];
 extern unsigned char enter_flag;
 
 unsigned char *menu[5] = {"View Log        ", "Set Time        ", "Download Log    ", "Clear log       ", "Reset Password "};
 unsigned short previous_key, key, index_1 = 0, index_2 = 1, star_flag = 1, menu_index = 0;
-unsigned short wait1 = 0;
+unsigned int wait1 = 0;
 
 void display_dashboard(unsigned char key) {
     clcd_print("  TIME    EV  SP", (0x80 + (0)));
-
     get_time();
     if (key == 1 || key == 2 || key == 3) {
         gear_monitor(key);
@@ -18041,11 +18040,10 @@ void display_speed(unsigned short speed) {
 }
 
 void store_event(char *event) {
-    int ind = 0, address;
+    int address;
     address = 0x00 + (16 * (index_eeprom % 10));
-    while (event[ind]) {
+    for(int ind = 0; ind < 16; ind++){
         write_external_eeprom((address + ind), event[ind]);
-        ind++;
     }
     index_eeprom++;
     if (index_eeprom == 10)
@@ -18053,7 +18051,7 @@ void store_event(char *event) {
 }
 
 void read_password(unsigned char key) {
-    clcd_print(" Enter password", (0x80 + (0)));
+    clcd_print(" Enter password ", (0x80 + (0)));
     if (key == 11) {
         enter_password[index] = '1';
         clcd_putch('*', (0xC0 + (index + 3)));
@@ -18124,13 +18122,16 @@ int validate_password(char *original_password, char *enter_password) {
     return original_password[ind_compare] - enter_password[ind_compare];
 }
 
+unsigned char *menu_event[5] = {"VL", "ST", "DL", "CL", "CP"};
 void car_menu(unsigned char key) {
     if (key == 11) {
         sec = 0;
         previous_key = key;
         if (wait1++ > 400) {
-            enter_flag = 3;
-            wait1 = 0;
+            enter_flag = menu_index + 3;
+            event[10] = menu_event[menu_index][0];
+            event[11] = menu_event[menu_index][1];
+            store_event(event);
             return;
         }
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF && index_2 > 0) {
@@ -18145,17 +18146,6 @@ void car_menu(unsigned char key) {
         }
         wait1 = 0;
     }
-
-    if (sec == 5) {
-        index_1 = 0;
-        index_2 = 1;
-        star_flag = 1;
-        menu_index = 0;
-        enter_flag = 0;
-        wait1 = 0;
-        return;
-    }
-
     if (key == 12) {
         sec = 0;
         previous_key = key;
@@ -18180,6 +18170,15 @@ void car_menu(unsigned char key) {
         }
         wait1 = 0;
     }
+    if (sec == 5) {
+        index_1 = 0;
+        index_2 = 1;
+        star_flag = 1;
+        menu_index = 0;
+        enter_flag = 0;
+        wait1 = 0;
+        return;
+    }
     if (star_flag == 1) {
         clcd_putch('*', (0x80 + (0)));
         clcd_putch(' ', (0xC0 + (0)));
@@ -18189,25 +18188,26 @@ void car_menu(unsigned char key) {
     }
     clcd_print(menu[index_1], (0x80 + (1)));
     clcd_print(menu[index_2], (0xC0 + (1)));
-# 250 "car_black_box.c"
 }
 
-unsigned char count_event = 0, view_event[17], address;
+unsigned int count_event = 0, address;
+unsigned char view_event[17];
+
 void view_log(unsigned char key) {
     clcd_print("Logs:-          ", (0x80 + (0)));
     if (key == 11) {
         previous_key = key;
-        if (wait1++ > 400) {
-            wait1 = 0;
-            return;
-        }
+        wait1++;
+
+
+
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF) {
         count_event--;
         if (count_event == -1)
             count_event = 9;
         wait1 = 0;
     }
-    if (key == 12) {
+    else if (key == 12) {
         previous_key = key;
         if (wait1++ > 400) {
             enter_flag = 2;
@@ -18221,18 +18221,103 @@ void view_log(unsigned char key) {
             count_event = 0;
         wait1 = 0;
     }
+    else
+        wait1 = 0;
 
-    address = 0x00 + (16 * count_event % 10);
-    clcd_putch(count_event+48, (0x80 + (6)));
-
+    address = 0x00 + (16 * (count_event % 10));
+    clcd_putch(count_event + 48, (0x80 + (6)));
     for (int i = 0; i < 16; i++) {
         view_event[i] = read_external_eeprom(address + i);
     }
     view_event[16] = '\0';
     clcd_print(view_event, (0xC0 + (0)));
-
 }
 
+unsigned char pass_flag = 0, confirm_password[5];
+
 void change_password(unsigned char key) {
-    clcd_print("hi sam", (0xC0 + (0)));
+    if (pass_flag == 0) {
+        clcd_print(" Enter Password ", (0x80 + (0)));
+        if (key == 11) {
+            enter_password[index] = '1';
+            clcd_putch('*', (0xC0 + (index + 3)));
+            sec = 0;
+            index++;
+        } else if (key == 12) {
+            enter_password[index] = '0';
+            clcd_putch('*', (0xC0 + (index + 3)));
+            sec = 0;
+            index++;
+        }
+        if (index == 4) {
+            enter_password[4] = '\0';
+            if (validate_password(original_password, enter_password) == 0) {
+                pass_flag = 1;
+                index = 0;
+                return;
+            } else {
+                enter_flag = 2;
+                index = 0;
+                return;
+            }
+        }
+    } else if (pass_flag == 1) {
+        clcd_print("  New Password  ", (0x80 + (0)));
+        if (key == 11) {
+            enter_password[index] = '1';
+            clcd_putch('*', (0xC0 + (index + 3)));
+            sec = 0;
+            index++;
+        } else if (key == 12) {
+            enter_password[index] = '0';
+            clcd_putch('*', (0xC0 + (index + 3)));
+            sec = 0;
+            index++;
+        }
+        if (index == 4) {
+            pass_flag = 2;
+            index = 0;
+            return;
+        }
+
+    } else if (pass_flag == 2) {
+        clcd_print("Confirm Password", (0x80 + (0)));
+        if (key == 11) {
+            confirm_password[index] = '1';
+            clcd_putch('*', (0xC0 + (index + 3)));
+            sec = 0;
+            index++;
+        } else if (key == 12) {
+            confirm_password[index] = '0';
+            clcd_putch('*', (0xC0 + (index + 3)));
+            sec = 0;
+            index++;
+        }
+        if (index == 4) {
+            confirm_password[4] = '\0';
+            if (validate_password(enter_password, confirm_password) == 0) {
+                index = 0;
+                while(confirm_password[index])
+                {
+                    original_password[index] = confirm_password[index];
+                    index++;
+                }
+            }
+            enter_flag = 2;
+            index = 0;
+            return;
+        }
+    }
+    if (sec == 5) {
+        enter_flag = 2;
+        index = 0;
+        return;
+    }
+    if (wait++ < 800) {
+        clcd_putch('_', (0xC0 + (index + 3)));
+    } else if (wait > 800) {
+        clcd_putch(' ', (0xC0 + (index + 3)));
+        if (wait == 1600)
+            wait = 0;
+    }
 }

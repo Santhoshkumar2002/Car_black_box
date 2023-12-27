@@ -12,6 +12,7 @@
 #include "i2c.h"
 #include "ds1307.h"
 
+extern unsigned int wait1;
 extern unsigned char event[17];
 extern unsigned sec;
 unsigned char enter_flag = 0;
@@ -40,7 +41,7 @@ void main(void) {
         
         if(key == 10 && enter_flag != 2)
         {
-            clcd_print("               ", LINE2(0));
+            clcd_print("                ", LINE2(0));
             enter_flag = 1;
             sec = 0;
         }
@@ -60,7 +61,11 @@ void main(void) {
         {
             view_log(key);
             if(enter_flag == 2)
+            {
+                clcd_print("                ", LINE2(0));
                 sec = 0;
+            }
+                
         }
         else if(enter_flag == 7)
         {
