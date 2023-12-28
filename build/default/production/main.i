@@ -17916,9 +17916,8 @@ void store_event(char *event);
 void init_timer0();
 
 void display_dashboard(unsigned char key);
-
 void gear_monitor(unsigned char key);
-static void get_time(void);
+void get_time(void);
 void display_speed(unsigned short speed);
 
 unsigned short read_adc(unsigned char channel);
@@ -17929,12 +17928,15 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 76 "./car_black_box.h"
+# 11 "main.c" 2
+
+# 1 "./clcd.h" 1
+# 44 "./clcd.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);
 void clcd_write(unsigned char bit_values, unsigned char control_bit);
-# 11 "main.c" 2
+# 12 "main.c" 2
 
 # 1 "./i2c.h" 1
 # 11 "./i2c.h"
@@ -17944,20 +17946,21 @@ void i2c_rep_start(void);
 void i2c_stop(void);
 void i2c_write(unsigned char data);
 unsigned char i2c_read(void);
-# 12 "main.c" 2
+# 13 "main.c" 2
 
 # 1 "./ds1307.h" 1
 # 25 "./ds1307.h"
 void write_ds1307(unsigned char address1, unsigned char data);
 unsigned char read_ds1307(unsigned char address1);
 void init_ds1307(void);
-# 13 "main.c" 2
+# 14 "main.c" 2
 
 
 extern unsigned int wait1;
 extern unsigned char event[17];
 extern unsigned sec;
 unsigned char enter_flag = 0;
+unsigned short speed;
 
 void init_config() {
     init_matrix_keypad();
@@ -17971,6 +17974,10 @@ void init_config() {
 void main(void) {
     init_config();
     unsigned char key;
+    speed = (read_adc(4) / 10.23);
+    display_speed(speed);
+    get_time();
+    store_event(event);
     while (1) {
         if(enter_flag == 2 || enter_flag == 3)
         {
@@ -17981,42 +17988,62 @@ void main(void) {
             key = read_switches(1);
         }
 
-        if(key == 10 && enter_flag != 2)
+        if(key == 10 && enter_flag == 0)
         {
             clcd_print("                ", (0xC0 + (0)));
             enter_flag = 1;
             sec = 0;
         }
-        if(enter_flag == 1)
-        {
-            read_password(key);
-            if(enter_flag == 2)
-                sec = 0;
-        }
-        else if(enter_flag == 2)
-        {
-            car_menu(key);
-            if(enter_flag == 7)
-                sec = 0;
-        }
-        else if(enter_flag == 3)
-        {
-            view_log(key);
-            if(enter_flag == 2)
-            {
-                clcd_print("                ", (0xC0 + (0)));
-                sec = 0;
-            }
 
-        }
-        else if(enter_flag == 7)
+        switch(enter_flag)
         {
-            change_password(key);
+            case 0:
+            {
+                display_dashboard(key);
+                break;
+            }
+            case 1:
+            {
+                read_password(key);
+                if(enter_flag == 2)
+                    sec = 0;
+                break;
+            }
+            case 2:
+            {
+                car_menu(key);
+                if(enter_flag == 7)
+                {
+                    clcd_print("                ", (0xC0 + (0)));
+                    sec = 0;
+                }
+                break;
+            }
+            case 3:
+            {
+                view_log(key);
+                if(enter_flag == 2)
+                    sec = 0;
+                break;
+            }
+            case 7:
+            {
+                change_password(key);
+                if(enter_flag == 2)
+                    sec = 0;
+                break;
+            }
+            default :
+            {
+                clcd_print("                ", (0x80 + (0)));
+                clcd_print("   hello-menu   ", (0xC0 + (0)));
+                _delay((unsigned long)((4000)*(20000000/4000.0)));
+                enter_flag = 2;
+            }
         }
-        else
-        {
-            display_dashboard(key);
-        }
+        get_time();
+        speed = (read_adc(4) / 10.23);
+        display_speed(speed);
     }
     return;
 }

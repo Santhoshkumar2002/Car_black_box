@@ -1271,194 +1271,194 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32464
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 32464: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"11 clcd.c
-[; ;clcd.c: 11: void clcd_write(unsigned char byte, unsigned char control_bit)
+"12 clcd.c
+[; ;clcd.c: 12: void clcd_write(unsigned char byte, unsigned char control_bit)
 [v _clcd_write `(v ~T0 @X0 1 ef2`uc`uc ]
-"12
-[; ;clcd.c: 12: {
+"13
+[; ;clcd.c: 13: {
 {
 [e :U _clcd_write ]
-"11
-[; ;clcd.c: 11: void clcd_write(unsigned char byte, unsigned char control_bit)
+"12
+[; ;clcd.c: 12: void clcd_write(unsigned char byte, unsigned char control_bit)
 [v _byte `uc ~T0 @X0 1 r1 ]
 [v _control_bit `uc ~T0 @X0 1 r2 ]
-"12
-[; ;clcd.c: 12: {
-[f ]
 "13
-[; ;clcd.c: 13:  RC1 = control_bit;
-[e = _RC1 -> _control_bit `b ]
+[; ;clcd.c: 13: {
+[f ]
 "14
-[; ;clcd.c: 14:  PORTD = byte;
+[; ;clcd.c: 14:  RC1 = control_bit;
+[e = _RC1 -> _control_bit `b ]
+"15
+[; ;clcd.c: 15:  PORTD = byte;
 [e = _PORTD _byte ]
-"17
-[; ;clcd.c: 17:  RC2 = 1;
-[e = _RC2 -> -> 1 `i `b ]
 "18
-[; ;clcd.c: 18:  RC2 = 0;
-[e = _RC2 -> -> 0 `i `b ]
-"20
-[; ;clcd.c: 20:  TRISD7 = 0xFF;
-[e = _TRISD7 -> -> 255 `i `b ]
-"21
-[; ;clcd.c: 21:  RC0 = 1;
-[e = _RC0 -> -> 1 `i `b ]
-"22
-[; ;clcd.c: 22:  RC1 = 0;
-[e = _RC1 -> -> 0 `i `b ]
-"24
-[; ;clcd.c: 24:  do
-[e :U 1091 ]
-"25
-[; ;clcd.c: 25:  {
-{
-"26
-[; ;clcd.c: 26:   RC2 = 1;
+[; ;clcd.c: 18:  RC2 = 1;
 [e = _RC2 -> -> 1 `i `b ]
-"27
-[; ;clcd.c: 27:   RC2 = 0;
+"19
+[; ;clcd.c: 19:  RC2 = 0;
 [e = _RC2 -> -> 0 `i `b ]
+"21
+[; ;clcd.c: 21:  TRISD7 = 0xFF;
+[e = _TRISD7 -> -> 255 `i `b ]
+"22
+[; ;clcd.c: 22:  RC0 = 1;
+[e = _RC0 -> -> 1 `i `b ]
+"23
+[; ;clcd.c: 23:  RC1 = 0;
+[e = _RC1 -> -> 0 `i `b ]
+"25
+[; ;clcd.c: 25:  do
+[e :U 1091 ]
+"26
+[; ;clcd.c: 26:  {
+{
+"27
+[; ;clcd.c: 27:   RC2 = 1;
+[e = _RC2 -> -> 1 `i `b ]
 "28
-[; ;clcd.c: 28:  } while (RD7);
+[; ;clcd.c: 28:   RC2 = 0;
+[e = _RC2 -> -> 0 `i `b ]
+"29
+[; ;clcd.c: 29:  } while (RD7);
 }
 [e $ _RD7 1091  ]
 [e :U 1090 ]
-"30
-[; ;clcd.c: 30:  RC0 = 0;
-[e = _RC0 -> -> 0 `i `b ]
 "31
-[; ;clcd.c: 31:  TRISD7 = 0x00;
-[e = _TRISD7 -> -> 0 `i `b ]
+[; ;clcd.c: 31:  RC0 = 0;
+[e = _RC0 -> -> 0 `i `b ]
 "32
-[; ;clcd.c: 32: }
+[; ;clcd.c: 32:  TRISD7 = 0x00;
+[e = _TRISD7 -> -> 0 `i `b ]
+"33
+[; ;clcd.c: 33: }
 [e :UE 1088 ]
 }
-"34
-[; ;clcd.c: 34: void init_clcd()
-[v _init_clcd `(v ~T0 @X0 1 ef ]
 "35
-[; ;clcd.c: 35: {
+[; ;clcd.c: 35: void init_clcd()
+[v _init_clcd `(v ~T0 @X0 1 ef ]
+"36
+[; ;clcd.c: 36: {
 {
 [e :U _init_clcd ]
 [f ]
-"37
-[; ;clcd.c: 37:  TRISD = 0x00;
+"38
+[; ;clcd.c: 38:  TRISD = 0x00;
 [e = _TRISD -> -> 0 `i `uc ]
-"39
-[; ;clcd.c: 39:  TRISC = TRISC & 0xF8;
+"40
+[; ;clcd.c: 40:  TRISC = TRISC & 0xF8;
 [e = _TRISC -> & -> _TRISC `i -> 248 `i `uc ]
-"41
-[; ;clcd.c: 41:  RC0 = 0;
+"42
+[; ;clcd.c: 42:  RC0 = 0;
 [e = _RC0 -> -> 0 `i `b ]
-"45
-[; ;clcd.c: 45:     _delay((unsigned long)((40)*(20000000/4000.0)));
+"46
+[; ;clcd.c: 46:     _delay((unsigned long)((40)*(20000000/4000.0)));
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"48
-[; ;clcd.c: 48:     clcd_write(0x33, 0 );
-[e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
 "49
-[; ;clcd.c: 49:     _delay((unsigned long)((4100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 4100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[; ;clcd.c: 49:     clcd_write(0x33, 0 );
+[e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
 "50
-[; ;clcd.c: 50:     clcd_write(0x33, 0 );
-[e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
+[; ;clcd.c: 50:     _delay((unsigned long)((4100)*(20000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 4100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
 "51
-[; ;clcd.c: 51:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"52
-[; ;clcd.c: 52:     clcd_write(0x33, 0 );
+[; ;clcd.c: 51:     clcd_write(0x33, 0 );
 [e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
+"52
+[; ;clcd.c: 52:     _delay((unsigned long)((100)*(20000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
 "53
-[; ;clcd.c: 53:     _delay((unsigned long)((1)*(20000000/4000000.0)));
+[; ;clcd.c: 53:     clcd_write(0x33, 0 );
+[e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
+"54
+[; ;clcd.c: 54:     _delay((unsigned long)((1)*(20000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"55
-[; ;clcd.c: 55:     clcd_write(0x02, 0);
-[e ( _clcd_write (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
 "56
-[; ;clcd.c: 56:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[; ;clcd.c: 56:     clcd_write(0x02, 0);
+[e ( _clcd_write (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
 "57
-[; ;clcd.c: 57:     clcd_write(0x38, 0);
-[e ( _clcd_write (2 , -> -> 56 `i `uc -> -> 0 `i `uc ]
+[; ;clcd.c: 57:     _delay((unsigned long)((100)*(20000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
 "58
-[; ;clcd.c: 58:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[; ;clcd.c: 58:     clcd_write(0x38, 0);
+[e ( _clcd_write (2 , -> -> 56 `i `uc -> -> 0 `i `uc ]
 "59
-[; ;clcd.c: 59:     clcd_write(0x01, 0);
-[e ( _clcd_write (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"60
-[; ;clcd.c: 60:     _delay((unsigned long)((500)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"61
-[; ;clcd.c: 61:     clcd_write(0x0C, 0);
-[e ( _clcd_write (2 , -> -> 12 `i `uc -> -> 0 `i `uc ]
-"62
-[; ;clcd.c: 62:     _delay((unsigned long)((100)*(20000000/4000000.0)));
+[; ;clcd.c: 59:     _delay((unsigned long)((100)*(20000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"60
+[; ;clcd.c: 60:     clcd_write(0x01, 0);
+[e ( _clcd_write (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+"61
+[; ;clcd.c: 61:     _delay((unsigned long)((500)*(20000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"62
+[; ;clcd.c: 62:     clcd_write(0x0C, 0);
+[e ( _clcd_write (2 , -> -> 12 `i `uc -> -> 0 `i `uc ]
 "63
-[; ;clcd.c: 63: }
+[; ;clcd.c: 63:     _delay((unsigned long)((100)*(20000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"64
+[; ;clcd.c: 64: }
 [e :UE 1092 ]
 }
-"65
-[; ;clcd.c: 65: void clcd_print(const unsigned char *data, unsigned char addr)
-[v _clcd_print `(v ~T0 @X0 1 ef2`*Cuc`uc ]
 "66
-[; ;clcd.c: 66: {
+[; ;clcd.c: 66: void clcd_print(const unsigned char *data, unsigned char addr)
+[v _clcd_print `(v ~T0 @X0 1 ef2`*Cuc`uc ]
+"67
+[; ;clcd.c: 67: {
 {
 [e :U _clcd_print ]
-"65
-[; ;clcd.c: 65: void clcd_print(const unsigned char *data, unsigned char addr)
+"66
+[; ;clcd.c: 66: void clcd_print(const unsigned char *data, unsigned char addr)
 [v _data `*Cuc ~T0 @X0 1 r1 ]
 [v _addr `uc ~T0 @X0 1 r2 ]
-"66
-[; ;clcd.c: 66: {
-[f ]
 "67
-[; ;clcd.c: 67:  clcd_write(addr, 0);
-[e ( _clcd_write (2 , _addr -> -> 0 `i `uc ]
+[; ;clcd.c: 67: {
+[f ]
 "68
-[; ;clcd.c: 68:  while (*data != '\0')
+[; ;clcd.c: 68:  clcd_write(addr, 0);
+[e ( _clcd_write (2 , _addr -> -> 0 `i `uc ]
+"69
+[; ;clcd.c: 69:  while (*data != '\0')
 [e $U 1094  ]
 [e :U 1095 ]
-"69
-[; ;clcd.c: 69:  {
-{
 "70
-[; ;clcd.c: 70:   clcd_write(*data++, 1);
-[e ( _clcd_write (2 , *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x -> -> 1 `i `uc ]
+[; ;clcd.c: 70:  {
+{
 "71
-[; ;clcd.c: 71:  }
+[; ;clcd.c: 71:   clcd_write(*data++, 1);
+[e ( _clcd_write (2 , *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x -> -> 1 `i `uc ]
+"72
+[; ;clcd.c: 72:  }
 }
 [e :U 1094 ]
-"68
-[; ;clcd.c: 68:  while (*data != '\0')
+"69
+[; ;clcd.c: 69:  while (*data != '\0')
 [e $ != -> *U _data `ui -> 0 `ui 1095  ]
 [e :U 1096 ]
-"72
-[; ;clcd.c: 72: }
+"73
+[; ;clcd.c: 73: }
 [e :UE 1093 ]
 }
-"74
-[; ;clcd.c: 74: void clcd_putch(const unsigned char data, unsigned char addr)
-[v _clcd_putch `(v ~T0 @X0 1 ef2`Cuc`uc ]
 "75
-[; ;clcd.c: 75: {
+[; ;clcd.c: 75: void clcd_putch(const unsigned char data, unsigned char addr)
+[v _clcd_putch `(v ~T0 @X0 1 ef2`Cuc`uc ]
+"76
+[; ;clcd.c: 76: {
 {
 [e :U _clcd_putch ]
-"74
-[; ;clcd.c: 74: void clcd_putch(const unsigned char data, unsigned char addr)
+"75
+[; ;clcd.c: 75: void clcd_putch(const unsigned char data, unsigned char addr)
 [v _data `Cuc ~T0 @X0 1 r1 ]
 [v _addr `uc ~T0 @X0 1 r2 ]
-"75
-[; ;clcd.c: 75: {
-[f ]
 "76
-[; ;clcd.c: 76:  clcd_write(addr, 0);
-[e ( _clcd_write (2 , _addr -> -> 0 `i `uc ]
+[; ;clcd.c: 76: {
+[f ]
 "77
-[; ;clcd.c: 77:  clcd_write(data, 1);
-[e ( _clcd_write (2 , _data -> -> 1 `i `uc ]
+[; ;clcd.c: 77:  clcd_write(addr, 0);
+[e ( _clcd_write (2 , _addr -> -> 0 `i `uc ]
 "78
-[; ;clcd.c: 78: }
+[; ;clcd.c: 78:  clcd_write(data, 1);
+[e ( _clcd_write (2 , _data -> -> 1 `i `uc ]
+"79
+[; ;clcd.c: 79: }
 [e :UE 1097 ]
 }

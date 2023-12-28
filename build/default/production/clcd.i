@@ -17922,9 +17922,8 @@ void store_event(char *event);
 void init_timer0();
 
 void display_dashboard(unsigned char key);
-
 void gear_monitor(unsigned char key);
-static void get_time(void);
+void get_time(void);
 void display_speed(unsigned short speed);
 
 unsigned short read_adc(unsigned char channel);
@@ -17935,12 +17934,15 @@ void init_adc();
 unsigned char read_switches(unsigned char);
 unsigned char scan_key();
 void init_matrix_keypad();
-# 76 "./car_black_box.h"
+# 9 "clcd.c" 2
+
+# 1 "./clcd.h" 1
+# 44 "./clcd.h"
 void init_clcd(void);
 void clcd_print(const unsigned char *data, unsigned char addr);
 void clcd_putch(const unsigned char data, unsigned char addr);
 void clcd_write(unsigned char bit_values, unsigned char control_bit);
-# 9 "clcd.c" 2
+# 10 "clcd.c" 2
 
 
 void clcd_write(unsigned char byte, unsigned char control_bit)

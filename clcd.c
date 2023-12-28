@@ -7,6 +7,7 @@
 
 #include <xc.h>
 #include "car_black_box.h"
+#include "clcd.h"
 
 void clcd_write(unsigned char byte, unsigned char control_bit)
 {

@@ -9,6 +9,7 @@
 
 #include <xc.h>
 #include "car_black_box.h"
+#include "clcd.h"
 #include "i2c.h"
 #include "ds1307.h"
 
@@ -16,6 +17,7 @@ extern unsigned int wait1;
 extern unsigned char event[17];
 extern unsigned sec;
 unsigned char enter_flag = 0;
+unsigned short speed;
 
 void init_config() {
     init_matrix_keypad();
@@ -29,6 +31,10 @@ void init_config() {
 void main(void) {
     init_config();
     unsigned char key;
+    speed = (read_adc(4) / 10.23);
+    display_speed(speed);
+    get_time();
+    store_event(event);
     while (1) {
         if(enter_flag == 2 || enter_flag == 3)
         {
@@ -39,42 +45,62 @@ void main(void) {
             key = read_switches(EDGE);
         }
         
-        if(key == 10 && enter_flag != 2)
+        if(key == 10 && enter_flag == 0)
         {
             clcd_print("                ", LINE2(0));
             enter_flag = 1;
             sec = 0;
         }
-        if(enter_flag == 1)
+        
+        switch(enter_flag)
         {
-            read_password(key);
-            if(enter_flag == 2)
-                sec = 0;
-        }
-        else if(enter_flag == 2)
-        {
-            car_menu(key);
-            if(enter_flag == 7)
-                sec = 0;
-        }
-        else if(enter_flag == 3)
-        {
-            view_log(key);
-            if(enter_flag == 2)
+            case 0:
             {
-                clcd_print("                ", LINE2(0));
-                sec = 0;
+                display_dashboard(key);
+                break;
             }
-                
+            case 1:
+            {
+                read_password(key);
+                if(enter_flag == 2)
+                    sec = 0;
+                break;
+            }
+            case 2:
+            {
+                car_menu(key);
+                if(enter_flag == 7)
+                {
+                    clcd_print("                ", LINE2(0));
+                    sec = 0;
+                }      
+                break;
+            }
+            case 3:
+            {
+                view_log(key);
+                if(enter_flag == 2)
+                    sec = 0; 
+                break;
+            }
+            case 7:
+            {
+                change_password(key);
+                if(enter_flag == 2)
+                    sec = 0;
+                break;
+            }
+            default :
+            {
+                clcd_print("                ", LINE1(0));
+                clcd_print("   hello-menu   ", LINE2(0));
+                __delay_ms(4000);
+                enter_flag = 2;
+            }
         }
-        else if(enter_flag == 7)
-        {
-            change_password(key);
-        }
-        else
-        {
-            display_dashboard(key);
-        }
+        get_time();
+        speed = (read_adc(4) / 10.23);
+        display_speed(speed);       
     }
     return;
 }
