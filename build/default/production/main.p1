@@ -1479,79 +1479,79 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 76:                 }
 }
 [e :U 1102 ]
-"77
-[; ;main.c: 77:                 break;
-[e $U 1096  ]
 "78
-[; ;main.c: 78:             }
-}
+[; ;main.c: 78:                 break;
+[e $U 1096  ]
 "79
-[; ;main.c: 79:             case 3:
-[e :U 1103 ]
+[; ;main.c: 79:             }
+}
 "80
-[; ;main.c: 80:             {
-{
+[; ;main.c: 80:             case 3:
+[e :U 1103 ]
 "81
-[; ;main.c: 81:                 view_log(key);
-[e ( _view_log (1 _key ]
+[; ;main.c: 81:             {
+{
 "82
-[; ;main.c: 82:                 if(enter_flag == 2)
-[e $ ! == -> _enter_flag `i -> 2 `i 1104  ]
+[; ;main.c: 82:                 view_log(key);
+[e ( _view_log (1 _key ]
 "83
-[; ;main.c: 83:                     sec = 0;
+[; ;main.c: 83:                 if(enter_flag == 2)
+[e $ ! == -> _enter_flag `i -> 2 `i 1104  ]
+"84
+[; ;main.c: 84:                     sec = 0;
 [e = _sec -> -> 0 `i `ui ]
 [e :U 1104 ]
-"84
-[; ;main.c: 84:                 break;
-[e $U 1096  ]
 "85
-[; ;main.c: 85:             }
-}
+[; ;main.c: 85:                 break;
+[e $U 1096  ]
 "86
-[; ;main.c: 86:             case 7:
-[e :U 1105 ]
+[; ;main.c: 86:             }
+}
 "87
-[; ;main.c: 87:             {
-{
+[; ;main.c: 87:             case 7:
+[e :U 1105 ]
 "88
-[; ;main.c: 88:                 change_password(key);
-[e ( _change_password (1 _key ]
+[; ;main.c: 88:             {
+{
 "89
-[; ;main.c: 89:                 if(enter_flag == 2)
-[e $ ! == -> _enter_flag `i -> 2 `i 1106  ]
+[; ;main.c: 89:                 change_password(key);
+[e ( _change_password (1 _key ]
 "90
-[; ;main.c: 90:                     sec = 0;
+[; ;main.c: 90:                 if(enter_flag == 2)
+[e $ ! == -> _enter_flag `i -> 2 `i 1106  ]
+"91
+[; ;main.c: 91:                     sec = 0;
 [e = _sec -> -> 0 `i `ui ]
 [e :U 1106 ]
-"91
-[; ;main.c: 91:                 break;
-[e $U 1096  ]
 "92
-[; ;main.c: 92:             }
-}
+[; ;main.c: 92:                 break;
+[e $U 1096  ]
 "93
-[; ;main.c: 93:             default :
-[e :U 1107 ]
-"94
-[; ;main.c: 94:             {
-{
-"95
-[; ;main.c: 95:                 clcd_print("                ", (0x80 + (0)));
-[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 0 `i `uc ]
-"96
-[; ;main.c: 96:                 clcd_print("   hello-menu   ", (0xC0 + (0)));
-[e ( _clcd_print (2 , :s 4C -> + -> 192 `i -> 0 `i `uc ]
-"97
-[; ;main.c: 97:                 _delay((unsigned long)((4000)*(20000000/4000.0)));
-[e ( __delay (1 -> * -> -> 4000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"98
-[; ;main.c: 98:                 enter_flag = 2;
-[e = _enter_flag -> -> 2 `i `uc ]
-"99
-[; ;main.c: 99:             }
+[; ;main.c: 93:             }
 }
+"94
+[; ;main.c: 94:             default :
+[e :U 1107 ]
+"95
+[; ;main.c: 95:             {
+{
+"96
+[; ;main.c: 96:                 clcd_print("                ", (0x80 + (0)));
+[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 0 `i `uc ]
+"97
+[; ;main.c: 97:                 clcd_print("   hello-menu   ", (0xC0 + (0)));
+[e ( _clcd_print (2 , :s 4C -> + -> 192 `i -> 0 `i `uc ]
+"98
+[; ;main.c: 98:                 _delay((unsigned long)((4000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 4000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"99
+[; ;main.c: 99:                 enter_flag = 2;
+[e = _enter_flag -> -> 2 `i `uc ]
 "100
-[; ;main.c: 100:         }
+[; ;main.c: 100:             }
+}
+"101
+[; ;main.c: 101:         }
 }
 [e $U 1096  ]
 [e :U 1097 ]
@@ -1562,26 +1562,26 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 7 `i 1105
  1107 ]
 [e :U 1096 ]
-"101
-[; ;main.c: 101:         get_time();
-[e ( _get_time ..  ]
 "102
-[; ;main.c: 102:         speed = (read_adc(4) / 10.23);
-[e = _speed -> / -> -> ( _read_adc (1 -> -> 4 `i `uc `ui `d .10.23 `us ]
+[; ;main.c: 102:         get_time();
+[e ( _get_time ..  ]
 "103
-[; ;main.c: 103:         display_speed(speed);
-[e ( _display_speed (1 _speed ]
+[; ;main.c: 103:         speed = (read_adc(4) / 10.23);
+[e = _speed -> / -> -> ( _read_adc (1 -> -> 4 `i `uc `ui `d .10.23 `us ]
 "104
-[; ;main.c: 104:     }
+[; ;main.c: 104:         display_speed(speed);
+[e ( _display_speed (1 _speed ]
+"105
+[; ;main.c: 105:     }
 }
 [e :U 1090 ]
 [e $U 1091  ]
 [e :U 1092 ]
-"105
-[; ;main.c: 105:     return;
-[e $UE 1089  ]
 "106
-[; ;main.c: 106: }
+[; ;main.c: 106:     return;
+[e $UE 1089  ]
+"107
+[; ;main.c: 107: }
 [e :UE 1089 ]
 }
 [a 4C 32 32 32 104 101 108 108 111 45 109 101 110 117 32 32 32 0 ]

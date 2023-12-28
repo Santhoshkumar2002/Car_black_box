@@ -73,7 +73,8 @@ void main(void) {
                 {
                     clcd_print("                ", LINE2(0));
                     sec = 0;
-                }      
+                }
+                
                 break;
             }
             case 3:

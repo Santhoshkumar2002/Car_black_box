@@ -18017,6 +18017,7 @@ void main(void) {
                     clcd_print("                ", (0xC0 + (0)));
                     sec = 0;
                 }
+
                 break;
             }
             case 3:
