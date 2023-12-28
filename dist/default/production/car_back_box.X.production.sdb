@@ -47,17 +47,17 @@
 [v _gear_monitor gear_monitor `(v  1 e 1 0 ]
 "79
 [v _display_speed display_speed `(v  1 e 1 0 ]
-"85
+"86
 [v _store_event store_event `(v  1 e 1 0 ]
-"96
+"101
 [v _read_password read_password `(v  1 e 1 0 ]
-"157
+"162
 [v _validate_password validate_password `(i  1 e 2 0 ]
-"170
+"175
 [v _car_menu car_menu `(v  1 e 1 0 ]
-"244
+"249
 [v _view_log view_log `(v  1 e 1 0 ]
-"287
+"292
 [v _change_password change_password `(v  1 e 1 0 ]
 "12 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_write clcd_write `(v  1 e 1 0 ]
@@ -257,15 +257,17 @@
 [v _menu_index menu_index `us  1 e 2 0 ]
 "31
 [v _wait1 wait1 `ui  1 e 2 0 ]
-"168
+"85
+[v _total_index total_index `uc  1 e 1 0 ]
+"173
 [v _menu_event menu_event `[4]*.25uc  1 e 8 0 ]
-"241
+"246
 [v _count_event count_event `ui  1 e 2 0 ]
 [v _address address `ui  1 e 2 0 ]
-"242
+"247
 [v _view_event view_event `[17]uc  1 e 17 0 ]
 [v _view_flag view_flag `uc  1 e 1 0 ]
-"285
+"290
 [v _pass_flag pass_flag `uc  1 e 1 0 ]
 [v _confirm_password confirm_password `[5]uc  1 e 5 0 ]
 "11 C:\Users\santh\MPLABXProjects\car_back_box.X\isr.c
@@ -282,16 +284,16 @@
 [v main@key key `uc  1 a 1 59 ]
 "106
 } 0
-"244 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+"249 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _view_log view_log `(v  1 e 1 0 ]
 {
 [v view_log@key key `uc  1 a 1 wreg ]
-"277
+"282
 [v view_log@i i `i  1 a 2 11 ]
-"244
+"249
 [v view_log@key key `uc  1 a 1 wreg ]
 [v view_log@key key `uc  1 a 1 13 ]
-"282
+"287
 } 0
 "23 C:\Users\santh\MPLABXProjects\car_back_box.X\ext_eeprom.c
 [v _read_external_eeprom read_external_eeprom `(uc  1 e 1 0 ]
@@ -324,13 +326,13 @@
 {
 "76
 } 0
-"96 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+"101 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _read_password read_password `(v  1 e 1 0 ]
 {
 [v read_password@key key `uc  1 a 1 wreg ]
 [v read_password@key key `uc  1 a 1 wreg ]
 [v read_password@key key `uc  1 a 1 11 ]
-"155
+"160
 } 0
 "30 C:\Users\santh\MPLABXProjects\car_back_box.X\adc.c
 [v _read_adc read_adc `(us  1 e 2 0 ]
@@ -431,6 +433,16 @@
 [v display_speed@speed speed `us  1 p 2 7 ]
 "83
 } 0
+"7 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 4 ]
+"7
+[v ___lwmod@dividend dividend `ui  1 p 2 0 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
+"25
+} 0
 "7 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c99\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
@@ -448,7 +460,7 @@
 {
 [v display_dashboard@key key `uc  1 a 1 wreg ]
 [v display_dashboard@key key `uc  1 a 1 wreg ]
-[v display_dashboard@key key `uc  1 a 1 11 ]
+[v display_dashboard@key key `uc  1 a 1 13 ]
 "40
 } 0
 "62
@@ -459,42 +471,42 @@
 [v gear_monitor@key key `uc  1 a 1 2 ]
 "77
 } 0
-"287
+"292
 [v _change_password change_password `(v  1 e 1 0 ]
 {
 [v change_password@key key `uc  1 a 1 wreg ]
 [v change_password@key key `uc  1 a 1 wreg ]
 [v change_password@key key `uc  1 a 1 11 ]
-"374
+"390
 } 0
-"157
+"162
 [v _validate_password validate_password `(i  1 e 2 0 ]
 {
-"158
+"163
 [v validate_password@ind_compare ind_compare `us  1 a 2 7 ]
-"157
+"162
 [v validate_password@original_password original_password `*.39uc  1 p 2 0 ]
 [v validate_password@enter_password enter_password `*.39uc  1 p 2 2 ]
-"166
+"171
 } 0
-"170
+"175
 [v _car_menu car_menu `(v  1 e 1 0 ]
 {
 [v car_menu@key key `uc  1 a 1 wreg ]
 [v car_menu@key key `uc  1 a 1 wreg ]
-[v car_menu@key key `uc  1 a 1 13 ]
-"239
+[v car_menu@key key `uc  1 a 1 15 ]
+"244
 } 0
-"85
+"86
 [v _store_event store_event `(v  1 e 1 0 ]
 {
-"88
-[v store_event@ind ind `i  1 a 2 9 ]
+"89
+[v store_event@ind ind `i  1 a 2 11 ]
+"87
+[v store_event@address address `i  1 a 2 9 ]
 "86
-[v store_event@address address `i  1 a 2 7 ]
-"85
 [v store_event@event event `*.39uc  1 p 2 5 ]
-"94
+"99
 } 0
 "13 C:\Users\santh\MPLABXProjects\car_back_box.X\ext_eeprom.c
 [v _write_external_eeprom write_external_eeprom `(v  1 e 1 0 ]
@@ -532,16 +544,6 @@
 [v _i2c_idle i2c_idle `(v  1 e 1 0 ]
 {
 "36
-} 0
-"7 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c99\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
-{
-"10
-[v ___lwmod@counter counter `uc  1 a 1 4 ]
-"7
-[v ___lwmod@dividend dividend `ui  1 p 2 0 ]
-[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
-"25
 } 0
 "75 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_putch clcd_putch `(v  1 e 1 0 ]

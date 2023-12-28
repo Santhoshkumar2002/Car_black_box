@@ -18033,13 +18033,18 @@ void display_speed(unsigned short speed) {
     event[16] = '\0';
 }
 
+unsigned char total_index = 0;
 void store_event(char *event) {
     int address;
-    address = 0x00 + (16 * (index_eeprom % 10));
+    address = 0x00 + (16 * index_eeprom);
     for (int ind = 0; ind < 16; ind++) {
         write_external_eeprom((address + ind), event[ind]);
     }
     index_eeprom++;
+
+    if(total_index < 10)
+        total_index++;
+
     if (index_eeprom == 10)
         index_eeprom = 0;
 }
@@ -18194,7 +18199,7 @@ unsigned char view_event[17], view_flag = 0;
 
 void view_log(unsigned char key) {
     clcd_print("Logs:-->[", (0x80 + (0)));
-    clcd_putch((count_event % index_eeprom) + 48, (0x80 + (9)));
+    clcd_putch((count_event % total_index) + 48, (0x80 + (9)));
     clcd_print("]          ", (0x80 + (10)));
 
     if (key == 11) {
@@ -18224,7 +18229,7 @@ void view_log(unsigned char key) {
     } else
         wait1 = 0;
 
-    address = 0x00 + (16 * (count_event % index_eeprom));
+    address = 0x00 + (16 * (count_event % total_index));
     for (int i = 0; i < 16; i++) {
         view_event[i] = read_external_eeprom(address + i);
     }
@@ -18253,8 +18258,11 @@ void change_password(unsigned char key) {
             index = 0;
             enter_password[4] = '\0';
             if ((validate_password(original_password, enter_password)) != 0) {
+                clcd_print(" Wrong Password ",(0x80 + (0)));
+                clcd_print("                ",(0xC0 + (0)));
                 pass_flag = 0;
                 enter_flag = 2;
+                _delay((unsigned long)((1000)*(20000000/4000.0)));
                 return;
             } else {
                 clcd_print("                ", (0xC0 + (0)));
@@ -18298,15 +18306,23 @@ void change_password(unsigned char key) {
             index = 0;
             confirm_password[4] = '\0';
             if (validate_password(enter_password, confirm_password) == 0) {
+                clcd_print("Password changed",(0x80 + (0)));
+                clcd_print("  Successfully  ",(0xC0 + (0)));
                 while (confirm_password[index]) {
                     original_password[index] = confirm_password[index];
                     index++;
                 }
+
+            }
+            else
+            {
+                clcd_print("    Password    ",(0x80 + (0)));
+                clcd_print("   Not Matched   ",(0xC0 + (0)));
             }
             pass_flag = 0;
             enter_flag = 2;
             index = 0;
-            _delay((unsigned long)((400)*(20000000/4000.0)));
+            _delay((unsigned long)((1000)*(20000000/4000.0)));
         }
     }
     if (sec == 5) {
