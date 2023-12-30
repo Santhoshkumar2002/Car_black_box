@@ -17910,6 +17910,7 @@ void read_password(unsigned char key);
 void car_menu(unsigned char key);
 void view_log(unsigned char key);
 void change_password(unsigned char key);
+void clear_log();
 
 void store_event(char *event);
 
@@ -17959,6 +17960,7 @@ void init_ds1307(void);
 extern unsigned int wait1;
 extern unsigned char event[17];
 extern unsigned sec;
+extern unsigned char original_password[5];
 unsigned char enter_flag = 0;
 unsigned short speed;
 
@@ -17974,6 +17976,12 @@ void init_config() {
 void main(void) {
     init_config();
     unsigned char key;
+    for(int i = 0; i < 4; i++)
+    {
+        original_password[i] = read_external_eeprom(0x46+i);
+    }
+    original_password[4] = '\0';
+
     speed = (read_adc(4) / 10.23);
     display_speed(speed);
     get_time();
@@ -18025,6 +18033,13 @@ void main(void) {
                 view_log(key);
                 if(enter_flag == 2)
                     sec = 0;
+                break;
+            }
+            case 6:
+            {
+                clear_log();
+                enter_flag = 2;
+                sec = 0;
                 break;
             }
             case 7:

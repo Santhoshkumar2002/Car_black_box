@@ -17917,6 +17917,7 @@ void read_password(unsigned char key);
 void car_menu(unsigned char key);
 void view_log(unsigned char key);
 void change_password(unsigned char key);
+void clear_log();
 
 void store_event(char *event);
 

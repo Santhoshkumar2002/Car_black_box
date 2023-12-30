@@ -23,15 +23,15 @@ unsigned short gear_index = 0;
 
 unsigned char pass_key, attempt = '3';
 unsigned short index = 0, wait = 0;
-unsigned char original_password[5] = {'1', '1', '0', '0', '\0'}, enter_password[5];
+unsigned char original_password[5], enter_password[5];
 extern unsigned char enter_flag;
 
 unsigned char *menu[5] = {"View Log        ", "Set Time        ", "Download Log    ", "Clear log       ", "Reset Password "};
 unsigned short previous_key, key, index_1 = 0, index_2 = 1, star_flag = 1, menu_index = 0;
 unsigned int wait1 = 0;
 
-unsigned int count_event = 0, address;
-unsigned char view_event[17], view_flag = 0;
+unsigned int count_event = 0, view_flag = 0, address;
+unsigned char view_event[17], total_index = 0;
 
 void display_dashboard(unsigned char key) {
     clcd_print("  TIME    EV  SP", LINE1(0));
@@ -70,7 +70,7 @@ void gear_monitor(unsigned char key) {
     } else if (key == 2 || key == 3) {
         if (gear_index == 7 && key == 2 && previous_key != 2) {
             gear_flag = 1;
-            gear_index = 0;           
+            gear_index = 0;
         }
         if (key == 2 && gear_index < 6) {
             gear_index++;
@@ -95,8 +95,6 @@ void display_speed(unsigned short speed) {
     event[16] = '\0';
 }
 
-unsigned char total_index = 0;
-
 void store_event(char *event) {
     int address;
     address = ADR_EEPROM + (16 * index_eeprom);
@@ -107,6 +105,10 @@ void store_event(char *event) {
 
     if (total_index < 10)
         total_index++;
+    else if (count_event < 9)
+        count_event++;
+    else
+        count_event = 0;
 
     if (index_eeprom == 10)
         index_eeprom = 0;
@@ -191,11 +193,9 @@ void car_menu(unsigned char key) {
         sec = 0;
         previous_key = key;
         if (wait1++ > 400) {
-            if (menu_index == 4)
+            if (menu_index == 4 || menu_index == 3)
                 wait1 = 0;
-            /*
-            else if(menu_index == 0)
-                count_event = total_index - 1;*/                  
+
             enter_flag = menu_index + 3;
             if (menu_index > 0) {
                 event[10] = menu_event[menu_index - 1][0];
@@ -262,7 +262,7 @@ void car_menu(unsigned char key) {
 
 void view_log(unsigned char key) {
     clcd_print("Logs:-->[", LINE1(0));
-    clcd_putch((count_event % total_index) + 48, LINE1(9));
+    clcd_putch((view_flag % total_index) + 48, LINE1(9));
     clcd_print("]          ", LINE1(10));
 
     if (key == 11) {
@@ -270,25 +270,31 @@ void view_log(unsigned char key) {
         if (wait1++ > 400) {
         }
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF) {
-        view_flag = 1;
+        view_flag--;
         count_event--;
-        if (count_event == -1)
+        if (count_event == -1) {
             count_event = 9;
+        }
+        if (view_flag == -1) {
+            view_flag = 9;
+        }
         wait1 = 0;
     } else if (key == 12) {
         previous_key = key;
         if (wait1++ > 300) {
             wait1 = 0;
             enter_flag = 2;
-            count_event = 0;
+            view_flag = 0;
             sec = 0;
             return;
         }
     } else if (wait1 != 0 && wait1 < 300 && previous_key == 12 && key == 0xFF) {
-        view_flag = 1;        
+        view_flag++;
         count_event++;
         if (count_event == 10)
             count_event = 0;
+        if (view_flag == 10)
+            view_flag = 0;
         wait1 = 0;
     } else
         wait1 = 0;
@@ -301,6 +307,17 @@ void view_log(unsigned char key) {
     clcd_print(view_event, LINE2(0));
 }
 
+
+void clear_log()
+{
+    clcd_print("   Log Cleared   ", LINE1(0));
+    clcd_print("  Successfully  ", LINE2(0));
+    index_eeprom = 0;
+    count_event = 0;
+    total_index = 0;
+    store_event(event);
+    __delay_ms(5000);
+}
 
 unsigned char pass_flag = 0, confirm_password[5];
 
@@ -375,6 +392,9 @@ void change_password(unsigned char key) {
                 while (confirm_password[index]) {
                     original_password[index] = confirm_password[index];
                     index++;
+                }
+                for (int i = 0; i < 4; i++) {
+                    write_external_eeprom(0x46 + i, confirm_password[i]);
                 }
 
             } else {
