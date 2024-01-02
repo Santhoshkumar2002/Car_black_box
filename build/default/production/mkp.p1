@@ -5,8 +5,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36225
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36225: extern volatile __bit RBPU __attribute__((address(0x7F8F)));
 [v _RBPU `Vb ~T0 @X0 0 e@32655 ]
-"39 ./car_black_box.h
-[; ;./car_black_box.h: 39: unsigned char scan_key();
+"40 ./car_black_box.h
+[; ;./car_black_box.h: 40: unsigned char scan_key();
 [v _scan_key `(uc ~T0 @X0 0 e? ]
 [t ~ __deprecated__ ]
 [t T1 __deprecated__ ]
@@ -1303,8 +1303,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "19
 [; ;mkp.c: 19:     static unsigned char once = 1;
-[v F10472 `uc ~T0 @X0 1 s once ]
-[i F10472
+[v F10474 `uc ~T0 @X0 1 s once ]
+[i F10474
 -> -> 1 `i `uc
 ]
 "20
@@ -1330,11 +1330,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _key ( _scan_key ..  ]
 "25
 [; ;mkp.c: 25:         if ((key != 0xFF) && once) {
-[e $ ! && != -> _key `i -> 255 `i != -> F10472 `i -> 0 `i 1093  ]
+[e $ ! && != -> _key `i -> 255 `i != -> F10474 `i -> 0 `i 1093  ]
 {
 "26
 [; ;mkp.c: 26:             once = 0;
-[e = F10472 -> -> 0 `i `uc ]
+[e = F10474 -> -> 0 `i `uc ]
 "27
 [; ;mkp.c: 27:             return key;
 [e ) _key ]
@@ -1347,7 +1347,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == -> _key `i -> 255 `i 1095  ]
 "29
 [; ;mkp.c: 29:             once = 1;
-[e = F10472 -> -> 1 `i `uc ]
+[e = F10474 -> -> 1 `i `uc ]
 [e :U 1095 ]
 [e :U 1094 ]
 "30

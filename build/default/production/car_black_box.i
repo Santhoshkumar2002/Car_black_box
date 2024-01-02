@@ -17916,6 +17916,7 @@ unsigned char read_external_eeprom(unsigned char address1);
 void read_password(unsigned char key);
 void car_menu(unsigned char key);
 void view_log(unsigned char key);
+void set_time(unsigned char key);
 void change_password(unsigned char key);
 void clear_log();
 
@@ -17975,7 +17976,7 @@ unsigned short gear_index = 0;
 
 unsigned char pass_key, attempt = '3';
 unsigned short index = 0, wait = 0;
-unsigned char original_password[5], enter_password[5];
+unsigned char original_password[5] = "1100", enter_password[5];
 extern unsigned char enter_flag;
 
 unsigned char *menu[5] = {"View Log        ", "Set Time        ", "Download Log    ", "Clear log       ", "Reset Password "};
@@ -18259,9 +18260,13 @@ void view_log(unsigned char key) {
     clcd_print(view_event, (0xC0 + (0)));
 }
 
+unsigned char time[8];
 
-void clear_log()
-{
+void set_time(unsigned char key) {
+# 380 "car_black_box.c"
+}
+
+void clear_log() {
     clcd_print("   Log Cleared   ", (0x80 + (0)));
     clcd_print("  Successfully  ", (0xC0 + (0)));
     index_eeprom = 0;
@@ -18288,18 +18293,23 @@ void change_password(unsigned char key) {
             index++;
         }
         if (index == 4) {
+            attempt--;
             index = 0;
             enter_password[4] = '\0';
             if ((validate_password(original_password, enter_password)) != 0) {
                 clcd_print(" Wrong Password ", (0x80 + (0)));
-                clcd_print("                ", (0xC0 + (0)));
-                pass_flag = 0;
-                enter_flag = 2;
+                clcd_putch(attempt, (0xC0 + (0)));
+                clcd_print("-Attempt Remain", (0xC0 + (1)));
                 _delay((unsigned long)((1000)*(20000000/4000.0)));
-                return;
+                clcd_print("                ", (0xC0 + (0)));
             } else {
                 clcd_print("                ", (0xC0 + (0)));
                 pass_flag = 1;
+            }
+            if (attempt == '0') {
+                pass_flag = 0;
+                enter_flag = 2;
+                return;
             }
         }
     } else if (pass_flag == 1) {

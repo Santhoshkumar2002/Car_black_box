@@ -17909,6 +17909,7 @@ unsigned char read_external_eeprom(unsigned char address1);
 void read_password(unsigned char key);
 void car_menu(unsigned char key);
 void view_log(unsigned char key);
+void set_time(unsigned char key);
 void change_password(unsigned char key);
 void clear_log();
 
@@ -17958,7 +17959,7 @@ void init_ds1307(void);
 
 
 extern unsigned int wait1;
-extern unsigned char event[17];
+extern unsigned char event[17], time[8];
 extern unsigned sec;
 extern unsigned char original_password[5];
 unsigned char enter_flag = 0;
@@ -17976,6 +17977,11 @@ void init_config() {
 void main(void) {
     init_config();
     unsigned char key;
+
+    for(int i = 0; i < 4; i++)
+    {
+        write_external_eeprom(0x46+i, original_password[i]);
+    }
     for(int i = 0; i < 4; i++)
     {
         original_password[i] = read_external_eeprom(0x46+i);
@@ -17995,6 +18001,8 @@ void main(void) {
         {
             key = read_switches(1);
         }
+        if(enter_flag == 4)
+            key = read_switches(0);
 
         if(key == 10 && enter_flag == 0)
         {
@@ -18025,7 +18033,13 @@ void main(void) {
                     clcd_print("                ", (0xC0 + (0)));
                     sec = 0;
                 }
-
+                else if(enter_flag == 4)
+                {
+                    for(int i = 0; i < 8; i++)
+                    {
+                        time[i] = event[i];
+                    }
+                }
                 break;
             }
             case 3:
@@ -18033,6 +18047,11 @@ void main(void) {
                 view_log(key);
                 if(enter_flag == 2)
                     sec = 0;
+                break;
+            }
+            case 4:
+            {
+                set_time(key);
                 break;
             }
             case 6:

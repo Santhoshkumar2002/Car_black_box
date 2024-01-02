@@ -57,9 +57,11 @@
 [v _car_menu car_menu `(v  1 e 1 0 ]
 "263
 [v _view_log view_log `(v  1 e 1 0 ]
-"311
+"312
+[v _set_time set_time `(v  1 e 1 0 ]
+"382
 [v _clear_log clear_log `(v  1 e 1 0 ]
-"324
+"394
 [v _change_password change_password `(v  1 e 1 0 ]
 "12 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_write clcd_write `(v  1 e 1 0 ]
@@ -270,7 +272,9 @@
 [v _gear_flag gear_flag `uc  1 e 1 0 ]
 "189
 [v _menu_event menu_event `[4]*.25uc  1 e 8 0 ]
-"322
+"310
+[v _time time `[8]uc  1 e 8 0 ]
+"392
 [v _pass_flag pass_flag `uc  1 e 1 0 ]
 [v _confirm_password confirm_password `[5]uc  1 e 5 0 ]
 "11 C:\Users\santh\MPLABXProjects\car_back_box.X\isr.c
@@ -283,11 +287,15 @@
 "32
 [v _main main `(v  1 e 1 0 ]
 {
-"35
+"93
+[v main@i_147 i `i  1 a 2 63 ]
+"40
+[v main@i_144 i `i  1 a 2 61 ]
+"36
 [v main@i i `i  1 a 2 59 ]
 "34
-[v main@key key `uc  1 a 1 61 ]
-"121
+[v main@key key `uc  1 a 1 65 ]
+"139
 } 0
 "263 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _view_log view_log `(v  1 e 1 0 ]
@@ -311,6 +319,11 @@
 "27
 [v read_external_eeprom@address address `uc  1 a 1 1 ]
 "36
+} 0
+"312 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
+[v _set_time set_time `(v  1 e 1 0 ]
+{
+"380
 } 0
 "18 C:\Users\santh\MPLABXProjects\car_back_box.X\mkp.c
 [v _read_switches read_switches `(uc  1 e 1 0 ]
@@ -476,21 +489,21 @@
 [v gear_monitor@key key `uc  1 a 1 15 ]
 "90
 } 0
-"311
+"382
 [v _clear_log clear_log `(v  1 e 1 0 ]
 {
-"320
+"390
 } 0
-"324
+"394
 [v _change_password change_password `(v  1 e 1 0 ]
 {
 [v change_password@key key `uc  1 a 1 wreg ]
-"396
+"471
 [v change_password@i i `i  1 a 2 11 ]
-"324
+"394
 [v change_password@key key `uc  1 a 1 wreg ]
 [v change_password@key key `uc  1 a 1 13 ]
-"423
+"498
 } 0
 "178
 [v _validate_password validate_password `(i  1 e 2 0 ]

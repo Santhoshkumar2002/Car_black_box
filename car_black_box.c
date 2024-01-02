@@ -23,7 +23,7 @@ unsigned short gear_index = 0;
 
 unsigned char pass_key, attempt = '3';
 unsigned short index = 0, wait = 0;
-unsigned char original_password[5], enter_password[5];
+unsigned char original_password[5] = "1100", enter_password[5];
 extern unsigned char enter_flag;
 
 unsigned char *menu[5] = {"View Log        ", "Set Time        ", "Download Log    ", "Clear log       ", "Reset Password "};
@@ -307,9 +307,79 @@ void view_log(unsigned char key) {
     clcd_print(view_event, LINE2(0));
 }
 
+unsigned char time[8];
 
-void clear_log()
-{
+void set_time(unsigned char key) {
+    /*
+    if (key == 11) {
+        previous_key = key;
+        if (wait1++ > 400) {
+            wait1 = 0;
+            enter_flag = 2;
+            index = 0;
+            sec = 0;
+            return;
+        }
+    } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF) {
+        if (index == 0) {
+            if (time[0] != '2') {
+                if (time[1]++ == '9') {
+                    time[1] = '0';
+                    time[0]++;
+                }
+            } else {
+                time[1]++;
+                if (time[1] == '5') {
+                    time[0] = '0';
+                    time[1] = '0';
+                }
+            }
+        }
+        else
+        {
+            if (time[3] != '5') {
+                if (time[4]++ == '9') {
+                    time[4] = '0';
+                    time[3]++;
+                }
+            } else {
+                if (time[4]++ == '9') {
+                    time[4] = '0';
+                    time[3] = '0';
+                }
+            }
+        }
+        wait1 = 0;
+    } else if (key == 12) {
+        previous_key = key;
+        if (wait1++ > 400) {
+            wait1 = 0;
+            enter_flag = 2;
+            index = 0;
+            sec = 0;
+            return;
+        }
+    } else if (wait1 != 0 && wait1 < 400 && previous_key == 12 && key == 0xFF) {
+        index++;
+        if(index == 1)
+        {
+            index_1 = 3;
+            index_2 = 4;
+        }
+        else if(index == 2)
+        {
+            index_1 = 6;
+            index_2 = 7;
+        }
+        else if (index == 3)
+            index = 0;
+        wait1 = 0;
+    } else
+        wait1 = 0;
+    clcd_print(time, LINE2(0));*/
+}
+
+void clear_log() {
     clcd_print("   Log Cleared   ", LINE1(0));
     clcd_print("  Successfully  ", LINE2(0));
     index_eeprom = 0;
@@ -336,18 +406,23 @@ void change_password(unsigned char key) {
             index++;
         }
         if (index == 4) {
+            attempt--;
             index = 0;
             enter_password[4] = '\0';
             if ((validate_password(original_password, enter_password)) != 0) {
                 clcd_print(" Wrong Password ", LINE1(0));
-                clcd_print("                ", LINE2(0));
-                pass_flag = 0;
-                enter_flag = 2;
+                clcd_putch(attempt, LINE2(0));
+                clcd_print("-Attempt Remain", LINE2(1));
                 __delay_ms(1000);
-                return;
+                clcd_print("                ", LINE2(0));
             } else {
                 clcd_print("                ", LINE2(0));
                 pass_flag = 1;
+            }
+            if (attempt == '0') {
+                pass_flag = 0;
+                enter_flag = 2;
+                return;
             }
         }
     } else if (pass_flag == 1) {
