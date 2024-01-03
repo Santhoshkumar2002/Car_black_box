@@ -47,8 +47,9 @@ void main(void) {
     display_speed(speed);
     get_time();
     store_event(event);
+    
     while (1) {
-        if(enter_flag == 2 || enter_flag == 3)
+        if(enter_flag == 2 || enter_flag == 3 || enter_flag == 4)
         {
             key = read_switches(LEVEL);
         }
@@ -56,9 +57,6 @@ void main(void) {
         {
             key = read_switches(EDGE);
         }
-        if(enter_flag == 4)
-            key = read_switches(LEVEL);
-        
         if(key == 10 && enter_flag == 0)
         {
             clcd_print("                ", LINE2(0));
@@ -90,10 +88,13 @@ void main(void) {
                 }
                 else if(enter_flag == 4)
                 {
+                    clcd_print("  Set Time      ", LINE1(0));
+                    clcd_print("                ", LINE2(0));
                     for(int i = 0; i < 8; i++)
                     {
                         time[i] = event[i];
                     }
+                    __delay_ms(500);
                 }
                 break;
             }
@@ -107,6 +108,8 @@ void main(void) {
             case 4:
             {
                 set_time(key);
+                if(enter_flag == 2)
+                    sec = 0;
                 break;
             }
             case 6:

@@ -17992,8 +17992,9 @@ void main(void) {
     display_speed(speed);
     get_time();
     store_event(event);
+
     while (1) {
-        if(enter_flag == 2 || enter_flag == 3)
+        if(enter_flag == 2 || enter_flag == 3 || enter_flag == 4)
         {
             key = read_switches(0);
         }
@@ -18001,9 +18002,6 @@ void main(void) {
         {
             key = read_switches(1);
         }
-        if(enter_flag == 4)
-            key = read_switches(0);
-
         if(key == 10 && enter_flag == 0)
         {
             clcd_print("                ", (0xC0 + (0)));
@@ -18035,10 +18033,13 @@ void main(void) {
                 }
                 else if(enter_flag == 4)
                 {
+                    clcd_print("  Set Time      ", (0x80 + (0)));
+
                     for(int i = 0; i < 8; i++)
                     {
                         time[i] = event[i];
                     }
+                    _delay((unsigned long)((500)*(20000000/4000.0)));
                 }
                 break;
             }
@@ -18052,6 +18053,8 @@ void main(void) {
             case 4:
             {
                 set_time(key);
+                if(enter_flag == 2)
+                    sec = 0;
                 break;
             }
             case 6:

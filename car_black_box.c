@@ -22,7 +22,8 @@ unsigned char *gear_data[8] = {"ON", "GN", "G1", "G2", "G3", "G4", "GR", "C "};
 unsigned short gear_index = 0;
 
 unsigned char pass_key, attempt = '3';
-unsigned short index = 0, wait = 0;
+unsigned short index = 0;
+unsigned short wait = 0;
 unsigned char original_password[5] = "1100", enter_password[5];
 extern unsigned char enter_flag;
 
@@ -193,9 +194,11 @@ void car_menu(unsigned char key) {
         sec = 0;
         previous_key = key;
         if (wait1++ > 400) {
-            if (menu_index == 4 || menu_index == 3)
+            if (menu_index == 4 || menu_index == 3 || menu_index == 1)
                 wait1 = 0;
-
+            if(menu_index == 1)
+                index = 6;
+            
             enter_flag = menu_index + 3;
             if (menu_index > 0) {
                 event[10] = menu_event[menu_index - 1][0];
@@ -307,10 +310,9 @@ void view_log(unsigned char key) {
     clcd_print(view_event, LINE2(0));
 }
 
-unsigned char time[8];
+unsigned char time[9] = "00:00:00", wait2 = 0;
 
 void set_time(unsigned char key) {
-    /*
     if (key == 11) {
         previous_key = key;
         if (wait1++ > 400) {
@@ -318,6 +320,7 @@ void set_time(unsigned char key) {
             enter_flag = 2;
             index = 0;
             sec = 0;
+            
             return;
         }
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF) {
@@ -335,7 +338,7 @@ void set_time(unsigned char key) {
                 }
             }
         }
-        else
+        else if(index == 3)
         {
             if (time[3] != '5') {
                 if (time[4]++ == '9') {
@@ -346,6 +349,20 @@ void set_time(unsigned char key) {
                 if (time[4]++ == '9') {
                     time[4] = '0';
                     time[3] = '0';
+                }
+            }
+        }
+        else
+        {
+            if (time[6] != '5') {
+                if (time[7]++ == '9') {
+                    time[7] = '0';
+                    time[6]++;
+                }
+            } else {
+                if (time[7]++ == '9') {
+                    time[7] = '0';
+                    time[6] = '0';
                 }
             }
         }
@@ -360,23 +377,18 @@ void set_time(unsigned char key) {
             return;
         }
     } else if (wait1 != 0 && wait1 < 400 && previous_key == 12 && key == 0xFF) {
-        index++;
-        if(index == 1)
-        {
-            index_1 = 3;
-            index_2 = 4;
-        }
-        else if(index == 2)
-        {
-            index_1 = 6;
-            index_2 = 7;
-        }
-        else if (index == 3)
-            index = 0;
+        index-=3;
+        if (index == (unsigned)-3)
+            index = 6;
         wait1 = 0;
-    } else
-        wait1 = 0;
-    clcd_print(time, LINE2(0));*/
+    }
+    if (wait2++ < 100) {
+        clcd_print(time, LINE2(0));
+    } else if (wait2 > 100) {
+        clcd_print("  ", LINE2(index));
+        if (wait2 == 200)
+            wait2 = 0;
+    }
 }
 
 void clear_log() {

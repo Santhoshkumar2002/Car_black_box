@@ -63,6 +63,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17 main.c
 [; ;main.c: 17: extern unsigned char event[17], time[8];
 [v _time `uc ~T0 @X0 -> 0 `x e ]
+[v F10430 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\pic18.h
+[v __delay `JF10430 ~T0 @X0 0 e ]
+[p i __delay ]
 "20 ./car_black_box.h
 [; ;./car_black_box.h: 20: void view_log(unsigned char key);
 [v _view_log `(v ~T0 @X0 0 ef1`uc ]
@@ -75,10 +79,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22
 [; ;./car_black_box.h: 22: void change_password(unsigned char key);
 [v _change_password `(v ~T0 @X0 0 ef1`uc ]
-[v F10430 `(v ~T0 @X0 1 tf1`ul ]
-"203 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\pic18.h
-[v __delay `JF10430 ~T0 @X0 0 e ]
-[p i __delay ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 54: __asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
@@ -1425,145 +1425,141 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49
 [; ;main.c: 49:     store_event(event);
 [e ( _store_event (1 -> &U _event `*uc ]
-"50
-[; ;main.c: 50:     while (1) {
+"51
+[; ;main.c: 51:     while (1) {
 [e :U 1097 ]
 {
-"51
-[; ;main.c: 51:         if(enter_flag == 2 || enter_flag == 3)
-[e $ ! || == -> _enter_flag `i -> 2 `i == -> _enter_flag `i -> 3 `i 1099  ]
 "52
-[; ;main.c: 52:         {
-{
+[; ;main.c: 52:         if(enter_flag == 2 || enter_flag == 3 || enter_flag == 4)
+[e $ ! || || == -> _enter_flag `i -> 2 `i == -> _enter_flag `i -> 3 `i == -> _enter_flag `i -> 4 `i 1099  ]
 "53
-[; ;main.c: 53:             key = read_switches(0);
-[e = _key ( _read_switches (1 -> -> 0 `i `uc ]
+[; ;main.c: 53:         {
+{
 "54
-[; ;main.c: 54:         }
+[; ;main.c: 54:             key = read_switches(0);
+[e = _key ( _read_switches (1 -> -> 0 `i `uc ]
+"55
+[; ;main.c: 55:         }
 }
 [e $U 1100  ]
-"55
-[; ;main.c: 55:         else
-[e :U 1099 ]
 "56
-[; ;main.c: 56:         {
-{
+[; ;main.c: 56:         else
+[e :U 1099 ]
 "57
-[; ;main.c: 57:             key = read_switches(1);
-[e = _key ( _read_switches (1 -> -> 1 `i `uc ]
+[; ;main.c: 57:         {
+{
 "58
-[; ;main.c: 58:         }
+[; ;main.c: 58:             key = read_switches(1);
+[e = _key ( _read_switches (1 -> -> 1 `i `uc ]
+"59
+[; ;main.c: 59:         }
 }
 [e :U 1100 ]
-"59
-[; ;main.c: 59:         if(enter_flag == 4)
-[e $ ! == -> _enter_flag `i -> 4 `i 1101  ]
 "60
-[; ;main.c: 60:             key = read_switches(0);
-[e = _key ( _read_switches (1 -> -> 0 `i `uc ]
-[e :U 1101 ]
-"62
-[; ;main.c: 62:         if(key == 10 && enter_flag == 0)
-[e $ ! && == -> _key `i -> 10 `i == -> _enter_flag `i -> 0 `i 1102  ]
-"63
-[; ;main.c: 63:         {
+[; ;main.c: 60:         if(key == 10 && enter_flag == 0)
+[e $ ! && == -> _key `i -> 10 `i == -> _enter_flag `i -> 0 `i 1101  ]
+"61
+[; ;main.c: 61:         {
 {
-"64
-[; ;main.c: 64:             clcd_print("                ", (0xC0 + (0)));
+"62
+[; ;main.c: 62:             clcd_print("                ", (0xC0 + (0)));
 [e ( _clcd_print (2 , :s 1C -> + -> 192 `i -> 0 `i `uc ]
-"65
-[; ;main.c: 65:             enter_flag = 1;
+"63
+[; ;main.c: 63:             enter_flag = 1;
 [e = _enter_flag -> -> 1 `i `uc ]
-"66
-[; ;main.c: 66:             sec = 0;
+"64
+[; ;main.c: 64:             sec = 0;
 [e = _sec -> -> 0 `i `ui ]
-"67
-[; ;main.c: 67:         }
+"65
+[; ;main.c: 65:         }
 }
-[e :U 1102 ]
+[e :U 1101 ]
+"67
+[; ;main.c: 67:         switch(enter_flag)
+[e $U 1103  ]
+"68
+[; ;main.c: 68:         {
+{
 "69
-[; ;main.c: 69:         switch(enter_flag)
-[e $U 1104  ]
+[; ;main.c: 69:             case 0:
+[e :U 1104 ]
 "70
-[; ;main.c: 70:         {
+[; ;main.c: 70:             {
 {
 "71
-[; ;main.c: 71:             case 0:
-[e :U 1105 ]
-"72
-[; ;main.c: 72:             {
-{
-"73
-[; ;main.c: 73:                 display_dashboard(key);
+[; ;main.c: 71:                 display_dashboard(key);
 [e ( _display_dashboard (1 _key ]
+"72
+[; ;main.c: 72:                 break;
+[e $U 1102  ]
+"73
+[; ;main.c: 73:             }
+}
 "74
-[; ;main.c: 74:                 break;
-[e $U 1103  ]
+[; ;main.c: 74:             case 1:
+[e :U 1105 ]
 "75
-[; ;main.c: 75:             }
-}
+[; ;main.c: 75:             {
+{
 "76
-[; ;main.c: 76:             case 1:
-[e :U 1106 ]
-"77
-[; ;main.c: 77:             {
-{
-"78
-[; ;main.c: 78:                 read_password(key);
+[; ;main.c: 76:                 read_password(key);
 [e ( _read_password (1 _key ]
+"77
+[; ;main.c: 77:                 if(enter_flag == 2)
+[e $ ! == -> _enter_flag `i -> 2 `i 1106  ]
+"78
+[; ;main.c: 78:                     sec = 0;
+[e = _sec -> -> 0 `i `ui ]
+[e :U 1106 ]
 "79
-[; ;main.c: 79:                 if(enter_flag == 2)
-[e $ ! == -> _enter_flag `i -> 2 `i 1107  ]
+[; ;main.c: 79:                 break;
+[e $U 1102  ]
 "80
-[; ;main.c: 80:                     sec = 0;
-[e = _sec -> -> 0 `i `ui ]
-[e :U 1107 ]
+[; ;main.c: 80:             }
+}
 "81
-[; ;main.c: 81:                 break;
-[e $U 1103  ]
+[; ;main.c: 81:             case 2:
+[e :U 1107 ]
 "82
-[; ;main.c: 82:             }
-}
+[; ;main.c: 82:             {
+{
 "83
-[; ;main.c: 83:             case 2:
-[e :U 1108 ]
-"84
-[; ;main.c: 84:             {
-{
-"85
-[; ;main.c: 85:                 car_menu(key);
+[; ;main.c: 83:                 car_menu(key);
 [e ( _car_menu (1 _key ]
+"84
+[; ;main.c: 84:                 if(enter_flag == 7)
+[e $ ! == -> _enter_flag `i -> 7 `i 1108  ]
+"85
+[; ;main.c: 85:                 {
+{
 "86
-[; ;main.c: 86:                 if(enter_flag == 7)
-[e $ ! == -> _enter_flag `i -> 7 `i 1109  ]
-"87
-[; ;main.c: 87:                 {
-{
-"88
-[; ;main.c: 88:                     clcd_print("                ", (0xC0 + (0)));
+[; ;main.c: 86:                     clcd_print("                ", (0xC0 + (0)));
 [e ( _clcd_print (2 , :s 2C -> + -> 192 `i -> 0 `i `uc ]
-"89
-[; ;main.c: 89:                     sec = 0;
+"87
+[; ;main.c: 87:                     sec = 0;
 [e = _sec -> -> 0 `i `ui ]
-"90
-[; ;main.c: 90:                 }
+"88
+[; ;main.c: 88:                 }
 }
-[e $U 1110  ]
-"91
-[; ;main.c: 91:                 else if(enter_flag == 4)
-[e :U 1109 ]
-[e $ ! == -> _enter_flag `i -> 4 `i 1111  ]
-"92
-[; ;main.c: 92:                 {
+[e $U 1109  ]
+"89
+[; ;main.c: 89:                 else if(enter_flag == 4)
+[e :U 1108 ]
+[e $ ! == -> _enter_flag `i -> 4 `i 1110  ]
+"90
+[; ;main.c: 90:                 {
 {
+"91
+[; ;main.c: 91:                     clcd_print("  Set Time      ", (0x80 + (0)));
+[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 0 `i `uc ]
 "93
 [; ;main.c: 93:                     for(int i = 0; i < 8; i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 8 `i 1112  ]
-[e $U 1113  ]
-[e :U 1112 ]
+[e $ < _i -> 8 `i 1111  ]
+[e $U 1112  ]
+[e :U 1111 ]
 "94
 [; ;main.c: 94:                     {
 {
@@ -1574,158 +1570,169 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 96:                     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 8 `i 1112  ]
-[e :U 1113 ]
+[e $ < _i -> 8 `i 1111  ]
+[e :U 1112 ]
 }
 "97
-[; ;main.c: 97:                 }
-}
-[e :U 1111 ]
-[e :U 1110 ]
+[; ;main.c: 97:                     _delay((unsigned long)((500)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
 "98
-[; ;main.c: 98:                 break;
-[e $U 1103  ]
+[; ;main.c: 98:                 }
+}
+[e :U 1110 ]
+[e :U 1109 ]
 "99
-[; ;main.c: 99:             }
-}
+[; ;main.c: 99:                 break;
+[e $U 1102  ]
 "100
-[; ;main.c: 100:             case 3:
-[e :U 1115 ]
+[; ;main.c: 100:             }
+}
 "101
-[; ;main.c: 101:             {
-{
+[; ;main.c: 101:             case 3:
+[e :U 1114 ]
 "102
-[; ;main.c: 102:                 view_log(key);
-[e ( _view_log (1 _key ]
+[; ;main.c: 102:             {
+{
 "103
-[; ;main.c: 103:                 if(enter_flag == 2)
-[e $ ! == -> _enter_flag `i -> 2 `i 1116  ]
+[; ;main.c: 103:                 view_log(key);
+[e ( _view_log (1 _key ]
 "104
-[; ;main.c: 104:                     sec = 0;
-[e = _sec -> -> 0 `i `ui ]
-[e :U 1116 ]
+[; ;main.c: 104:                 if(enter_flag == 2)
+[e $ ! == -> _enter_flag `i -> 2 `i 1115  ]
 "105
-[; ;main.c: 105:                 break;
-[e $U 1103  ]
-"106
-[; ;main.c: 106:             }
-}
-"107
-[; ;main.c: 107:             case 4:
-[e :U 1117 ]
-"108
-[; ;main.c: 108:             {
-{
-"109
-[; ;main.c: 109:                 set_time(key);
-[e ( _set_time (1 _key ]
-"110
-[; ;main.c: 110:                 break;
-[e $U 1103  ]
-"111
-[; ;main.c: 111:             }
-}
-"112
-[; ;main.c: 112:             case 6:
-[e :U 1118 ]
-"113
-[; ;main.c: 113:             {
-{
-"114
-[; ;main.c: 114:                 clear_log();
-[e ( _clear_log ..  ]
-"115
-[; ;main.c: 115:                 enter_flag = 2;
-[e = _enter_flag -> -> 2 `i `uc ]
-"116
-[; ;main.c: 116:                 sec = 0;
+[; ;main.c: 105:                     sec = 0;
 [e = _sec -> -> 0 `i `ui ]
-"117
-[; ;main.c: 117:                 break;
-[e $U 1103  ]
-"118
-[; ;main.c: 118:             }
+[e :U 1115 ]
+"106
+[; ;main.c: 106:                 break;
+[e $U 1102  ]
+"107
+[; ;main.c: 107:             }
 }
-"119
-[; ;main.c: 119:             case 7:
-[e :U 1119 ]
-"120
-[; ;main.c: 120:             {
+"108
+[; ;main.c: 108:             case 4:
+[e :U 1116 ]
+"109
+[; ;main.c: 109:             {
 {
+"110
+[; ;main.c: 110:                 set_time(key);
+[e ( _set_time (1 _key ]
+"111
+[; ;main.c: 111:                 if(enter_flag == 2)
+[e $ ! == -> _enter_flag `i -> 2 `i 1117  ]
+"112
+[; ;main.c: 112:                     sec = 0;
+[e = _sec -> -> 0 `i `ui ]
+[e :U 1117 ]
+"113
+[; ;main.c: 113:                 break;
+[e $U 1102  ]
+"114
+[; ;main.c: 114:             }
+}
+"115
+[; ;main.c: 115:             case 6:
+[e :U 1118 ]
+"116
+[; ;main.c: 116:             {
+{
+"117
+[; ;main.c: 117:                 clear_log();
+[e ( _clear_log ..  ]
+"118
+[; ;main.c: 118:                 enter_flag = 2;
+[e = _enter_flag -> -> 2 `i `uc ]
+"119
+[; ;main.c: 119:                 sec = 0;
+[e = _sec -> -> 0 `i `ui ]
+"120
+[; ;main.c: 120:                 break;
+[e $U 1102  ]
 "121
-[; ;main.c: 121:                 change_password(key);
-[e ( _change_password (1 _key ]
+[; ;main.c: 121:             }
+}
 "122
-[; ;main.c: 122:                 if(enter_flag == 2)
-[e $ ! == -> _enter_flag `i -> 2 `i 1120  ]
+[; ;main.c: 122:             case 7:
+[e :U 1119 ]
 "123
-[; ;main.c: 123:                     sec = 0;
+[; ;main.c: 123:             {
+{
+"124
+[; ;main.c: 124:                 change_password(key);
+[e ( _change_password (1 _key ]
+"125
+[; ;main.c: 125:                 if(enter_flag == 2)
+[e $ ! == -> _enter_flag `i -> 2 `i 1120  ]
+"126
+[; ;main.c: 126:                     sec = 0;
 [e = _sec -> -> 0 `i `ui ]
 [e :U 1120 ]
-"124
-[; ;main.c: 124:                 break;
-[e $U 1103  ]
-"125
-[; ;main.c: 125:             }
-}
-"126
-[; ;main.c: 126:             default :
-[e :U 1121 ]
 "127
-[; ;main.c: 127:             {
-{
+[; ;main.c: 127:                 break;
+[e $U 1102  ]
 "128
-[; ;main.c: 128:                 clcd_print("                ", (0x80 + (0)));
-[e ( _clcd_print (2 , :s 3C -> + -> 128 `i -> 0 `i `uc ]
+[; ;main.c: 128:             }
+}
 "129
-[; ;main.c: 129:                 clcd_print("   hello-menu   ", (0xC0 + (0)));
-[e ( _clcd_print (2 , :s 4C -> + -> 192 `i -> 0 `i `uc ]
+[; ;main.c: 129:             default :
+[e :U 1121 ]
 "130
-[; ;main.c: 130:                 _delay((unsigned long)((4000)*(20000000/4000.0)));
-[e ( __delay (1 -> * -> -> 4000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;main.c: 130:             {
+{
 "131
-[; ;main.c: 131:                 enter_flag = 2;
-[e = _enter_flag -> -> 2 `i `uc ]
+[; ;main.c: 131:                 clcd_print("                ", (0x80 + (0)));
+[e ( _clcd_print (2 , :s 4C -> + -> 128 `i -> 0 `i `uc ]
 "132
-[; ;main.c: 132:             }
-}
+[; ;main.c: 132:                 clcd_print("   hello-menu   ", (0xC0 + (0)));
+[e ( _clcd_print (2 , :s 5C -> + -> 192 `i -> 0 `i `uc ]
 "133
-[; ;main.c: 133:         }
+[; ;main.c: 133:                 _delay((unsigned long)((4000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 4000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"134
+[; ;main.c: 134:                 enter_flag = 2;
+[e = _enter_flag -> -> 2 `i `uc ]
+"135
+[; ;main.c: 135:             }
 }
-[e $U 1103  ]
-[e :U 1104 ]
-[e [\ -> _enter_flag `i , $ -> 0 `i 1105
- , $ -> 1 `i 1106
- , $ -> 2 `i 1108
- , $ -> 3 `i 1115
- , $ -> 4 `i 1117
+"136
+[; ;main.c: 136:         }
+}
+[e $U 1102  ]
+[e :U 1103 ]
+[e [\ -> _enter_flag `i , $ -> 0 `i 1104
+ , $ -> 1 `i 1105
+ , $ -> 2 `i 1107
+ , $ -> 3 `i 1114
+ , $ -> 4 `i 1116
  , $ -> 6 `i 1118
  , $ -> 7 `i 1119
  1121 ]
-[e :U 1103 ]
-"134
-[; ;main.c: 134:         get_time();
-[e ( _get_time ..  ]
-"135
-[; ;main.c: 135:         speed = (read_adc(4) / 10.23);
-[e = _speed -> / -> -> ( _read_adc (1 -> -> 4 `i `uc `ui `d .10.23 `us ]
-"136
-[; ;main.c: 136:         display_speed(speed);
-[e ( _display_speed (1 _speed ]
+[e :U 1102 ]
 "137
-[; ;main.c: 137:     }
+[; ;main.c: 137:         get_time();
+[e ( _get_time ..  ]
+"138
+[; ;main.c: 138:         speed = (read_adc(4) / 10.23);
+[e = _speed -> / -> -> ( _read_adc (1 -> -> 4 `i `uc `ui `d .10.23 `us ]
+"139
+[; ;main.c: 139:         display_speed(speed);
+[e ( _display_speed (1 _speed ]
+"140
+[; ;main.c: 140:     }
 }
 [e :U 1096 ]
 [e $U 1097  ]
 [e :U 1098 ]
-"138
-[; ;main.c: 138:     return;
+"141
+[; ;main.c: 141:     return;
 [e $UE 1089  ]
-"139
-[; ;main.c: 139: }
+"142
+[; ;main.c: 142: }
 [e :UE 1089 ]
 }
-[a 4C 32 32 32 104 101 108 108 111 45 109 101 110 117 32 32 32 0 ]
+[a 5C 32 32 32 104 101 108 108 111 45 109 101 110 117 32 32 32 0 ]
+[a 3C 32 32 83 101 116 32 84 105 109 101 32 32 32 32 32 32 0 ]
 [a 1C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 2C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 3C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 4C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

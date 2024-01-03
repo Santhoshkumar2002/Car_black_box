@@ -19,7 +19,7 @@ void init_ds1307(void)
 
 	/* Seting 12 Hr Format */
 	dummy = read_ds1307(HOUR_ADDR);
-	write_ds1307(HOUR_ADDR, dummy | 0x40); 
+	write_ds1307(HOUR_ADDR, dummy & 0xBF); 
 
 	/* 
 	 * Control Register of DS1307
