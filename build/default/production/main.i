@@ -17910,6 +17910,7 @@ void read_password(unsigned char key);
 void car_menu(unsigned char key);
 void view_log(unsigned char key);
 void set_time(unsigned char key);
+void download_log();
 void change_password(unsigned char key);
 void clear_log();
 
@@ -17957,6 +17958,15 @@ unsigned char read_ds1307(unsigned char address1);
 void init_ds1307(void);
 # 14 "main.c" 2
 
+# 1 "./uart.h" 1
+# 19 "./uart.h"
+void init_uart();
+void putch(unsigned char data);
+void puts(unsigned char *data);
+unsigned char getch();
+unsigned char getche();
+# 15 "main.c" 2
+
 
 extern unsigned int wait1;
 extern unsigned char event[17], time[8];
@@ -17972,6 +17982,7 @@ void init_config() {
     init_timer0();
     init_i2c();
     init_ds1307();
+
 }
 
 void main(void) {
@@ -18034,7 +18045,7 @@ void main(void) {
                 else if(enter_flag == 4)
                 {
                     clcd_print("  Set Time      ", (0x80 + (0)));
-
+                    clcd_print("                ", (0xC0 + (0)));
                     for(int i = 0; i < 8; i++)
                     {
                         time[i] = event[i];
@@ -18057,6 +18068,13 @@ void main(void) {
                     sec = 0;
                 break;
             }
+            case 5:
+            {
+                download_log();
+                if(enter_flag == 2)
+                    sec = 0;
+                break;
+            }
             case 6:
             {
                 clear_log();
@@ -18070,13 +18088,6 @@ void main(void) {
                 if(enter_flag == 2)
                     sec = 0;
                 break;
-            }
-            default :
-            {
-                clcd_print("                ", (0x80 + (0)));
-                clcd_print("   hello-menu   ", (0xC0 + (0)));
-                _delay((unsigned long)((4000)*(20000000/4000.0)));
-                enter_flag = 2;
             }
         }
         get_time();

@@ -12,6 +12,7 @@
 #include "clcd.h"
 #include "i2c.h"
 #include "ds1307.h"
+#include "uart.h"
 
 extern unsigned int wait1;
 extern unsigned char event[17], time[8];
@@ -27,6 +28,7 @@ void init_config() {
     init_timer0();
     init_i2c();
     init_ds1307();
+    //init_uart();
 }
 
 void main(void) {
@@ -112,6 +114,13 @@ void main(void) {
                     sec = 0;
                 break;
             }
+            case 5:
+            {
+                download_log();
+                if(enter_flag == 2)
+                    sec = 0;
+                break;
+            }
             case 6:
             {
                 clear_log();
@@ -126,17 +135,10 @@ void main(void) {
                     sec = 0;
                 break;
             }
-            default :
-            {
-                clcd_print("                ", LINE1(0));
-                clcd_print("   hello-menu   ", LINE2(0));
-                __delay_ms(4000);
-                enter_flag = 2;
-            }
         }
         get_time();
         speed = (read_adc(4) / 10.23);
-        display_speed(speed);       
+        display_speed(speed);
     }
     return;
 }

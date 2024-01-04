@@ -17927,6 +17927,7 @@ void read_password(unsigned char key);
 void car_menu(unsigned char key);
 void view_log(unsigned char key);
 void set_time(unsigned char key);
+void download_log();
 void change_password(unsigned char key);
 void clear_log();
 

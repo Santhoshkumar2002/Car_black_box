@@ -1280,8 +1280,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;ds1307.c: 21:  dummy = read_ds1307(0x02);
 [e = _dummy ( _read_ds1307 (1 -> -> 2 `i `uc ]
 "22
-[; ;ds1307.c: 22:  write_ds1307(0x02, dummy | 0x40);
-[e ( _write_ds1307 (2 , -> -> 2 `i `uc -> | -> _dummy `i -> 64 `i `uc ]
+[; ;ds1307.c: 22:  write_ds1307(0x02, dummy & 0xBF);
+[e ( _write_ds1307 (2 , -> -> 2 `i `uc -> & -> _dummy `i -> 191 `i `uc ]
 "37
 [; ;ds1307.c: 37:  write_ds1307(0x07, 0x93);
 [e ( _write_ds1307 (2 , -> -> 7 `i `uc -> -> 147 `i `uc ]

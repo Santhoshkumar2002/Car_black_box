@@ -1,4 +1,4 @@
-# 1 "clcd.c"
+# 1 "uart.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "clcd.c" 2
+# 1 "uart.c" 2
+
 
 
 
@@ -17905,114 +17906,78 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\\pic\\include\\xc.h" 2 3
-# 8 "clcd.c" 2
+# 9 "uart.c" 2
 
-# 1 "./car_black_box.h" 1
-# 15 "./car_black_box.h"
-void write_external_eeprom(unsigned char address1, unsigned char data);
-unsigned char read_external_eeprom(unsigned char address1);
-
-void read_password(unsigned char key);
-void car_menu(unsigned char key);
-void view_log(unsigned char key);
-void set_time(unsigned char key);
-void download_log();
-void change_password(unsigned char key);
-void clear_log();
-
-void store_event(char *event);
-
-void init_timer0();
-
-void display_dashboard(unsigned char key);
-void gear_monitor(unsigned char key);
-void get_time(void);
-void display_speed(unsigned short speed);
-
-unsigned short read_adc(unsigned char channel);
-void init_adc();
+# 1 "./uart.h" 1
+# 19 "./uart.h"
+void init_uart();
+void putch(unsigned char data);
+void puts(unsigned char *data);
+unsigned char getch();
+unsigned char getche();
+# 10 "uart.c" 2
 
 
-
-unsigned char read_switches(unsigned char);
-unsigned char scan_key();
-void init_matrix_keypad();
-# 9 "clcd.c" 2
-
-# 1 "./clcd.h" 1
-# 44 "./clcd.h"
-void init_clcd(void);
-void clcd_print(const unsigned char *data, unsigned char addr);
-void clcd_putch(const unsigned char data, unsigned char addr);
-void clcd_write(unsigned char bit_values, unsigned char control_bit);
-# 10 "clcd.c" 2
-
-
-void clcd_write(unsigned char byte, unsigned char control_bit)
+void init_uart()
 {
- RC1 = control_bit;
- PORTD = byte;
+
+    TRISC6 = 0;
+    TRISC7 = 1;
 
 
- RC2 = 1;
- RC2 = 0;
+    TX9 = 0;
+    TXEN = 1;
+    SYNC = 0;
+    BRGH = 1;
+    SENDB = 1;
 
- TRISD7 = 0xFF;
- RC0 = 1;
- RC1 = 0;
 
- do
- {
-  RC2 = 1;
-  RC2 = 0;
- } while (RD7);
+    SPEN = 1;
+    RX9 = 0;
+    CREN = 1;
 
- RC0 = 0;
- TRISD7 = 0x00;
+
+    BRG16 = 0;
+    SPBRG = 64;
+
+
+
+    GIE = 1;
+    PEIE = 1;
+    TXIE = 1;
+    RCIE = 1;
+    TXIF = 0;
+    RCIF = 0;
+
 }
 
-void init_clcd()
+void putch(unsigned char data)
 {
-
- TRISD = 0x00;
-
- TRISC = TRISC & 0xF8;
-
- RC0 = 0;
-
-
-
-    _delay((unsigned long)((40)*(20000000/4000.0)));
-
-
-    clcd_write(0x33, 0 );
-    _delay((unsigned long)((4100)*(20000000/4000000.0)));
-    clcd_write(0x33, 0 );
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    clcd_write(0x33, 0 );
-    _delay((unsigned long)((1)*(20000000/4000000.0)));
-
-    clcd_write(0x02, 0);
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    clcd_write(0x38, 0);
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    clcd_write(0x01, 0);
-    _delay((unsigned long)((500)*(20000000/4000000.0)));
-    clcd_write(0x0C, 0);
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
+    while(!TXIF);
+    TXREG = data;
+    TXIF = 0;
 }
 
-void clcd_print(const unsigned char *data, unsigned char addr)
+void puts(unsigned char *data)
 {
- clcd_write(addr, 0);
- while (*data != '\0')
- {
-  clcd_write(*data++, 1);
- }
+    while (*data)
+    {
+        putch(*data++);
+    }
 }
 
-void clcd_putch(const unsigned char data, unsigned char addr)
+unsigned char getch()
 {
- clcd_write(addr, 0);
- clcd_write(data, 1);
+    while (!RCIF);
+    RCIF = 0;
+    return RCREG;
+}
+
+unsigned char getche()
+{
+    char ch;
+    while (!RCIF);
+    RCIF = 0;
+    putch(ch = RCREG);
+    return ch;
 }

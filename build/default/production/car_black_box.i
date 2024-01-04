@@ -17917,6 +17917,7 @@ void read_password(unsigned char key);
 void car_menu(unsigned char key);
 void view_log(unsigned char key);
 void set_time(unsigned char key);
+void download_log();
 void change_password(unsigned char key);
 void clear_log();
 
@@ -17964,6 +17965,15 @@ unsigned char read_ds1307(unsigned char address1);
 void init_ds1307(void);
 # 13 "car_black_box.c" 2
 
+# 1 "./uart.h" 1
+# 19 "./uart.h"
+void init_uart();
+void putch(unsigned char data);
+void puts(unsigned char *data);
+unsigned char getch();
+unsigned char getche();
+# 14 "car_black_box.c" 2
+
 
 unsigned char event[17] = "          ON     ";
 
@@ -17984,7 +17994,7 @@ unsigned char *menu[5] = {"View Log        ", "Set Time        ", "Download Log 
 unsigned short previous_key, key, index_1 = 0, index_2 = 1, star_flag = 1, menu_index = 0;
 unsigned int wait1 = 0;
 
-unsigned int count_event = 0, view_flag = 0, address;
+unsigned int count_event = 0, count1_event = 0, view_flag = 0, address;
 unsigned char view_event[17], total_index = 0;
 
 void display_dashboard(unsigned char key) {
@@ -18059,10 +18069,10 @@ void store_event(char *event) {
 
     if (total_index < 10)
         total_index++;
-    else if (count_event < 9)
-        count_event++;
+    else if (count1_event < 9)
+        count1_event++;
     else
-        count_event = 0;
+        count1_event = 0;
 
     if (index_eeprom == 10)
         index_eeprom = 0;
@@ -18149,8 +18159,6 @@ void car_menu(unsigned char key) {
         if (wait1++ > 400) {
             if (menu_index == 4 || menu_index == 3 || menu_index == 1)
                 wait1 = 0;
-            if(menu_index == 1)
-                index = 6;
 
             enter_flag = menu_index + 3;
             if (menu_index > 0) {
@@ -18158,6 +18166,11 @@ void car_menu(unsigned char key) {
                 event[11] = menu_event[menu_index - 1][1];
                 store_event(event);
             }
+            if (menu_index == 1)
+                index = 6;
+            else if(menu_index == 0 || menu_index == 2)
+                count_event = count1_event;
+
             return;
         }
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF && index_2 > 0) {
@@ -18219,7 +18232,8 @@ void car_menu(unsigned char key) {
 void view_log(unsigned char key) {
     clcd_print("Logs:-->[", (0x80 + (0)));
     clcd_putch((view_flag % total_index) + 48, (0x80 + (9)));
-    clcd_print("]          ", (0x80 + (10)));
+    clcd_print("]        ", (0x80 + (10)));
+    clcd_putch(count_event + 48, (0x80 + (14)));
 
     if (key == 11) {
         previous_key = key;
@@ -18229,7 +18243,7 @@ void view_log(unsigned char key) {
         view_flag--;
         count_event--;
         if (count_event == -1) {
-            count_event = 9;
+            count_event = total_index-1;
         }
         if (view_flag == -1) {
             view_flag = 9;
@@ -18273,6 +18287,15 @@ void set_time(unsigned char key) {
             enter_flag = 2;
             index = 0;
             sec = 0;
+            clcd_print("Updating Time...", (0xC0 + (0)));
+            unsigned char ch;
+            ch = ((time[6] - 48) << 4) | (time[7] - 48);
+            write_ds1307(0x00, ch);
+            ch = ((time[3] - 48) << 4) | (time[4] - 48);
+            write_ds1307(0x01, ch);
+            ch = ((time[0] - 48) << 4) | (time[1] - 48);
+            write_ds1307(0x02, ch);
+            _delay((unsigned long)((1000)*(20000000/4000.0)));
             return;
         }
     } else if (wait1 != 0 && (wait1 < 400) && previous_key == 11 && key == 0xFF) {
@@ -18284,14 +18307,12 @@ void set_time(unsigned char key) {
                 }
             } else {
                 time[1]++;
-                if (time[1] == '5') {
+                if (time[1] == '4') {
                     time[0] = '0';
                     time[1] = '0';
                 }
             }
-        }
-        else if(index == 3)
-        {
+        } else if (index == 3) {
             if (time[3] != '5') {
                 if (time[4]++ == '9') {
                     time[4] = '0';
@@ -18303,9 +18324,7 @@ void set_time(unsigned char key) {
                     time[3] = '0';
                 }
             }
-        }
-        else
-        {
+        } else {
             if (time[6] != '5') {
                 if (time[7]++ == '9') {
                     time[7] = '0';
@@ -18326,12 +18345,13 @@ void set_time(unsigned char key) {
             enter_flag = 2;
             index = 0;
             sec = 0;
+            clcd_print("Time Not Update.", (0xC0 + (0)));
+            _delay((unsigned long)((500)*(20000000/4000.0)));
             return;
         }
     } else if (wait1 != 0 && wait1 < 400 && previous_key == 12 && key == 0xFF) {
-        index-=3;
-        clcd_putch(index+48, (0x80 + (10)));
-        if (index == (unsigned)-3)
+        index -= 3;
+        if (index == (unsigned) - 3)
             index = 6;
         wait1 = 0;
     }
@@ -18342,7 +18362,42 @@ void set_time(unsigned char key) {
         if (wait2 == 200)
             wait2 = 0;
     }
-    clcd_putch(wait2+48, (0x80 + (14)));
+}
+
+void download_log() {
+    clcd_print("Download_log :-  ", (0x80 + (0)));
+    clcd_print("Downloading... ", (0xC0 + (0)));
+    clcd_putch(count_event + 48, (0xC0 + (14)));
+    _delay((unsigned long)((4000)*(20000000/4000.0)));
+
+
+
+
+
+
+    clcd_print("#   Time    EV  SP", (0xC0 + (0)));
+    _delay((unsigned long)((2000)*(20000000/4000.0)));
+    for (int i = 0; i < total_index; i++) {
+        address = 0x00 + (16 * (count_event % total_index));
+        for (int i = 0; i < 16; i++) {
+            view_event[i] = read_external_eeprom(address + i);
+        }
+        view_event[16] = '\0';
+
+        clcd_print(view_event, (0xC0 + (0)));
+        _delay((unsigned long)((3000)*(20000000/4000.0)));
+        count_event++;
+        if(count_event > 9)
+            count_event = 0;
+    }
+    _delay((unsigned long)((2000)*(20000000/4000.0)));
+    enter_flag = 2;
+    wait1 = 0;
+
+
+
+
+
 }
 
 void clear_log() {
