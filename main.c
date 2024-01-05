@@ -25,7 +25,7 @@ void init_config() {
     init_matrix_keypad();
     init_clcd();
     init_adc();
-    init_timer0();
+    //init_timer0();
     init_i2c();
     init_ds1307();
     //init_uart();

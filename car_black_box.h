@@ -8,6 +8,8 @@
 #ifndef CAR_BLACK_BOX_H
 #define	CAR_BLACK_BOX_H
 
+void init_config();
+
 #define ADR_EEPROM 0x00
 
 #define SLAVE_READ_eeprom	0xA1

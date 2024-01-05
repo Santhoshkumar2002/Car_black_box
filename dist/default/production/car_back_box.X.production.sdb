@@ -61,9 +61,9 @@
 [v _set_time set_time `(v  1 e 1 0 ]
 "405
 [v _download_log download_log `(v  1 e 1 0 ]
-"441
+"439
 [v _clear_log clear_log `(v  1 e 1 0 ]
-"453
+"451
 [v _change_password change_password `(v  1 e 1 0 ]
 "12 C:\Users\santh\MPLABXProjects\car_back_box.X\clcd.c
 [v _clcd_write clcd_write `(v  1 e 1 0 ]
@@ -113,10 +113,12 @@
 [v _read_switches read_switches `(uc  1 e 1 0 ]
 "34
 [v _scan_key scan_key `(uc  1 e 1 0 ]
-"11 C:\Users\santh\MPLABXProjects\car_back_box.X\timer0.c
-[v _init_timer0 init_timer0 `(v  1 e 1 0 ]
-"45 C:\Users\santh\MPLABXProjects\car_back_box.X\uart.c
+"12 C:\Users\santh\MPLABXProjects\car_back_box.X\uart.c
+[v _init_uart init_uart `(v  1 e 1 0 ]
+"52
 [v _putch putch `(v  1 e 1 0 ]
+"59
+[v _puts puts `(v  1 e 1 0 ]
 "26058 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
 "27059
@@ -145,6 +147,10 @@
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
 "31712
 [v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
+"32475
+[v _ABDEN ABDEN `VEb  1 e 0 @32192 ]
+"32478
+[v _ABDOVF ABDOVF `VEb  1 e 0 @32199 ]
 "32481
 [v _ACKDT ACKDT `VEb  1 e 0 @32301 ]
 "32484
@@ -163,6 +169,8 @@
 [v _ADCS1 ADCS1 `VEb  1 e 0 @32257 ]
 "32505
 [v _ADCS2 ADCS2 `VEb  1 e 0 @32258 ]
+"32508
+[v _ADDEN ADDEN `VEb  1 e 0 @32091 ]
 "32514
 [v _ADFM ADFM `VEb  1 e 0 @32263 ]
 "32526
@@ -177,10 +185,16 @@
 [v _CKE CKE `VEb  1 e 0 @32318 ]
 "34914
 [v _CREN CREN `VEb  1 e 0 @32092 ]
+"34920
+[v _CSRC CSRC `VEb  1 e 0 @32103 ]
+"35334
+[v _FERR FERR `VEb  1 e 0 @32090 ]
 "35487
 [v _GIE GIE `VEb  1 e 0 @32663 ]
 "35499
 [v _GO GO `VEb  1 e 0 @32273 ]
+"35988
+[v _OERR OERR `VEb  1 e 0 @32089 ]
 "36042
 [v _PCFG0 PCFG0 `VEb  1 e 0 @32264 ]
 "36045
@@ -219,6 +233,8 @@
 [v _RC2 RC2 `VEb  1 e 0 @31762 ]
 "36270
 [v _RCEN RCEN `VEb  1 e 0 @32299 ]
+"36273
+[v _RCIDL RCIDL `VEb  1 e 0 @32198 ]
 "36276
 [v _RCIE RCIE `VEb  1 e 0 @31981 ]
 "36279
@@ -229,6 +245,10 @@
 [v _RSEN RSEN `VEb  1 e 0 @32297 ]
 "36372
 [v _RX9 RX9 `VEb  1 e 0 @32094 ]
+"36375
+[v _RX9D RX9D `VEb  1 e 0 @32088 ]
+"38811
+[v _SCKP SCKP `VEb  1 e 0 @32196 ]
 "38856
 [v _SEN SEN `VEb  1 e 0 @32296 ]
 "38859
@@ -237,6 +257,8 @@
 [v _SMP SMP `VEb  1 e 0 @32319 ]
 "38880
 [v _SPEN SPEN `VEb  1 e 0 @32095 ]
+"38883
+[v _SREN SREN `VEb  1 e 0 @32093 ]
 "38901
 [v _SSPIF SSPIF `VEb  1 e 0 @31987 ]
 "38958
@@ -261,8 +283,12 @@
 [v _TRISC7 TRISC7 `VEb  1 e 0 @31911 ]
 "39243
 [v _TRISD7 TRISD7 `VEb  1 e 0 @31919 ]
+"39255
+[v _TRMT TRMT `VEb  1 e 0 @32097 ]
 "39303
 [v _TX9 TX9 `VEb  1 e 0 @32102 ]
+"39309
+[v _TX9D TX9D `VEb  1 e 0 @32096 ]
 "40326
 [v _TXEN TXEN `VEb  1 e 0 @32101 ]
 "40332
@@ -273,6 +299,8 @@
 [v _VCFG0 VCFG0 `VEb  1 e 0 @32268 ]
 "40356
 [v _VCFG1 VCFG1 `VEb  1 e 0 @32269 ]
+"40416
+[v _WUE WUE `VEb  1 e 0 @32193 ]
 "16 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _event event `[17]uc  1 e 17 0 ]
 "18
@@ -317,7 +345,7 @@
 "318
 [v _time time `[9]uc  1 e 9 0 ]
 [v _wait2 wait2 `uc  1 e 1 0 ]
-"451
+"449
 [v _pass_flag pass_flag `uc  1 e 1 0 ]
 [v _confirm_password confirm_password `[5]uc  1 e 5 0 ]
 "11 C:\Users\santh\MPLABXProjects\car_back_box.X\isr.c
@@ -331,9 +359,9 @@
 [v _main main `(v  1 e 1 0 ]
 {
 "95
-[v main@i_153 i `i  1 a 2 63 ]
+[v main@i_149 i `i  1 a 2 63 ]
 "42
-[v main@i_148 i `i  1 a 2 61 ]
+[v main@i_144 i `i  1 a 2 61 ]
 "38
 [v main@i i `i  1 a 2 59 ]
 "36
@@ -403,11 +431,6 @@
 {
 "32
 } 0
-"11 C:\Users\santh\MPLABXProjects\car_back_box.X\timer0.c
-[v _init_timer0 init_timer0 `(v  1 e 1 0 ]
-{
-"27
-} 0
 "12 C:\Users\santh\MPLABXProjects\car_back_box.X\mkp.c
 [v _init_matrix_keypad init_matrix_keypad `(v  1 e 1 0 ]
 {
@@ -465,11 +488,11 @@
 "405 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _download_log download_log `(v  1 e 1 0 ]
 {
-"420
-[v download_log@i_278 i `i  1 a 2 14 ]
-"418
+"419
+[v download_log@i_287 i `i  1 a 2 14 ]
+"417
 [v download_log@i i `i  1 a 2 12 ]
-"439
+"437
 } 0
 "23 C:\Users\santh\MPLABXProjects\car_back_box.X\ext_eeprom.c
 [v _read_external_eeprom read_external_eeprom `(uc  1 e 1 0 ]
@@ -502,6 +525,25 @@
 [v _i2c_no_ack i2c_no_ack `(v  1 e 1 0 ]
 {
 "80
+} 0
+"59 C:\Users\santh\MPLABXProjects\car_back_box.X\uart.c
+[v _puts puts `(v  1 e 1 0 ]
+{
+[v puts@data data `*.35uc  1 p 2 1 ]
+"65
+} 0
+"52
+[v _putch putch `(v  1 e 1 0 ]
+{
+[v putch@data data `uc  1 a 1 wreg ]
+[v putch@data data `uc  1 a 1 wreg ]
+[v putch@data data `uc  1 a 1 0 ]
+"57
+} 0
+"12
+[v _init_uart init_uart `(v  1 e 1 0 ]
+{
+"50
 } 0
 "94 C:\Users\santh\MPLABXProjects\car_back_box.X\car_black_box.c
 [v _display_speed display_speed `(v  1 e 1 0 ]
@@ -547,18 +589,18 @@
 [v gear_monitor@key key `uc  1 a 1 15 ]
 "92
 } 0
-"441
+"439
 [v _clear_log clear_log `(v  1 e 1 0 ]
 {
-"449
+"447
 } 0
-"453
+"451
 [v _change_password change_password `(v  1 e 1 0 ]
 {
 [v change_password@key key `uc  1 a 1 wreg ]
-"530
+"529
 [v change_password@i i `i  1 a 2 11 ]
-"453
+"451
 [v change_password@key key `uc  1 a 1 wreg ]
 [v change_password@key key `uc  1 a 1 13 ]
 "557

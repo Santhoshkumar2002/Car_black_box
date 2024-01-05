@@ -284,7 +284,7 @@ void view_log(unsigned char key) {
             count_event = total_index-1;
         }
         if (view_flag == -1) {
-            view_flag = 9;
+            view_flag = total_index-1;
         }
         wait1 = 0;
     } else if (key == 12) {
@@ -299,9 +299,9 @@ void view_log(unsigned char key) {
     } else if (wait1 != 0 && wait1 < 300 && previous_key == 12 && key == 0xFF) {
         view_flag++;
         count_event++;
-        if (count_event == 10)
+        if (count_event == total_index)
             count_event = 0;
-        if (view_flag == 10)
+        if (view_flag == total_index)
             view_flag = 0;
         wait1 = 0;
     } else
@@ -407,13 +407,12 @@ void download_log() {
     clcd_print("Downloading... ", LINE2(0));
     clcd_putch(count_event + 48, LINE2(14));
     __delay_ms(4000);
-    /*TMR0ON = 0;
     GIE = 0;
     PEIE = 0;
     TMR0IE = 0;
+    TMR0IF = 1;
     init_uart();
-    puts("#   Time    EV  SP\n\r");*/
-    clcd_print("#   Time    EV  SP", LINE2(0));
+    puts("#   Time    EV  SP\n\r");
     __delay_ms(2000);
     for (int i = 0; i < total_index; i++) {
         address = ADR_EEPROM + (16 * (count_event % total_index));
@@ -421,9 +420,8 @@ void download_log() {
             view_event[i] = read_external_eeprom(address + i);
         }
         view_event[16] = '\0';
-        //puts(view_event);
-        clcd_print(view_event, LINE2(0));
-        __delay_ms(3000);
+        puts(view_event);
+        puts("\n\r");
         count_event++;
         if(count_event > 9)
             count_event = 0;    
@@ -431,11 +429,11 @@ void download_log() {
     __delay_ms(2000);
     enter_flag = 2;
     wait1 = 0;
-    /*
-    TMR0ON = 1;
     GIE = 1;
-    PEIE = 1; 
-    TMR0IE = 0;*/
+    PEIE = 1;
+    TMR0IE = 1;
+    TMR0IF = 0;
+     return;
 }
 
 void clear_log() {
@@ -479,6 +477,7 @@ void change_password(unsigned char key) {
                 pass_flag = 1;
             }
             if (attempt == '0') {
+                attempt = '3';
                 pass_flag = 0;
                 enter_flag = 2;
                 return;
@@ -538,6 +537,7 @@ void change_password(unsigned char key) {
             pass_flag = 0;
             enter_flag = 2;
             index = 0;
+            attempt = '3';
             __delay_ms(1000);
         }
     }

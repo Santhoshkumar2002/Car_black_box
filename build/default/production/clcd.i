@@ -17908,7 +17908,13 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 8 "clcd.c" 2
 
 # 1 "./car_black_box.h" 1
-# 15 "./car_black_box.h"
+# 11 "./car_black_box.h"
+void init_config();
+
+
+
+
+
 void write_external_eeprom(unsigned char address1, unsigned char data);
 unsigned char read_external_eeprom(unsigned char address1);
 

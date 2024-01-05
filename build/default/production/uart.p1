@@ -1,10 +1,13 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"39216 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 39216: extern volatile __bit TRISC6 __attribute__((address(0x7CA6)));
-[v _TRISC6 `Vb ~T0 @X0 0 e@31910 ]
-"39219
+"39219 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 39219: extern volatile __bit TRISC7 __attribute__((address(0x7CA7)));
 [v _TRISC7 `Vb ~T0 @X0 0 e@31911 ]
+"39216
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 39216: extern volatile __bit TRISC6 __attribute__((address(0x7CA6)));
+[v _TRISC6 `Vb ~T0 @X0 0 e@31910 ]
+"34920
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 34920: extern volatile __bit CSRC __attribute__((address(0x7D67)));
+[v _CSRC `Vb ~T0 @X0 0 e@32103 ]
 "39303
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 39303: extern volatile __bit TX9 __attribute__((address(0x7D66)));
 [v _TX9 `Vb ~T0 @X0 0 e@32102 ]
@@ -14,42 +17,72 @@ Version 4.0 HI-TECH Software Intermediate Code
 "38958
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 38958: extern volatile __bit SYNC __attribute__((address(0x7D64)));
 [v _SYNC `Vb ~T0 @X0 0 e@32100 ]
-"34755
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 34755: extern volatile __bit BRGH __attribute__((address(0x7D62)));
-[v _BRGH `Vb ~T0 @X0 0 e@32098 ]
 "38859
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 38859: extern volatile __bit SENDB __attribute__((address(0x7D63)));
 [v _SENDB `Vb ~T0 @X0 0 e@32099 ]
+"34755
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 34755: extern volatile __bit BRGH __attribute__((address(0x7D62)));
+[v _BRGH `Vb ~T0 @X0 0 e@32098 ]
+"39255
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 39255: extern volatile __bit TRMT __attribute__((address(0x7D61)));
+[v _TRMT `Vb ~T0 @X0 0 e@32097 ]
+"39309
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 39309: extern volatile __bit TX9D __attribute__((address(0x7D60)));
+[v _TX9D `Vb ~T0 @X0 0 e@32096 ]
 "38880
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 38880: extern volatile __bit SPEN __attribute__((address(0x7D5F)));
 [v _SPEN `Vb ~T0 @X0 0 e@32095 ]
 "36372
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36372: extern volatile __bit RX9 __attribute__((address(0x7D5E)));
 [v _RX9 `Vb ~T0 @X0 0 e@32094 ]
+"38883
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 38883: extern volatile __bit SREN __attribute__((address(0x7D5D)));
+[v _SREN `Vb ~T0 @X0 0 e@32093 ]
 "34914
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 34914: extern volatile __bit CREN __attribute__((address(0x7D5C)));
 [v _CREN `Vb ~T0 @X0 0 e@32092 ]
+"32508
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 32508: extern volatile __bit ADDEN __attribute__((address(0x7D5B)));
+[v _ADDEN `Vb ~T0 @X0 0 e@32091 ]
+"35334
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 35334: extern volatile __bit FERR __attribute__((address(0x7D5A)));
+[v _FERR `Vb ~T0 @X0 0 e@32090 ]
+"35988
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 35988: extern volatile __bit OERR __attribute__((address(0x7D59)));
+[v _OERR `Vb ~T0 @X0 0 e@32089 ]
+"36375
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36375: extern volatile __bit RX9D __attribute__((address(0x7D58)));
+[v _RX9D `Vb ~T0 @X0 0 e@32088 ]
+"32478
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 32478: extern volatile __bit ABDOVF __attribute__((address(0x7DC7)));
+[v _ABDOVF `Vb ~T0 @X0 0 e@32199 ]
+"36273
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36273: extern volatile __bit RCIDL __attribute__((address(0x7DC6)));
+[v _RCIDL `Vb ~T0 @X0 0 e@32198 ]
+"38811
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 38811: extern volatile __bit SCKP __attribute__((address(0x7DC4)));
+[v _SCKP `Vb ~T0 @X0 0 e@32196 ]
 "34752
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 34752: extern volatile __bit BRG16 __attribute__((address(0x7DC3)));
 [v _BRG16 `Vb ~T0 @X0 0 e@32195 ]
+"40416
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 40416: extern volatile __bit WUE __attribute__((address(0x7DC1)));
+[v _WUE `Vb ~T0 @X0 0 e@32193 ]
+"32475
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 32475: extern volatile __bit ABDEN __attribute__((address(0x7DC0)));
+[v _ABDEN `Vb ~T0 @X0 0 e@32192 ]
 "29269
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 29269: extern volatile unsigned char SPBRG __attribute__((address(0xFAF)));
 [v _SPBRG `Vuc ~T0 @X0 0 e@4015 ]
-"35487
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 35487: extern volatile __bit GIE __attribute__((address(0x7F97)));
-[v _GIE `Vb ~T0 @X0 0 e@32663 ]
-"36081
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36081: extern volatile __bit PEIE __attribute__((address(0x7F96)));
-[v _PEIE `Vb ~T0 @X0 0 e@32662 ]
 "40332
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 40332: extern volatile __bit TXIE __attribute__((address(0x7CEC)));
 [v _TXIE `Vb ~T0 @X0 0 e@31980 ]
-"36276
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36276: extern volatile __bit RCIE __attribute__((address(0x7CED)));
-[v _RCIE `Vb ~T0 @X0 0 e@31981 ]
 "40335
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 40335: extern volatile __bit TXIF __attribute__((address(0x7CF4)));
 [v _TXIF `Vb ~T0 @X0 0 e@31988 ]
+"36276
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36276: extern volatile __bit RCIE __attribute__((address(0x7CED)));
+[v _RCIE `Vb ~T0 @X0 0 e@31981 ]
 "36279
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4580.h: 36279: extern volatile __bit RCIF __attribute__((address(0x7CF5)));
 [v _RCIF `Vb ~T0 @X0 0 e@31989 ]
@@ -1306,27 +1339,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _init_uart ]
 [f ]
+"14
+[; ;uart.c: 14:     TRISC7 = 1;
+[e = _TRISC7 -> -> 1 `i `b ]
 "15
 [; ;uart.c: 15:     TRISC6 = 0;
 [e = _TRISC6 -> -> 0 `i `b ]
-"16
-[; ;uart.c: 16:     TRISC7 = 1;
-[e = _TRISC7 -> -> 1 `i `b ]
-"19
-[; ;uart.c: 19:     TX9 = 0;
+"17
+[; ;uart.c: 17:     CSRC = 0;
+[e = _CSRC -> -> 0 `i `b ]
+"18
+[; ;uart.c: 18:     TX9 = 0;
 [e = _TX9 -> -> 0 `i `b ]
-"20
-[; ;uart.c: 20:     TXEN = 1;
+"19
+[; ;uart.c: 19:     TXEN = 1;
 [e = _TXEN -> -> 1 `i `b ]
-"21
-[; ;uart.c: 21:     SYNC = 0;
+"20
+[; ;uart.c: 20:     SYNC = 0;
 [e = _SYNC -> -> 0 `i `b ]
+"21
+[; ;uart.c: 21:     SENDB = 0;
+[e = _SENDB -> -> 0 `i `b ]
 "22
 [; ;uart.c: 22:     BRGH = 1;
 [e = _BRGH -> -> 1 `i `b ]
 "23
-[; ;uart.c: 23:     SENDB = 1;
-[e = _SENDB -> -> 1 `i `b ]
+[; ;uart.c: 23:     TRMT = 0;
+[e = _TRMT -> -> 0 `i `b ]
+"24
+[; ;uart.c: 24:     TX9D = 0;
+[e = _TX9D -> -> 0 `i `b ]
 "26
 [; ;uart.c: 26:     SPEN = 1;
 [e = _SPEN -> -> 1 `i `b ]
@@ -1334,156 +1376,164 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;uart.c: 27:     RX9 = 0;
 [e = _RX9 -> -> 0 `i `b ]
 "28
-[; ;uart.c: 28:     CREN = 1;
+[; ;uart.c: 28:     SREN = 0;
+[e = _SREN -> -> 0 `i `b ]
+"29
+[; ;uart.c: 29:     CREN = 1;
 [e = _CREN -> -> 1 `i `b ]
+"30
+[; ;uart.c: 30:     ADDEN = 0;
+[e = _ADDEN -> -> 0 `i `b ]
 "31
-[; ;uart.c: 31:     BRG16 = 0;
-[e = _BRG16 -> -> 0 `i `b ]
+[; ;uart.c: 31:     FERR = 0;
+[e = _FERR -> -> 0 `i `b ]
 "32
-[; ;uart.c: 32:     SPBRG = 64;
-[e = _SPBRG -> -> 64 `i `uc ]
+[; ;uart.c: 32:     OERR = 0;
+[e = _OERR -> -> 0 `i `b ]
+"33
+[; ;uart.c: 33:     RX9D = 0;
+[e = _RX9D -> -> 0 `i `b ]
+"35
+[; ;uart.c: 35:     ABDOVF = 0;
+[e = _ABDOVF -> -> 0 `i `b ]
 "36
-[; ;uart.c: 36:     GIE = 1;
-[e = _GIE -> -> 1 `i `b ]
+[; ;uart.c: 36:     RCIDL = 1;
+[e = _RCIDL -> -> 1 `i `b ]
 "37
-[; ;uart.c: 37:     PEIE = 1;
-[e = _PEIE -> -> 1 `i `b ]
+[; ;uart.c: 37:     SCKP = 0;
+[e = _SCKP -> -> 0 `i `b ]
 "38
-[; ;uart.c: 38:     TXIE = 1;
-[e = _TXIE -> -> 1 `i `b ]
+[; ;uart.c: 38:     BRG16 = 0;
+[e = _BRG16 -> -> 0 `i `b ]
 "39
-[; ;uart.c: 39:     RCIE = 1;
-[e = _RCIE -> -> 1 `i `b ]
+[; ;uart.c: 39:     WUE = 0;
+[e = _WUE -> -> 0 `i `b ]
 "40
-[; ;uart.c: 40:     TXIF = 0;
+[; ;uart.c: 40:     ABDEN = 0;
+[e = _ABDEN -> -> 0 `i `b ]
+"42
+[; ;uart.c: 42:     SPBRG = 64;
+[e = _SPBRG -> -> 64 `i `uc ]
+"44
+[; ;uart.c: 44:     TXIE = 1;
+[e = _TXIE -> -> 1 `i `b ]
+"45
+[; ;uart.c: 45:     TXIF = 0;
 [e = _TXIF -> -> 0 `i `b ]
-"41
-[; ;uart.c: 41:     RCIF = 0;
+"46
+[; ;uart.c: 46:     RCIE = 1;
+[e = _RCIE -> -> 1 `i `b ]
+"47
+[; ;uart.c: 47:     RCIF = 0;
 [e = _RCIF -> -> 0 `i `b ]
-"43
-[; ;uart.c: 43: }
+"50
+[; ;uart.c: 50: }
 [e :UE 1088 ]
 }
-"45
-[; ;uart.c: 45: void putch(unsigned char data)
+"52
+[; ;uart.c: 52: void putch(unsigned char data)
 [v _putch `(v ~T0 @X0 1 ef1`uc ]
-"46
-[; ;uart.c: 46: {
+"53
+[; ;uart.c: 53: {
 {
 [e :U _putch ]
-"45
-[; ;uart.c: 45: void putch(unsigned char data)
+"52
+[; ;uart.c: 52: void putch(unsigned char data)
 [v _data `uc ~T0 @X0 1 r1 ]
-"46
-[; ;uart.c: 46: {
+"53
+[; ;uart.c: 53: {
 [f ]
-"47
-[; ;uart.c: 47:     while(!TXIF);
+"54
+[; ;uart.c: 54:     while(!TXIF);
 [e $U 1090  ]
 [e :U 1091 ]
 [e :U 1090 ]
 [e $ ! _TXIF 1091  ]
 [e :U 1092 ]
-"48
-[; ;uart.c: 48:     TXREG = data;
+"55
+[; ;uart.c: 55:     TXREG = data;
 [e = _TXREG _data ]
-"49
-[; ;uart.c: 49:     TXIF = 0;
-[e = _TXIF -> -> 0 `i `b ]
-"50
-[; ;uart.c: 50: }
+"57
+[; ;uart.c: 57: }
 [e :UE 1089 ]
 }
-"52
-[; ;uart.c: 52: void puts(unsigned char *data)
+"59
+[; ;uart.c: 59: void puts(unsigned char *data)
 [v _puts `(v ~T0 @X0 1 ef1`*uc ]
-"53
-[; ;uart.c: 53: {
+"60
+[; ;uart.c: 60: {
 {
 [e :U _puts ]
-"52
-[; ;uart.c: 52: void puts(unsigned char *data)
+"59
+[; ;uart.c: 59: void puts(unsigned char *data)
 [v _data `*uc ~T0 @X0 1 r1 ]
-"53
-[; ;uart.c: 53: {
+"60
+[; ;uart.c: 60: {
 [f ]
-"54
-[; ;uart.c: 54:     while (*data)
+"61
+[; ;uart.c: 61:     while (*data)
 [e $U 1094  ]
 [e :U 1095 ]
-"55
-[; ;uart.c: 55:     {
+"62
+[; ;uart.c: 62:     {
 {
-"56
-[; ;uart.c: 56:         putch(*data++);
+"63
+[; ;uart.c: 63:         putch(*data++);
 [e ( _putch (1 *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x ]
-"57
-[; ;uart.c: 57:     }
+"64
+[; ;uart.c: 64:     }
 }
 [e :U 1094 ]
-"54
-[; ;uart.c: 54:     while (*data)
+"61
+[; ;uart.c: 61:     while (*data)
 [e $ != -> *U _data `i -> 0 `i 1095  ]
 [e :U 1096 ]
-"58
-[; ;uart.c: 58: }
+"65
+[; ;uart.c: 65: }
 [e :UE 1093 ]
 }
-"60
-[; ;uart.c: 60: unsigned char getch()
+"67
+[; ;uart.c: 67: unsigned char getch()
 [v _getch `(uc ~T0 @X0 1 ef ]
-"61
-[; ;uart.c: 61: {
+"68
+[; ;uart.c: 68: {
 {
 [e :U _getch ]
 [f ]
-"62
-[; ;uart.c: 62:     while (!RCIF);
+"69
+[; ;uart.c: 69:     while (!RCIF);
 [e $U 1098  ]
 [e :U 1099 ]
 [e :U 1098 ]
 [e $ ! _RCIF 1099  ]
 [e :U 1100 ]
-"63
-[; ;uart.c: 63:     RCIF = 0;
-[e = _RCIF -> -> 0 `i `b ]
-"64
-[; ;uart.c: 64:     return RCREG;
+"71
+[; ;uart.c: 71:     return RCREG;
 [e ) _RCREG ]
 [e $UE 1097  ]
-"65
-[; ;uart.c: 65: }
+"72
+[; ;uart.c: 72: }
 [e :UE 1097 ]
 }
-"67
-[; ;uart.c: 67: unsigned char getche()
+"74
+[; ;uart.c: 74: unsigned char getche()
 [v _getche `(uc ~T0 @X0 1 ef ]
-"68
-[; ;uart.c: 68: {
+"75
+[; ;uart.c: 75: {
 {
 [e :U _getche ]
 [f ]
-"69
-[; ;uart.c: 69:     char ch;
+"76
+[; ;uart.c: 76:     char ch;
 [v _ch `uc ~T0 @X0 1 a ]
-"70
-[; ;uart.c: 70:     while (!RCIF);
-[e $U 1102  ]
-[e :U 1103 ]
-[e :U 1102 ]
-[e $ ! _RCIF 1103  ]
-[e :U 1104 ]
-"71
-[; ;uart.c: 71:     RCIF = 0;
-[e = _RCIF -> -> 0 `i `b ]
-"72
-[; ;uart.c: 72:     putch(ch = RCREG);
+"79
+[; ;uart.c: 79:     putch(ch = RCREG);
 [e ( _putch (1 -> = _ch -> _RCREG `uc `uc ]
-"73
-[; ;uart.c: 73:     return ch;
+"80
+[; ;uart.c: 80:     return ch;
 [e ) -> _ch `uc ]
 [e $UE 1101  ]
-"74
-[; ;uart.c: 74: }
+"81
+[; ;uart.c: 81: }
 [e :UE 1101 ]
 }

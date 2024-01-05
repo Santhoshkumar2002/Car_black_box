@@ -17909,7 +17909,13 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 9 "car_black_box.c" 2
 
 # 1 "./car_black_box.h" 1
-# 15 "./car_black_box.h"
+# 11 "./car_black_box.h"
+void init_config();
+
+
+
+
+
 void write_external_eeprom(unsigned char address1, unsigned char data);
 unsigned char read_external_eeprom(unsigned char address1);
 
@@ -18246,7 +18252,7 @@ void view_log(unsigned char key) {
             count_event = total_index-1;
         }
         if (view_flag == -1) {
-            view_flag = 9;
+            view_flag = total_index-1;
         }
         wait1 = 0;
     } else if (key == 12) {
@@ -18261,9 +18267,9 @@ void view_log(unsigned char key) {
     } else if (wait1 != 0 && wait1 < 300 && previous_key == 12 && key == 0xFF) {
         view_flag++;
         count_event++;
-        if (count_event == 10)
+        if (count_event == total_index)
             count_event = 0;
-        if (view_flag == 10)
+        if (view_flag == total_index)
             view_flag = 0;
         wait1 = 0;
     } else
@@ -18369,13 +18375,12 @@ void download_log() {
     clcd_print("Downloading... ", (0xC0 + (0)));
     clcd_putch(count_event + 48, (0xC0 + (14)));
     _delay((unsigned long)((4000)*(20000000/4000.0)));
-
-
-
-
-
-
-    clcd_print("#   Time    EV  SP", (0xC0 + (0)));
+    GIE = 0;
+    PEIE = 0;
+    TMR0IE = 0;
+    TMR0IF = 1;
+    init_uart();
+    puts("#   Time    EV  SP\n\r");
     _delay((unsigned long)((2000)*(20000000/4000.0)));
     for (int i = 0; i < total_index; i++) {
         address = 0x00 + (16 * (count_event % total_index));
@@ -18383,9 +18388,8 @@ void download_log() {
             view_event[i] = read_external_eeprom(address + i);
         }
         view_event[16] = '\0';
-
-        clcd_print(view_event, (0xC0 + (0)));
-        _delay((unsigned long)((3000)*(20000000/4000.0)));
+        puts(view_event);
+        puts("\n\r");
         count_event++;
         if(count_event > 9)
             count_event = 0;
@@ -18393,11 +18397,11 @@ void download_log() {
     _delay((unsigned long)((2000)*(20000000/4000.0)));
     enter_flag = 2;
     wait1 = 0;
-
-
-
-
-
+    GIE = 1;
+    PEIE = 1;
+    TMR0IE = 1;
+    TMR0IF = 0;
+     return;
 }
 
 void clear_log() {
@@ -18441,6 +18445,7 @@ void change_password(unsigned char key) {
                 pass_flag = 1;
             }
             if (attempt == '0') {
+                attempt = '3';
                 pass_flag = 0;
                 enter_flag = 2;
                 return;
@@ -18500,6 +18505,7 @@ void change_password(unsigned char key) {
             pass_flag = 0;
             enter_flag = 2;
             index = 0;
+            attempt = '3';
             _delay((unsigned long)((1000)*(20000000/4000.0)));
         }
     }
